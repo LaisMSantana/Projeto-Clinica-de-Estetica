@@ -53,9 +53,9 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o :");
-		lblEndereo.setBounds(10, 47, 72, 14);
-		getContentPane().add(lblEndereo);
+		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
+		lblEndereco.setBounds(10, 47, 72, 14);
+		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
 		txtEndereco.setBounds(68, 44, 356, 20);
@@ -103,7 +103,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(lblTelefone);
 		
 		txtTelefone = new JTextField();
-		txtTelefone.setBounds(60, 156, 201, 20);
+		txtTelefone.setBounds(68, 151, 201, 20);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
@@ -138,6 +138,11 @@ public class CadastroCliente extends JInternalFrame {
 		lblDataDeNascimento.setBounds(10, 212, 103, 14);
 		getContentPane().add(lblDataDeNascimento);
 		
+		txtDataNascimento = new JTextField();
+		txtDataNascimento.setBounds(114, 209, 147, 20);
+		getContentPane().add(txtDataNascimento);
+		txtDataNascimento.setColumns(10);
+		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(20, 237, 89, 23);
 		getContentPane().add(btnSalvar);
@@ -145,11 +150,6 @@ public class CadastroCliente extends JInternalFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(168, 237, 89, 23);
 		getContentPane().add(btnCancelar);
-		
-		txtDataNascimento = new JTextField();
-		txtDataNascimento.setBounds(114, 209, 147, 20);
-		getContentPane().add(txtDataNascimento);
-		txtDataNascimento.setColumns(10);
 
 	}
 }
