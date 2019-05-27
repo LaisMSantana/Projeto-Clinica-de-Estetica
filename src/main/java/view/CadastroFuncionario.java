@@ -55,6 +55,7 @@ public class CadastroFuncionario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroFuncionario() {
+		setClosable(true);
 		setTitle("Cadastro de Funcionários");
 		setBounds(100, 100, 465, 482);
 		getContentPane().setLayout(null);

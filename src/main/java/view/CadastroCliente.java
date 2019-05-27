@@ -40,6 +40,7 @@ public class CadastroCliente extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroCliente() {
+		setClosable(true);
 		setTitle("Cadastro de Clientes");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);

@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -11,12 +12,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private Ajuda ajuda;
+	private JDesktopPane desktopPane;
 
 	/**
 	 * Launch the application.
@@ -42,8 +53,15 @@ public class TelaInicial extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 918, 547);
 
+		contentPane = new JPanel();
+		contentPane.setToolTipText("Vendas");
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
 		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
+		menuBar.setBounds(0, 0, 916, 21);
+		contentPane.add(menuBar);
 
 		JMenu mnNewMenu = new JMenu("Cliente");
 		menuBar.add(mnNewMenu);
@@ -87,27 +105,54 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmSobreOPrograma = new JMenuItem("Sobre o Programa");
 		mnAjuda.add(mntmSobreOPrograma);
 
-		JMenuItem mntmAjuda = new JMenuItem("Ajuda");
-		mnAjuda.add(mntmAjuda);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		JMenuItem mntmAjuda_1 = new JMenuItem("Ajuda");
+		mntmAjuda_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ajuda == null) {
+					ajuda = new Ajuda();
+					desktopPane.add(ajuda);
+					ajuda.show();
+				} else if (ajuda != null) {
+					ajuda.setVisible(true);
+				}
+			}
+		});
+		mnAjuda.add(mntmAjuda_1);
+
+		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(221, 160, 221));
+		desktopPane.setBounds(10, 22, 1000, 652);
+		contentPane.add(desktopPane);
+		desktopPane.setLayout(null);
 
 		JLabel lblPerodo = new JLabel("Per\u00EDodo :");
-		lblPerodo.setBounds(402, 27, 46, 14);
-		contentPane.add(lblPerodo);
+		// lblPerodo.setBounds(402, 27, 46, 14);
+		// contentPane.add(lblPerodo);
 
 		JComboBox cbPeriodo = new JComboBox();
-		cbPeriodo.setBounds(477, 24, 156, 20);
-		contentPane.add(cbPeriodo);
+		// cbPeriodo.setBounds(477, 24, 156, 20);
+		// contentPane.add(cbPeriodo);
 
-		table = new JTable();
-		table.setBounds(10, 483, 784, -360);
-		contentPane.add(table);
+		// JScrollPane scrollPane = new JScrollPane();
+		// scrollPane.setBounds(784, 209, -769, 278);
+		// contentPane.add(scrollPane);
+		//
+		// table = new JTable();
+		// scrollPane.setViewportView(table);
+		// table.setBounds(282, 483, 512, -227);
+		// table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		// table.setCellSelectionEnabled(true);
+		// table.setColumnSelectionAllowed(true);
+		// table.setFillsViewportHeight(true);
+		// table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		// table.setToolTipText("Biomédica\nConsultora\nEsteticista\n");
+		// table.setModel(
+		// new DefaultTableModel(new Object[][] {}, new String[] { "Biomédica",
+		// "Consultora", "Esteticista" }));
+		// table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		// table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		// table.setBounds(10, 483, 784, -360);
+		// scrollPane.setViewportView(table);
 
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(861, 110, 17, 366);
-		contentPane.add(scrollBar);
 	}
 }
