@@ -42,33 +42,33 @@ public class CadastroCliente extends JInternalFrame {
 	public CadastroCliente() {
 		setClosable(true);
 		setTitle("Cadastro de Clientes");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 459, 387);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(10, 11, 46, 14);
+		lblNome.setBounds(0, 11, 46, 14);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(48, 8, 376, 20);
+		txtNome.setBounds(78, 8, 346, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(10, 47, 72, 14);
+		lblEndereco.setBounds(0, 47, 68, 14);
 		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
-		txtEndereco.setBounds(68, 44, 356, 20);
+		txtEndereco.setBounds(78, 44, 346, 20);
 		getContentPane().add(txtEndereco);
 		txtEndereco.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(10, 84, 46, 14);
+		lblBairro.setBounds(0, 84, 46, 14);
 		getContentPane().add(lblBairro);
 		
 		txtBairro = new JTextField();
-		txtBairro.setBounds(48, 81, 213, 20);
+		txtBairro.setBounds(78, 81, 183, 20);
 		getContentPane().add(txtBairro);
 		txtBairro.setColumns(10);
 		
@@ -77,79 +77,79 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(lblCep);
 		
 		txtCep = new JTextField();
-		txtCep.setBounds(314, 81, 110, 20);
+		txtCep.setBounds(334, 81, 90, 20);
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
 		
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
-		lblMunicpio.setBounds(10, 124, 58, 14);
+		lblMunicpio.setBounds(0, 124, 68, 14);
 		getContentPane().add(lblMunicpio);
 		
 		txtMunicipio = new JTextField();
-		txtMunicipio.setBounds(68, 121, 193, 20);
+		txtMunicipio.setBounds(78, 121, 183, 20);
 		getContentPane().add(txtMunicipio);
 		txtMunicipio.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado :");
-		lblEstado.setBounds(269, 124, 46, 14);
+		lblEstado.setBounds(269, 124, 63, 14);
 		getContentPane().add(lblEstado);
 		
 		txtEstado = new JTextField();
-		txtEstado.setBounds(314, 121, 110, 20);
+		txtEstado.setBounds(334, 121, 90, 20);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone :");
-		lblTelefone.setBounds(10, 159, 58, 14);
+		lblTelefone.setBounds(0, 157, 68, 14);
 		getContentPane().add(lblTelefone);
 		
 		txtTelefone = new JTextField();
-		txtTelefone.setBounds(68, 151, 201, 20);
+		txtTelefone.setBounds(78, 154, 183, 20);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(10, 184, 46, 14);
+		lblEmail.setBounds(0, 190, 46, 14);
 		getContentPane().add(lblEmail);
 		
 		textField = new JTextField();
-		textField.setBounds(48, 181, 213, 20);
+		textField.setBounds(78, 187, 186, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCelular = new JLabel("Celular :");
-		lblCelular.setBounds(269, 159, 46, 14);
+		lblCelular.setBounds(269, 159, 63, 14);
 		getContentPane().add(lblCelular);
 		
 		txtCelular = new JTextField();
-		txtCelular.setBounds(324, 156, 100, 20);
+		txtCelular.setBounds(334, 156, 90, 20);
 		getContentPane().add(txtCelular);
 		txtCelular.setColumns(10);
 		
 		JLabel lblCpfcnpj = new JLabel("CPF/CNPJ:");
-		lblCpfcnpj.setBounds(269, 184, 63, 14);
+		lblCpfcnpj.setBounds(269, 190, 63, 14);
 		getContentPane().add(lblCpfcnpj);
 		
 		txtCpfCnpj = new JTextField();
-		txtCpfCnpj.setBounds(324, 181, 100, 20);
+		txtCpfCnpj.setBounds(334, 190, 90, 20);
 		getContentPane().add(txtCpfCnpj);
 		txtCpfCnpj.setColumns(10);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(10, 212, 103, 14);
+		lblDataDeNascimento.setBounds(0, 223, 136, 14);
 		getContentPane().add(lblDataDeNascimento);
 		
 		txtDataNascimento = new JTextField();
-		txtDataNascimento.setBounds(114, 209, 147, 20);
+		txtDataNascimento.setBounds(136, 220, 125, 20);
 		getContentPane().add(txtDataNascimento);
 		txtDataNascimento.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(20, 237, 89, 23);
+		btnSalvar.setBounds(129, 270, 89, 23);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(168, 237, 89, 23);
+		btnCancelar.setBounds(230, 270, 89, 23);
 		getContentPane().add(btnCancelar);
 
 	}
