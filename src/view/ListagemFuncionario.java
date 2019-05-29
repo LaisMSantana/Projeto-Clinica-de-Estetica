@@ -36,7 +36,7 @@ public class ListagemFuncionario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(0, 13, 56, 16);
+		lblNome.setBounds(16, 13, 40, 16);
 		getContentPane().add(lblNome);
 		
 		textField = new JTextField();
@@ -45,7 +45,7 @@ public class ListagemFuncionario extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblCargo = new JLabel("Cargo :");
-		lblCargo.setBounds(0, 48, 56, 16);
+		lblCargo.setBounds(16, 48, 40, 16);
 		getContentPane().add(lblCargo);
 		
 		txtCargo = new JTextField();

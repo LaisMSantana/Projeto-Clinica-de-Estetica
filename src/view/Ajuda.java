@@ -38,7 +38,7 @@ public class Ajuda extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblDigiteAquiAs = new JLabel("Digite aqui a sua D\u00FAvida ");
-		lblDigiteAquiAs.setBounds(133, 45, 202, 15);
+		lblDigiteAquiAs.setBounds(154, 43, 138, 15);
 		getContentPane().add(lblDigiteAquiAs);
 		
 		textField = new JTextField();
