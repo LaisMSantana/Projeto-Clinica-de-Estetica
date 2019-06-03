@@ -48,6 +48,7 @@ public class ListagemFuncionario extends JInternalFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		
 		JLabel lblCargo = new JLabel("Cargo :");
 		lblCargo.setBounds(16, 48, 40, 16);
 		getContentPane().add(lblCargo);
@@ -62,6 +63,8 @@ public class ListagemFuncionario extends JInternalFrame {
 		getContentPane().add(btnPesquisar);
 		
 		//Lista de funcionários na Tabela
+		//Lista de funcionários na Tabela
+
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
 				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" }));

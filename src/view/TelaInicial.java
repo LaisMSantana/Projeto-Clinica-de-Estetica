@@ -94,7 +94,7 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmCadastrarProcedimemento = new JMenuItem("Cadastrar Procedimento");
 		mnProcedimentos.add(mntmCadastrarProcedimemento);
 
-		JMenuItem mntmRelatrios = new JMenuItem("Relat\u00F3rio");
+		JMenuItem mntmRelatrios = new JMenuItem("Relatorio");
 		mnProcedimentos.add(mntmRelatrios);
 
 		JMenu mnAjuda = new JMenu("Ajuda?");
