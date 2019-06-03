@@ -10,7 +10,6 @@ import javax.swing.JButton;
 public class ListagemClientes extends JInternalFrame {
 	private JTextField textField;
 	private JTextField txtCPFCNPJ;
-
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +25,6 @@ public class ListagemClientes extends JInternalFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
