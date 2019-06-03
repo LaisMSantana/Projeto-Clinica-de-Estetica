@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class ListagemFuncionario extends JInternalFrame {
 	private JTextField textField;
 	private JTextField txtCargo;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -31,8 +34,9 @@ public class ListagemFuncionario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ListagemFuncionario() {
+		setClosed(true);
 		setTitle("Listagem de Funcionários");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 564, 362);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
@@ -56,7 +60,14 @@ public class ListagemFuncionario extends JInternalFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(171, 80, 97, 25);
 		getContentPane().add(btnPesquisar);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
+				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" }));
+
+		table.setBounds(0, 117, 554, 201);
+		getContentPane().add(table);
+
 
 	}
-
 }

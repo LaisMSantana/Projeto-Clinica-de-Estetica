@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -10,17 +13,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
 
 public class TelaInicial extends JFrame {
 
@@ -121,11 +119,11 @@ public class TelaInicial extends JFrame {
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(221, 160, 221));
-		desktopPane.setBounds(10, 22, 1000, 652);
+		desktopPane.setBounds(10, 22, 900, 194);
 		contentPane.add(desktopPane);
 		desktopPane.setLayout(null);
 
-		JLabel lblPerodo = new JLabel("Per\u00EDodo :");
+		JLabel lblPerodo = new JLabel("Periodo :");
 		// lblPerodo.setBounds(402, 27, 46, 14);
 		// contentPane.add(lblPerodo);
 
@@ -133,26 +131,31 @@ public class TelaInicial extends JFrame {
 		// cbPeriodo.setBounds(477, 24, 156, 20);
 		// contentPane.add(cbPeriodo);
 
-		// JScrollPane scrollPane = new JScrollPane();
-		// scrollPane.setBounds(784, 209, -769, 278);
-		// contentPane.add(scrollPane);
-		//
-		// table = new JTable();
-		// scrollPane.setViewportView(table);
-		// table.setBounds(282, 483, 512, -227);
-		// table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		// table.setCellSelectionEnabled(true);
-		// table.setColumnSelectionAllowed(true);
-		// table.setFillsViewportHeight(true);
-		// table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		// table.setToolTipText("Biomédica\nConsultora\nEsteticista\n");
-		// table.setModel(
-		// new DefaultTableModel(new Object[][] {}, new String[] { "Biomédica",
-		// "Consultora", "Esteticista" }));
-		// table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		// table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		// table.setBounds(10, 483, 784, -360);
-		// scrollPane.setViewportView(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 219, 916, 278);
+		contentPane.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setBounds(282, 483, 512, -227);
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setCellSelectionEnabled(true);
+		table.setColumnSelectionAllowed(true);
+		table.setFillsViewportHeight(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
+		table.setModel(
+				new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Cliente", "Nome Procedimento", "Data", "Hor\u00E1rio", "Sala"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.setBounds(10, 483, 784, 360);
+		scrollPane.setViewportView(table);
 
 	}
 }
