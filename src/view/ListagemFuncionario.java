@@ -34,7 +34,6 @@ public class ListagemFuncionario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ListagemFuncionario() {
-		setClosed(true);
 		setTitle("Listagem de Funcionários");
 		setBounds(100, 100, 564, 362);
 		getContentPane().setLayout(null);
