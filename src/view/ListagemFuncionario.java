@@ -61,6 +61,7 @@ public class ListagemFuncionario extends JInternalFrame {
 		btnPesquisar.setBounds(171, 80, 97, 25);
 		getContentPane().add(btnPesquisar);
 		
+		//Lista de funcionários na Tabela
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
 				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" }));

@@ -124,12 +124,12 @@ public class TelaInicial extends JFrame {
 		desktopPane.setLayout(null);
 
 		JLabel lblPerodo = new JLabel("Periodo :");
-		// lblPerodo.setBounds(402, 27, 46, 14);
-		// contentPane.add(lblPerodo);
+		lblPerodo.setBounds(402, 27, 46, 14);
+		 contentPane.add(lblPerodo);
 
 		JComboBox cbPeriodo = new JComboBox();
-		// cbPeriodo.setBounds(477, 24, 156, 20);
-		// contentPane.add(cbPeriodo);
+		 cbPeriodo.setBounds(477, 24, 156, 20);
+		 contentPane.add(cbPeriodo);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 219, 916, 278);
