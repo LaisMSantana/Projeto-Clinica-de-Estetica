@@ -19,12 +19,17 @@ import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private Ajuda ajuda;
+	private CadastroFuncionario cadastroFuncionario;
+	private ListagemFuncionario listagemFuncionario;
+	private TelaSobre sobreOPrograma;
 	private JDesktopPane desktopPane;
 
 	/**
@@ -77,9 +82,31 @@ public class TelaInicial extends JFrame {
 		menuBar.add(mnFuncionrio);
 
 		JMenuItem mntmCadastrarNovo = new JMenuItem("Cadastrar Novo");
+		mntmCadastrarNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cadastroFuncionario == null) {
+					cadastroFuncionario = new CadastroFuncionario();
+					desktopPane.add(cadastroFuncionario);
+					cadastroFuncionario.show();
+				} else if (cadastroFuncionario != null) {
+					cadastroFuncionario.setVisible(true);
+				}
+			}
+		});
 		mnFuncionrio.add(mntmCadastrarNovo);
 
 		JMenuItem mntmListarFuncionrios = new JMenuItem("Listar Funcion\u00E1rios");
+		mntmListarFuncionrios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (listagemFuncionario == null) {
+					listagemFuncionario = new ListagemFuncionario();
+					desktopPane.add(listagemFuncionario);
+					listagemFuncionario.show();
+				} else if (listagemFuncionario != null) {
+					listagemFuncionario.setVisible(true);
+				}
+			}
+		});
 		mnFuncionrio.add(mntmListarFuncionrios);
 
 		JMenuItem mntmRelatrio_1 = new JMenuItem("Relat\u00F3rio");
@@ -101,6 +128,17 @@ public class TelaInicial extends JFrame {
 		menuBar.add(mnAjuda);
 
 		JMenuItem mntmSobreOPrograma = new JMenuItem("Sobre o Programa");
+		mntmSobreOPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (sobreOPrograma == null) {
+					sobreOPrograma = new TelaSobre();
+					desktopPane.add(sobreOPrograma);
+					sobreOPrograma.show();
+				} else if (sobreOPrograma != null) {
+					sobreOPrograma.setVisible(true);
+				}
+			}
+		});
 		mnAjuda.add(mntmSobreOPrograma);
 
 		JMenuItem mntmAjuda_1 = new JMenuItem("Ajuda");
