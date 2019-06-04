@@ -1,6 +1,6 @@
 package controller;
 
-public class procedimentoControl {
+public class ProcedimentoControl {
 
 	public static void salvar() {
 		// TODO Auto-generated method stub

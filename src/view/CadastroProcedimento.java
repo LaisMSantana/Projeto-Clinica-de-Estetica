@@ -10,7 +10,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.procedimentoControl;
+import controller.ProcedimentoControl;
 
 public class CadastroProcedimento extends JInternalFrame {
 	private JTextField txtNomeProcedimento;
@@ -63,7 +63,7 @@ public class CadastroProcedimento extends JInternalFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				procedimentoControl.salvar();
+				ProcedimentoControl.salvar();
 				System.out.println("Salvo com Sucesso");
 			}
 		});
@@ -73,7 +73,7 @@ public class CadastroProcedimento extends JInternalFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean close = procedimentoControl.close();
+				boolean close = ProcedimentoControl.close();
 			}
 		});
 		btnCancelar.setBounds(175, 163, 117, 25);
