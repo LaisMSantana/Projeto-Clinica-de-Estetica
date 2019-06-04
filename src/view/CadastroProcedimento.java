@@ -1,12 +1,16 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Color;
-import javax.swing.JButton;
+
+import controller.procedimentoControl;
 
 public class CadastroProcedimento extends JInternalFrame {
 	private JTextField txtNomeProcedimento;
@@ -57,10 +61,21 @@ public class CadastroProcedimento extends JInternalFrame {
 		txtSala.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				procedimentoControl.salvar();
+				System.out.println("Salvo com Sucesso");
+			}
+		});
 		btnSalvar.setBounds(27, 163, 117, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean close = procedimentoControl.close();
+			}
+		});
 		btnCancelar.setBounds(175, 163, 117, 25);
 		getContentPane().add(btnCancelar);
 
