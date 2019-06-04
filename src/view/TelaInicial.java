@@ -157,7 +157,7 @@ public class TelaInicial extends JFrame {
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(221, 160, 221));
-		desktopPane.setBounds(10, 22, 900, 194);
+		desktopPane.setBounds(10, 22, 374, 498);
 		contentPane.add(desktopPane);
 		desktopPane.setLayout(null);
 
@@ -168,32 +168,32 @@ public class TelaInicial extends JFrame {
 		JComboBox cbPeriodo = new JComboBox();
 		 cbPeriodo.setBounds(477, 24, 156, 20);
 		 contentPane.add(cbPeriodo);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 219, 916, 278);
-		contentPane.add(scrollPane);
-
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setBounds(282, 483, 512, -227);
-		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		table.setCellSelectionEnabled(true);
-		table.setColumnSelectionAllowed(true);
-		table.setFillsViewportHeight(true);
-		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
-		table.setModel(
-				new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Cliente", "Nome Procedimento", "Data", "Hor\u00E1rio", "Sala"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		table.setBounds(10, 483, 784, 360);
-		scrollPane.setViewportView(table);
+		 
+		 		JScrollPane scrollPane = new JScrollPane();
+		 		scrollPane.setBounds(396, 83, 520, 437);
+		 		contentPane.add(scrollPane);
+		 		
+		 				table = new JTable();
+		 				scrollPane.setViewportView(table);
+		 				table.setBounds(282, 483, 512, -227);
+		 				table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		 				table.setCellSelectionEnabled(true);
+		 				table.setColumnSelectionAllowed(true);
+		 				table.setFillsViewportHeight(true);
+		 				table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		 				table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
+		 				table.setModel(
+		 						new DefaultTableModel(
+		 					new Object[][] {
+		 					},
+		 					new String[] {
+		 						"Cliente", "Nome Procedimento", "Data", "Hor\u00E1rio", "Sala"
+		 					}
+		 				));
+		 				table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		 				table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		 				table.setBounds(10, 483, 784, 360);
+		 				scrollPane.setViewportView(table);
 
 	}
 }

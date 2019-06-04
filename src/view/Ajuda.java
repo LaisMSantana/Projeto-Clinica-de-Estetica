@@ -1,12 +1,18 @@
 package view;
 
+import java.awt.Desktop;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class Ajuda extends JInternalFrame {
 	private JTextField textField;
@@ -34,26 +40,50 @@ public class Ajuda extends JInternalFrame {
 		setClosable(true);
 		setTitle("Tire as suas D\u00FAvidas");
 		setToolTipText("");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 315, 300);
 		getContentPane().setLayout(null);
 		
 		JLabel lblDigiteAquiAs = new JLabel("Digite aqui a sua D\u00FAvida ");
-		lblDigiteAquiAs.setBounds(154, 43, 138, 15);
+		lblDigiteAquiAs.setBounds(34, 12, 184, 15);
 		getContentPane().add(lblDigiteAquiAs);
 		
 		textField = new JTextField();
-		textField.setBounds(12, 84, 410, 19);
+		textField.setBounds(12, 39, 281, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(154, 128, 117, 25);
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					URI uri = new URI("https://www.google.com/search?q=" + URLEncoder.encode(textField.getText(), "UTF-8"));
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				} catch (URISyntaxException ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		btnPesquisar.setBounds(12, 70, 117, 25);
 		getContentPane().add(btnPesquisar);
 		
 		JButton button = new JButton("www.google.com");
-		button.setBounds(102, 186, 226, 25);
-		getContentPane().add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (Desktop.isDesktopSupported()) {
+					try {
+						URI uri = new URI("https://www.google.com.br");
+						Desktop.getDesktop().browse(uri);
+					} catch (IOException | URISyntaxException ex) {
+						ex.printStackTrace();
+					}
+					}
+				}
+			});
+		button.setBounds(127, 70, 166, 25);
+			getContentPane().add(button);
 
+		}
 	}
 
-}
