@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.ProcedimentoControl;
+import model.vo.Procedimento;
 
 public class CadastroProcedimento extends JInternalFrame {
 	private JTextField txtNomeProcedimento;
@@ -63,7 +64,7 @@ public class CadastroProcedimento extends JInternalFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProcedimentoControl.salvar();
+				ProcedimentoControl.salvar(txtNomeProcedimento.getText(),txtSala.getText());
 				System.out.println("Salvo com Sucesso");
 			}
 		});
