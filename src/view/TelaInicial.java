@@ -19,6 +19,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 
 public class TelaInicial extends JFrame {
 
@@ -30,6 +31,7 @@ public class TelaInicial extends JFrame {
 	private TelaSobre telaSobre;
 	private JDesktopPane desktopPane;
 	private CadastroProcedimento cadastroP;
+	private JTextField txtDigite;
 
 	/**
 	 * Launch the application.
@@ -200,12 +202,21 @@ public class TelaInicial extends JFrame {
 						scrollPane.setViewportView(table);
 
 		JLabel lblPerodo = new JLabel("Periodo :");
-		lblPerodo.setBounds(12, 12, 96, 14);
+		lblPerodo.setBounds(362, 22, 96, 14);
 		desktopPane.add(lblPerodo);
 
 		JComboBox cbPeriodo = new JComboBox();
-		cbPeriodo.setBounds(217, 23, 156, 20);
+		cbPeriodo.setToolTipText("");
+		cbPeriodo.setBounds(364, 47, 156, 20);
 		desktopPane.add(cbPeriodo);
+		
+		txtDigite = new JTextField();
+		txtDigite.setBounds(10, 47, 185, 20);
+		desktopPane.add(txtDigite);
+		txtDigite.setColumns(10);
+		
+	
+		
 
 	}
 }
