@@ -4,13 +4,13 @@ public class Procedimento {
 
 	private int idProcedimento;
 	private String nome;
-	private int sala;
+	private String sala;
 
 	public Procedimento() {
 		super();
 	}
 
-	public Procedimento(int idProcedimento, String nome, int sala) {
+	public Procedimento(int idProcedimento, String nome, String sala) {
 		super();
 		this.idProcedimento = idProcedimento;
 		this.nome = nome;
@@ -33,11 +33,11 @@ public class Procedimento {
 		this.nome = nome;
 	}
 
-	public int getSala() {
+	public String getSala() {
 		return sala;
 	}
 
-	public void setSala(int sala) {
+	public void setSala(String sala) {
 		this.sala = sala;
 	}
 
