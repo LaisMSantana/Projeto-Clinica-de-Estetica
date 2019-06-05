@@ -53,7 +53,7 @@ public class TelaComDatas {
 		lblData.setBounds(10, 64, 40, 20);
 		frame.getContentPane().add(lblData);
 
-		// Configuraçoes da parte de DATAS do componente
+		// Configuraçoes da parte de DATAS do componente jhully
 		DatePickerSettings dateSettings = new DatePickerSettings();
 		dateSettings.setAllowKeyboardEditing(false);
 
