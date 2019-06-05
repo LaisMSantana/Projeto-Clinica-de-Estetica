@@ -1,5 +1,6 @@
 package controller;
 
+
 public class ClienteControl {
 
 	public static void salvar() {

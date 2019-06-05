@@ -169,7 +169,7 @@ public class TelaInicial extends JFrame {
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(221, 160, 221));
-		desktopPane.setBounds(10, 22, 916, 498);
+		desktopPane.setBounds(10, 22, 1000, 700);
 		contentPane.add(desktopPane);
 		desktopPane.setLayout(null);
 		
