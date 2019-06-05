@@ -41,4 +41,9 @@ public class Procedimento {
 		this.sala = sala;
 	}
 
+	public void salvar(Procedimento procedimento) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
