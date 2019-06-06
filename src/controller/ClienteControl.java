@@ -1,10 +1,73 @@
 package controller;
 
+import model.bo.ClienteBO;
+import model.vo.Cliente;
 
 public class ClienteControl {
 
-	public static void salvar() {
+	// Verificar se os campos são nulos ou vazios senao chamar BO
 
+	private static final ClienteBO ClienteBO = new ClienteBO();
+
+	public static String salvar(Cliente cliente) {
+		String validacao = validarCliente(cliente);
+
+		if (validacao == "") {
+			if (cliente.getIdCliente() > 0) {
+				if (ClienteBO.atualizar(cliente)) {
+					validacao = "Cliente atualizado com sucesso!";
+				} else {
+					validacao = "Erro ao atualizar Cliente";
+				}
+			} else {
+				if (ClienteBO.inserir(cliente)) {
+					validacao = "Cliente salvo com sucesso!";
+				} else {
+					validacao = "Erro ao salvar Cliente";
+				}
+			}
+		}
+		return validacao;
+	}
+
+	private static String validarCliente(Cliente cliente) {
+		String validacao = "";
+
+		if (cliente == null) {
+			validacao = "Cliente está NULO!";
+		} else {
+			// Validar o preenchimento
+			if (cliente.getNome().trim().equals("")) {
+				validacao += "- Nome é obrigatório \n";
+			}
+			if (cliente.getCnpjCpf().trim().equals("")) {
+				validacao += "- O CNPJ/CPF é obrigatório \n";
+			}
+		}
+		return validacao;
+	}
+
+	public String excluir(Cliente cliente, String nome, String cnpjCpf) {
+		String mensagem = "";
+
+		if (nome == null || nome.trim().isEmpty()) {
+			mensagem = "Preenche o nome";
+		}
+		if (cnpjCpf == null || cnpjCpf.trim().isEmpty()) {
+			mensagem = "Preenche o cpf/cpnj";
+		}
+		if (mensagem.isEmpty()) {
+			Cliente cliente1 = new Cliente();
+			cliente1.setIdCliente(cliente1.getIdCliente());
+			
+			Cliente clienteNovo = new Cliente();
+			clienteNovo.setNome(nome);
+			clienteNovo.setCnpjCpf(cnpjCpf);
+
+			ClienteBO clienteBO = new ClienteBO();
+			clienteBO.excluir(clienteNovo, cliente1);
+		}
+		return mensagem;
 	}
 
 	public static boolean close() {

@@ -56,11 +56,15 @@ public class FuncionarioControl {
 			mensagem = "Preenche o cpf";
 		}
 		if (mensagem.isEmpty()) {
+			Funcionario funcionario1 = new Funcionario();
+			funcionario1.setIdFuncionario(funcionario1.getIdFuncionario());
+				
 			Funcionario funcionarioNovo = new Funcionario();
-			funcionarioNovo.setIdFuncionario(funcionario.getIdFuncionario());
-
+			funcionarioNovo.setNome(nome);
+			funcionarioNovo.setCpf(cpf);
+			
 			FuncionarioBO funcionarioBO = new FuncionarioBO();
-			funcionarioBO.excluir(funcionarioNovo, funcionarioNovo);
+			funcionarioBO.excluir(funcionarioNovo, funcionario1);
 		}
 		return mensagem;
 	}
