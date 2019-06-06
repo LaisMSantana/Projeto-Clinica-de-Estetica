@@ -14,15 +14,15 @@ public class FuncionarioControl {
 		if (validacao == "") {
 			if (funcionario.getIdFuncionario() > 0) {
 				if (FuncionarioBO.atualizar(funcionario)) {
-					validacao = "Funcionario atualizado com sucesso!";
+					validacao = "Funcionário atualizado com sucesso!";
 				} else {
 					validacao = "Erro ao atualizar produto";
 				}
 			} else {
 				if (FuncionarioBO.inserir(funcionario)) {
-					validacao = "Funcionario salvo com sucesso!";
+					validacao = "Funcionário salvo com sucesso!";
 				} else {
-					validacao = "Erro ao salvar Funcionario";
+					validacao = "Erro ao salvar Funcionário";
 				}
 			}
 		}
@@ -33,7 +33,7 @@ public class FuncionarioControl {
 		String validacao = "";
 
 		if (funcionario == null) {
-			validacao = "Funcionario está NULO!";
+			validacao = "Funcionário está NULO!";
 		} else {
 			// Validar o preenchimento
 			if (funcionario.getNome().trim().equals("")) {
@@ -44,6 +44,25 @@ public class FuncionarioControl {
 			}
 		}
 		return validacao;
+	}
+
+	public String excluir(Funcionario funcionario, String nome, String cpf) {
+		String mensagem = "";
+
+		if (nome == null || nome.trim().isEmpty()) {
+			mensagem = "Preenche o nome";
+		}
+		if (cpf == null || cpf.trim().isEmpty()) {
+			mensagem = "Preenche o cpf";
+		}
+		if (mensagem.isEmpty()) {
+			Funcionario funcionarioNovo = new Funcionario();
+			funcionarioNovo.setIdFuncionario(funcionario.getIdFuncionario());
+
+			FuncionarioBO funcionarioBO = new FuncionarioBO();
+			funcionarioBO.excluir(funcionarioNovo, funcionarioNovo);
+		}
+		return mensagem;
 	}
 
 	public static boolean close() {

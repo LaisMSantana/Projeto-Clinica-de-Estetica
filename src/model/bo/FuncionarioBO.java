@@ -16,4 +16,22 @@ public class FuncionarioBO {
 		int idGerado = funcionarioDAO.inserir(funcionario);
 		return idGerado > 0;
 	}
+
+	public String excluir(Funcionario funcionario, Funcionario funcionarioNovo) {
+		String mensagem = "";
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+
+		if (funcionarioDAO.existeFuncionarioNovo(funcionarioNovo) == false) {
+			mensagem = "Funcionário inexistente";
+		} else {
+			int statusPersistencia = funcionarioDAO.excluir(funcionario);
+
+			if (statusPersistencia == 1) {
+				mensagem = "Funcionário excluido com sucesso";
+			} else if (statusPersistencia == 0) {
+				mensagem = "Erro ao excluir Funcionário";
+			}
+		}
+		return mensagem;
+	}
 }
