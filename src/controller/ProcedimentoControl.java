@@ -1,5 +1,6 @@
 package controller;
 
+import bo.CadastroProcedimentoBO;
 import model.vo.Procedimento;
 
 public class ProcedimentoControl {
