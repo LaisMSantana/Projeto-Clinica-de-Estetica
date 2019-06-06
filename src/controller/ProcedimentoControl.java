@@ -1,11 +1,11 @@
 package controller;
 
-import bo.CadastroProcedimentoBO;
+import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
 public class ProcedimentoControl {
 	// Verificar se os campos são nulos ou vazios senao chamar BO
-	private static final CadastroProcedimentoBO cadastroProcedimentoBO = new CadastroProcedimentoBO();
+	private static final ProcedimentoBO cadastroProcedimentoBO = new ProcedimentoBO();
 
 	public static String salvar(String nome, String sala) {
 		String mensagem = "";

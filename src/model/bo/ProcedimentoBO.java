@@ -1,9 +1,9 @@
-package bo;
+package model.bo;
 
-import dao.ProcedimentoDAO;
+import model.dao.ProcedimentoDAO;
 import model.vo.Procedimento;
 
-public class CadastroProcedimentoBO {
+public class ProcedimentoBO {
 	private ProcedimentoDAO procedimentoDao = new ProcedimentoDAO();
 
 	public  int salvar(Procedimento procedimento) {
