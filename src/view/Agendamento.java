@@ -8,8 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
+
+import controller.AgendamentoControl;
+
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Agendamento extends JInternalFrame {
 	private JTextField txtCPFCNPJ;
@@ -41,10 +46,18 @@ public class Agendamento extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JButton button = new JButton("Salvar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+			}
+		});
 		button.setBounds(40, 230, 120, 25);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("Cancelar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_1.setBounds(180, 230, 120, 25);
 		getContentPane().add(button_1);
 		

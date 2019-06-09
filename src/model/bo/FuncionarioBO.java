@@ -12,8 +12,8 @@ public class FuncionarioBO {
 		return sucesso;
 	}
 
-	public boolean inserir(Funcionario funcionario) {
-		int idGerado = funcionarioDAO.inserir(funcionario);
+	public boolean salvar(Funcionario funcionario) {
+		int idGerado = funcionarioDAO.salvar(funcionario);
 		return idGerado > 0;
 	}
 

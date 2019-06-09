@@ -20,7 +20,7 @@ public class ClienteControl {
 					validacao = "Erro ao atualizar Cliente";
 				}
 			} else {
-				if (ClienteBO.inserir(cliente)) {
+				if (ClienteBO.salvar(cliente)) {
 					validacao = "Cliente salvo com sucesso!";
 				} else {
 					validacao = "Erro ao salvar Cliente";
