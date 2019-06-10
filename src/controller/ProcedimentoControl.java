@@ -26,8 +26,9 @@ public class ProcedimentoControl {
 		return mensagem;
 	}
 
-	public static boolean close() {
-		return false;
+	public void  close() {
+		
+		return ;
 	}
 
 }

@@ -155,8 +155,15 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			cancelar();	
+			}
+		});
 		btnCancelar.setBounds(230, 270, 89, 23);
 		getContentPane().add(btnCancelar);
 
+	} private void cancelar() {
+		this.setVisible(false);
 	}
 }

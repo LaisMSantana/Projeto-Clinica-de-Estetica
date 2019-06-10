@@ -75,7 +75,9 @@ public class Ajuda extends JInternalFrame {
 					try {
 						URI uri = new URI("https://www.google.com.br");
 						Desktop.getDesktop().browse(uri);
-					} catch (IOException | URISyntaxException ex) {
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					} catch (URISyntaxException ex) {
 						ex.printStackTrace();
 					}
 					}

@@ -56,6 +56,7 @@ public class Agendamento extends JInternalFrame {
 		JButton button_1 = new JButton("Cancelar");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cancelar();
 			}
 		});
 		button_1.setBounds(180, 230, 120, 25);
@@ -122,5 +123,9 @@ public class Agendamento extends JInternalFrame {
 		cbData.setBounds(79, 30, 75, 20);
 		getContentPane().add(cbData);
 
+	}
+	
+	private void cancelar() {
+		this.setVisible(false);
 	}
 }

@@ -71,14 +71,19 @@ public class CadastroProcedimento extends JInternalFrame {
 		btnSalvar.setBounds(27, 163, 117, 25);
 		getContentPane().add(btnSalvar);
 		
+		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean close = ProcedimentoControl.close();
+				cancelar();
 			}
 		});
 		btnCancelar.setBounds(175, 163, 117, 25);
 		getContentPane().add(btnCancelar);
 
+	}
+	
+	private void cancelar() {
+		this.setVisible(false);
 	}
 }

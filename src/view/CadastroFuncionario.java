@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroFuncionario extends JInternalFrame {
 	private JTextField txtNome;
@@ -227,8 +229,15 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			cancelar();
+			}
+		});
 		btnCancelar.setBounds(132, 425, 97, 25);
 		getContentPane().add(btnCancelar);
 
+	}private void cancelar() {
+		this.setVisible(false);
 	}
 }
