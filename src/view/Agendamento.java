@@ -58,7 +58,7 @@ public class Agendamento extends JInternalFrame {
 		getContentPane().add(txtCPFCNPJ);
 		
 		JLabel label = new JLabel("Sala:");
-		label.setBounds(45, 189, 24, 15);
+		label.setBounds(24, 189, 45, 15);
 		getContentPane().add(label);
 		
 		JComboBox cbSala = new JComboBox();

@@ -34,7 +34,7 @@ public class ListagemClientes extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(16, 13, 34, 16);
+		lblNome.setBounds(3, 12, 56, 16);
 		getContentPane().add(lblNome);
 		
 		textField = new JTextField();
@@ -43,11 +43,11 @@ public class ListagemClientes extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblCPFCNPJ = new JLabel("CPF/CNPJ :");
-		lblCPFCNPJ.setBounds(3, 48, 56, 16);
+		lblCPFCNPJ.setBounds(3, 48, 84, 16);
 		getContentPane().add(lblCPFCNPJ);
 		
 		txtCPFCNPJ = new JTextField();
-		txtCPFCNPJ.setBounds(60, 45, 362, 22);
+		txtCPFCNPJ.setBounds(80, 46, 342, 22);
 		getContentPane().add(txtCPFCNPJ);
 		txtCPFCNPJ.setColumns(10);
 		

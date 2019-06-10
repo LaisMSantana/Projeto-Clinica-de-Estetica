@@ -61,25 +61,25 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(30, 16, 42, 16);
+		lblNome.setBounds(10, 16, 56, 16);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(71, 13, 351, 22);
+		txtNome.setBounds(61, 14, 362, 22);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(10, 51, 56, 16);
+		lblEndereco.setBounds(10, 51, 82, 16);
 		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
-		txtEndereco.setBounds(71, 48, 351, 22);
+		txtEndereco.setBounds(88, 48, 334, 22);
 		getContentPane().add(txtEndereco);
 		txtEndereco.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(30, 85, 42, 16);
+		lblBairro.setBounds(12, 85, 60, 16);
 		getContentPane().add(lblBairro);
 		
 		txtBairro = new JTextField();
@@ -88,11 +88,11 @@ public class CadastroFuncionario extends JInternalFrame {
 		txtBairro.setColumns(10);
 		
 		JLabel lblCep = new JLabel("CEP :");
-		lblCep.setBounds(249, 83, 39, 16);
+		lblCep.setBounds(248, 82, 50, 16);
 		getContentPane().add(lblCep);
 		
 		txtCep = new JTextField();
-		txtCep.setBounds(280, 82, 142, 22);
+		txtCep.setBounds(299, 82, 108, 22);
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
 		
@@ -105,16 +105,16 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtMunicipio);
 		txtMunicipio.setColumns(10);
 		
-		JLabel lblEstado = new JLabel("Estado :");
-		lblEstado.setBounds(232, 117, 56, 16);
+		JLabel lblEstado = new JLabel("Estado:");
+		lblEstado.setBounds(248, 120, 56, 16);
 		getContentPane().add(lblEstado);
 		
 		txtEstado = new JTextField();
-		txtEstado.setBounds(280, 117, 142, 22);
+		txtEstado.setBounds(309, 117, 75, 22);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
 		
-		JLabel lblTelefone = new JLabel("Telefone :");
+		JLabel lblTelefone = new JLabel("Fone:");
 		lblTelefone.setBounds(16, 160, 56, 16);
 		getContentPane().add(lblTelefone);
 		
@@ -123,17 +123,17 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
-		JLabel lblCelular = new JLabel("Celular :");
-		lblCelular.setBounds(232, 160, 56, 16);
+		JLabel lblCelular = new JLabel("Celular:");
+		lblCelular.setBounds(232, 160, 66, 16);
 		getContentPane().add(lblCelular);
 		
 		txtField = new JTextField();
-		txtField.setBounds(280, 157, 142, 22);
+		txtField.setBounds(289, 157, 133, 22);
 		getContentPane().add(txtField);
 		txtField.setColumns(10);
 		
-		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(30, 196, 39, 14);
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setBounds(10, 196, 59, 14);
 		getContentPane().add(lblEmail);
 		
 		txtEmail = new JTextField();
@@ -142,7 +142,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtEmail);
 		
 		JLabel lblCpf = new JLabel("CPF :");
-		lblCpf.setBounds(249, 196, 39, 14);
+		lblCpf.setBounds(232, 196, 50, 14);
 		getContentPane().add(lblCpf);
 		
 		txtCpf = new JTextField();
@@ -151,12 +151,12 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtCpf);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(21, 226, 108, 16);
+		lblDataDeNascimento.setBounds(10, 226, 149, 16);
 		getContentPane().add(lblDataDeNascimento);
 		
 		txtDataNascimento = new JTextField();
 		txtDataNascimento.setColumns(10);
-		txtDataNascimento.setBounds(126, 223, 94, 22);
+		txtDataNascimento.setBounds(164, 223, 56, 22);
 		getContentPane().add(txtDataNascimento);
 		
 		lblRg = new JLabel("RG :");
@@ -169,15 +169,15 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtRg);
 		
 		lblCargo = new JLabel("Cargo :");
-		lblCargo.setBounds(26, 252, 46, 22);
+		lblCargo.setBounds(97, 250, 62, 22);
 		getContentPane().add(lblCargo);
 		
 		JComboBox cbCargo = new JComboBox();
-		cbCargo.setBounds(71, 252, 149, 22);
+		cbCargo.setBounds(61, 284, 149, 22);
 		getContentPane().add(cbCargo);
 		
-		lblFuncao = new JLabel("Fun\u00E7\u00E3o :");
-		lblFuncao.setBounds(232, 258, 56, 16);
+		lblFuncao = new JLabel("Funcionario :");
+		lblFuncao.setBounds(174, 258, 114, 16);
 		getContentPane().add(lblFuncao);
 		
 		JRadioButton rdbtnLimpezaPele = new JRadioButton("Limpeza de Pele");
@@ -192,7 +192,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		rdbtnMasssagemModeladora.setBounds(280, 313, 167, 25);
 		getContentPane().add(rdbtnMasssagemModeladora);
 		
-		rdbtnDrenagemLinftica = new JRadioButton("Drenagem Linf\u00E1tica");
+		rdbtnDrenagemLinftica = new JRadioButton("Drenagem Linfatica");
 		rdbtnDrenagemLinftica.setBounds(280, 343, 167, 25);
 		getContentPane().add(rdbtnDrenagemLinftica);
 		
@@ -205,29 +205,29 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(rdbtnBotox);
 		
 		lblDataAdmissao = new JLabel("Data de Admissão :");
-		lblDataAdmissao.setBounds(27, 287, 102, 16);
+		lblDataAdmissao.setBounds(49, 377, 149, 16);
 		getContentPane().add(lblDataAdmissao);
 		
 		txtDataAdmissao = new JTextField();
 		txtDataAdmissao.setColumns(10);
-		txtDataAdmissao.setBounds(126, 287, 94, 22);
+		txtDataAdmissao.setBounds(49, 403, 171, 22);
 		getContentPane().add(txtDataAdmissao);
 		
 		lblEscolaridade = new JLabel("Escolaridade :");
-		lblEscolaridade.setBounds(54, 317, 75, 16);
+		lblEscolaridade.setBounds(71, 313, 113, 16);
 		getContentPane().add(lblEscolaridade);
 		
 		txtEscolaridade = new JTextField();
 		txtEscolaridade.setColumns(10);
-		txtEscolaridade.setBounds(126, 316, 94, 22);
+		txtEscolaridade.setBounds(61, 345, 137, 22);
 		getContentPane().add(txtEscolaridade);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(12, 388, 97, 25);
+		btnSalvar.setBounds(23, 425, 97, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(123, 388, 97, 25);
+		btnCancelar.setBounds(132, 425, 97, 25);
 		getContentPane().add(btnCancelar);
 
 	}
