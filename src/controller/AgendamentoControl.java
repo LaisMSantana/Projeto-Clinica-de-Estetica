@@ -4,6 +4,8 @@ import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 
 public class AgendamentoControl {
+	
+	// Verificar se os campos são nulos ou vazios senao chamar BO
 
 	private static final AgendamentoBO AgendamentoBO = new AgendamentoBO(); 
 	
@@ -38,22 +40,21 @@ public class AgendamentoControl {
 				validacao += "- Data é obrigatório \n";
 			}
 			if (agendamento.getProcedimento().getNome().trim().equals("") || agendamento.getProcedimento().getNome() == null) {
-				validacao += "- O Procedimento é obrigatório \n";
+				validacao += "- O Nome do Procedimento é obrigatório \n";
 			}
 			if (agendamento.getFuncionario().getNome().trim().equals("") || agendamento.getFuncionario().getNome() == null) {
-				validacao += "- O Procedimento é obrigatório \n";
+				validacao += "- O Nome do Funcionário é obrigatório \n";
 			}
 			if (agendamento.getCliente().getNome().trim().equals("") || agendamento.getCliente().getNome() == null) {
-				validacao += "- O Procedimento é obrigatório \n";
+				validacao += "- O Nome do Cliente é obrigatório \n";
 			}
 			if (agendamento.getCliente().getCnpjCpf().trim().equals("") || agendamento.getCliente().getCnpjCpf() == null) {
-				validacao += "- O Procedimento é obrigatório \n";
+				validacao += "- O Cpf/ Cpnj é obrigatório \n";
 			}
 			if (agendamento.getProcedimento().getSala().trim().equals("") || agendamento.getProcedimento().getSala() == null) {
-				validacao += "- O Procedimento é obrigatório \n";
+				validacao += "- A Sala é obrigatória \n";
 			}
-		}
-		
+		}	
 		return validacao;
 	}
 

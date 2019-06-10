@@ -51,10 +51,10 @@ public class ClienteControl {
 		String mensagem = "";
 
 		if (nome == null || nome.trim().isEmpty()) {
-			mensagem = "Preenche o nome";
+			mensagem = "Preenche o Nome";
 		}
 		if (cnpjCpf == null || cnpjCpf.trim().isEmpty()) {
-			mensagem = "Preenche o cpf/cpnj";
+			mensagem = "Preenche o Cpf/ Cpnj";
 		}
 		if (mensagem.isEmpty()) {
 			
