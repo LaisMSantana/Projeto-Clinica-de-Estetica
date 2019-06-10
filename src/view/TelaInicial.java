@@ -1,10 +1,16 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -12,24 +18,24 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
+
+import com.github.lgooddatepicker.components.DateTimePicker;
 
 public class TelaInicial extends JFrame {
 
-	private JPanel contentPane;
+	private JDesktopPane desktopPane;
 	private JTable table;
 	private Ajuda ajuda;
 	private CadastroFuncionario cadastroFuncionario;
 	private ListagemFuncionario listagemFuncionario;
 	private TelaSobre telaSobre;
-	private JDesktopPane desktopPane;
 	private CadastroProcedimento cadastroP;
 	private JTextField txtDigite;
 
@@ -41,6 +47,8 @@ public class TelaInicial extends JFrame {
 			public void run() {
 				try {
 					TelaInicial frame = new TelaInicial();
+					// Inicializa a tela principal Maximizada
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,23 +57,30 @@ public class TelaInicial extends JFrame {
 		});
 	}
 
+	private void adicionarComponente(Component c){
+		this.getContentPane().add(c);
+	}
+
 	/**
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		// consulta o tamanho do monitor do usuário		
+		Dimension dimension = this.getToolkit().getScreenSize();
+		int larguraDaTela = (int) dimension.getWidth();
+		int alturaDaTela = (int) dimension.getHeight();
+
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 918, 547);
+		
+		desktopPane = new JDesktopPane();
 
-		contentPane = new JPanel();
-		contentPane.setToolTipText("Vendas");
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.setTitle("Vendas");
+		this.getContentPane().setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 916, 21);
-		contentPane.add(menuBar);
+		menuBar.setBounds(0, 0, larguraDaTela, 20);
+		this.getContentPane().add(menuBar);
 
 		JMenu mnNewMenu = new JMenu("Cliente");
 		menuBar.add(mnNewMenu);
@@ -79,39 +94,39 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmRelatrio = new JMenuItem("Relatorio");
 		mnNewMenu.add(mntmRelatrio);
 
-		JMenu mnFuncionrio = new JMenu("Funcionario");
-		menuBar.add(mnFuncionrio);
+		JMenu mnFuncionario = new JMenu("Funcionario");
+		menuBar.add(mnFuncionario);
 
 		JMenuItem mntmCadastrarNovo = new JMenuItem("Cadastrar Novo");
 		mntmCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cadastroFuncionario == null) {
 					cadastroFuncionario = new CadastroFuncionario();
-					desktopPane.add(cadastroFuncionario);
+					adicionarComponente(cadastroFuncionario);
 					cadastroFuncionario.show();
 				} else if (cadastroFuncionario != null) {
 					cadastroFuncionario.setVisible(true);
 				}
 			}
 		});
-		mnFuncionrio.add(mntmCadastrarNovo);
+		mnFuncionario.add(mntmCadastrarNovo);
 
-		JMenuItem mntmListarFuncionrios = new JMenuItem("Listar Funcion\u00E1rios");
-		mntmListarFuncionrios.addActionListener(new ActionListener() {
+		JMenuItem mntmListarFuncionarios = new JMenuItem("Listar Funcion\u00E1rios");
+		mntmListarFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (listagemFuncionario == null) {
 					listagemFuncionario = new ListagemFuncionario();
-					desktopPane.add(listagemFuncionario);
+					adicionarComponente(listagemFuncionario);
 					listagemFuncionario.show();
 				} else if (listagemFuncionario != null) {
 					listagemFuncionario.setVisible(true);
 				}
 			}
 		});
-		mnFuncionrio.add(mntmListarFuncionrios);
+		mnFuncionario.add(mntmListarFuncionarios);
 
-		JMenuItem mntmRelatrio_1 = new JMenuItem("Relat\u00F3rio");
-		mnFuncionrio.add(mntmRelatrio_1);
+		JMenuItem mntmRelatorio = new JMenuItem("Relat\u00F3rio");
+		mnFuncionario.add(mntmRelatorio);
 
 		JMenu mnProcedimentos = new JMenu("Procedimentos");
 		menuBar.add(mnProcedimentos);
@@ -124,15 +139,14 @@ public class TelaInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (cadastroP == null) {
 					cadastroP = new CadastroProcedimento();
-					desktopPane.add(cadastroP);
+					adicionarComponente(cadastroP);
 					cadastroP.show();
 				} else if (cadastroP != null) {
 					cadastroP.setVisible(true);
 				}
 			}
 		});
-				
-	
+
 		mnProcedimentos.add(mntmCadastrarProcedimemento);
 
 		JMenuItem mntmRelatrios = new JMenuItem("Relatorio");
@@ -155,68 +169,77 @@ public class TelaInicial extends JFrame {
 		});
 		mnAjuda.add(mntmSobreOPrograma);
 
-		JMenuItem mntmAjuda_1 = new JMenuItem("Ajuda");
-		mntmAjuda_1.addActionListener(new ActionListener() {
+		JMenuItem mntmAjuda = new JMenuItem("Ajuda");
+		mntmAjuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (ajuda == null) {
 					ajuda = new Ajuda();
-					desktopPane.add(ajuda);
+					adicionarComponente(ajuda);
 					ajuda.show();
 				} else if (ajuda != null) {
 					ajuda.setVisible(true);
 				}
 			}
 		});
-		mnAjuda.add(mntmAjuda_1);
+		mnAjuda.add(mntmAjuda);
 
-		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(new Color(221, 160, 221));
-		desktopPane.setBounds(10, 22, 1000, 700);
-		contentPane.add(desktopPane);
-		desktopPane.setLayout(null);
-		
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 78, 520, 437);
-				desktopPane.add(scrollPane);
-				
-						table = new JTable();
-						scrollPane.setViewportView(table);
-						table.setBounds(282, 483, 512, -227);
-						table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-						table.setCellSelectionEnabled(true);
-						table.setColumnSelectionAllowed(true);
-						table.setFillsViewportHeight(true);
-						table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-						table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
-						table.setModel(
-								new DefaultTableModel(
-							new Object[][] {
-							},
-							new String[] {
+		this.getContentPane().setBackground(new Color(221, 160, 221));
+		this.getContentPane().setBounds(10, 20, larguraDaTela - 15, alturaDaTela - 15);
+		this.getContentPane().setLayout(null);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 78, 520, 437);
+		this.getContentPane().add(scrollPane);
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
+		//TODO testar o tamanho
+		table.setBounds(280, 485, larguraDaTela / 2, 225);
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setCellSelectionEnabled(true);
+		table.setColumnSelectionAllowed(true);
+		table.setFillsViewportHeight(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
+		table.setModel(
+				new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
 								"Cliente", "Nome Procedimento", "Data", "Hor\u00E1rio", "Sala"
-							}
+						}
 						));
-						table.getColumnModel().getColumn(0).setPreferredWidth(100);
-						table.getColumnModel().getColumn(1).setPreferredWidth(100);
-						table.setBounds(10, 483, 784, 360);
-						scrollPane.setViewportView(table);
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.setBounds(10, 483, 784, 360);
+		scrollPane.setViewportView(table);
+//
+//		txtDigite = new JTextField();
+//		txtDigite.setBounds(10, 47, 185, 20);
+//		//		this.getContentPane().add(txtDigite);
+//		txtDigite.setColumns(10);
 
-		JLabel lblPerodo = new JLabel("Periodo :");
-		lblPerodo.setBounds(362, 22, 96, 14);
-		desktopPane.add(lblPerodo);
+		final DateTimePicker dataTeste = new DateTimePicker();
+		dataTeste.setBounds(150, 47, 300, 30);
+		this.getContentPane().add(dataTeste);
 
-		JComboBox cbPeriodo = new JComboBox();
-		cbPeriodo.setToolTipText("");
-		cbPeriodo.setBounds(364, 47, 156, 20);
-		desktopPane.add(cbPeriodo);
-		
-		txtDigite = new JTextField();
-		txtDigite.setBounds(10, 47, 185, 20);
-		desktopPane.add(txtDigite);
-		txtDigite.setColumns(10);
-		
-	
-		
+		JButton btnPegarData = new JButton("Criar data (java.util.Date)");
+		btnPegarData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Atributos próprios do componente datePicker (date e time)
+				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
+				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
 
+				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
+				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+
+				// Preenche uma data utilizando os dois campos do componente
+				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
+						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
+						horaSelecionada.getSecond());
+			}
+		});
+		btnPegarData.setBounds(500, 47, 180, 23);
+		this.getContentPane().add(btnPegarData);
 	}
 }

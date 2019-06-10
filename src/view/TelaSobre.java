@@ -49,7 +49,7 @@ public class TelaSobre extends JInternalFrame {
 		getContentPane().add(txtpnSobre);
 		
 		JLabel lblImagem = new JLabel("");
-		lblImagem.setIcon(new ImageIcon(TelaSobre.class.getResource("/main/java/icones/icons8-sobre-150.png")));
+//		lblImagem.setIcon(new ImageIcon(TelaSobre.class.getResource("/main/java/icones/icons8-sobre-150.png")));
 		lblImagem.setBounds(365, 0, 163, 164);
 		getContentPane().add(lblImagem);
 		
