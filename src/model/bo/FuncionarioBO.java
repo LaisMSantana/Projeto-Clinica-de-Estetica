@@ -7,21 +7,21 @@ public class FuncionarioBO {
 
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-	public boolean atualizar(Funcionario funcionario) {
-		boolean sucesso = funcionarioDAO.atualizar(funcionario);
-		return sucesso;
-	}
-
 	public boolean salvar(Funcionario funcionario) {
 		int idGerado = funcionarioDAO.salvar(funcionario);
 		return idGerado > 0;
 	}
-
-	public String excluir(Funcionario funcionario, Funcionario funcionarioNovo) {
+	
+	public boolean atualizar(Funcionario funcionario) {
+		boolean sucesso = funcionarioDAO.atualizar(funcionario);
+		return sucesso;
+	}
+	
+	public String excluir(Funcionario funcionario) {
 		String mensagem = "";
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-		if (funcionarioDAO.existeFuncionarioNovo(funcionarioNovo) == false) {
+		if (funcionarioDAO.existeFuncionarioNovo(funcionarioDAO) == false) {
 			mensagem = "Funcionário inexistente";
 		} else {
 			int statusPersistencia = funcionarioDAO.excluir(funcionario);

@@ -15,7 +15,7 @@ public class ClienteBO {
 		return idGerado > 0;
 	}
 
-	public String excluir(Cliente cliente, Cliente clienteNovo) {
+	public String excluir(Cliente cliente) {
 		String mensagem = "";
 		ClienteDAO clienteDAO = new ClienteDAO();
 

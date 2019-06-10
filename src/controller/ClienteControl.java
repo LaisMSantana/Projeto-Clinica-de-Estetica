@@ -57,15 +57,14 @@ public class ClienteControl {
 			mensagem = "Preenche o cpf/cpnj";
 		}
 		if (mensagem.isEmpty()) {
-			Cliente cliente1 = new Cliente();
-			cliente1.setIdCliente(cliente1.getIdCliente());
 			
-			Cliente clienteNovo = new Cliente();
-			clienteNovo.setNome(nome);
-			clienteNovo.setCnpjCpf(cnpjCpf);
+			
+			Cliente clienteExcluir = new Cliente();
+			clienteExcluir.setNome(nome);
+			clienteExcluir.setCnpjCpf(cnpjCpf);
 
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.excluir(clienteNovo, cliente1);
+			clienteBO.excluir(clienteExcluir);
 		}
 		return mensagem;
 	}
