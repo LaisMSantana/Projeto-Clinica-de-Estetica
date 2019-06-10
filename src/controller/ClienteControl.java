@@ -70,9 +70,6 @@ public class ClienteControl {
 		return mensagem;
 	}
 
-	public static boolean close() {
-		return false;
-
-	}
+	
 
 }

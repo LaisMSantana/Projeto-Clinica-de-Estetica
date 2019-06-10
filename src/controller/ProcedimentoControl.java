@@ -26,9 +26,5 @@ public class ProcedimentoControl {
 		return mensagem;
 	}
 
-	public void  close() {
-		
-		return ;
-	}
 
 }

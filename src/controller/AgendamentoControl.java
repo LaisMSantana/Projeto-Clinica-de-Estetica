@@ -57,9 +57,6 @@ public class AgendamentoControl {
 		return validacao;
 	}
 
-	public static boolean close() {
-		return false;
-
-	}
+	
 
 }

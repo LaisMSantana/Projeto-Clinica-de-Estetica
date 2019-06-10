@@ -69,9 +69,6 @@ public class FuncionarioControl {
 		return mensagem;
 	}
 
-	public static boolean close() {
-		return false;
-
-	}
+	
 
 }
