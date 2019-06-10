@@ -10,8 +10,8 @@ public class ClienteBO {
 		return sucesso;
 	}
 
-	public boolean inserir(Cliente cliente) {
-		int idGerado = ClienteDAO.inserir(cliente);
+	public boolean salvar(Cliente cliente) {
+		int idGerado = ClienteDAO.salvar(cliente);
 		return idGerado > 0;
 	}
 

@@ -40,7 +40,7 @@ public class FuncionarioDAO {
 		return sucessoUpdate;
 	}
 
-	public int inserir(Funcionario funcionario) {
+	public int salvar(Funcionario funcionario) {
 		int novoId = -1;
 
 		String sql = " INSERT INTO FUNCIONARIO (NOME, CPF) " + " VALUES (?,?) ";

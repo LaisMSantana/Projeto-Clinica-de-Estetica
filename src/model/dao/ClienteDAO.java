@@ -40,7 +40,7 @@ public class ClienteDAO {
 		return sucessoUpdate;
 	}
 
-	public static int inserir(Cliente cliente) {
+	public static int salvar(Cliente cliente) {
 		int novoId = -1;
 
 		String sql = " INSERT INTO CLIENTE (NOME, CNPJCPF) " + " VALUES (?,?) ";

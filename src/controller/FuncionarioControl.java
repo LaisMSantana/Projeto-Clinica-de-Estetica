@@ -19,7 +19,7 @@ public class FuncionarioControl {
 					validacao = "Erro ao atualizar produto";
 				}
 			} else {
-				if (FuncionarioBO.inserir(funcionario)) {
+				if (FuncionarioBO.salvar(funcionario)) {
 					validacao = "Funcionário salvo com sucesso!";
 				} else {
 					validacao = "Erro ao salvar Funcionário";
