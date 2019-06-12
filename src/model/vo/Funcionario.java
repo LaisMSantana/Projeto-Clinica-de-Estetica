@@ -3,7 +3,6 @@ package model.vo;
 public class Funcionario extends Pessoa {
 
 	private int idFuncionario;
-	private String cpf;
 	private String rg;
 	private String cargo;
 	private String funcao;
@@ -14,16 +13,16 @@ public class Funcionario extends Pessoa {
 		super();
 	}
 
-	public Funcionario(String nome, String endereco, String bairro, String cep, String municipio, String estado,
-			String telefone, String celular, String email, String dataDeNascimento) {
-		super(nome, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
+	public Funcionario(String nome, String cpf, String endereco, String bairro, String cep, String municipio,
+			String estado, String telefone, String celular, String email, String dataDeNascimento) {
+		super(nome, cpf, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
+
 	}
 
-	public Funcionario(int idFuncionario, String cpf, String rg, String cargo, String funcao, String dataAdmissao,
+	public Funcionario(int idFuncionario, String rg, String cargo, String funcao, String dataAdmissao,
 			String escolaridade) {
 		super();
 		this.idFuncionario = idFuncionario;
-		this.cpf = cpf;
 		this.rg = rg;
 		this.cargo = cargo;
 		this.funcao = funcao;
@@ -37,14 +36,6 @@ public class Funcionario extends Pessoa {
 
 	public void setIdFuncionario(int idFuncionario) {
 		this.idFuncionario = idFuncionario;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public String getRg() {
@@ -86,4 +77,5 @@ public class Funcionario extends Pessoa {
 	public void setEscolaridade(String escolaridade) {
 		this.escolaridade = escolaridade;
 	}
+
 }
