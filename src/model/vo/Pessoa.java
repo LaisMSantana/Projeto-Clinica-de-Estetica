@@ -2,8 +2,8 @@ package model.vo;
 
 public class Pessoa {
 
-	private int idPessoa;
 	private String nome;
+	private String cpf;
 	private String endereco;
 	private String bairro;
 	private String cep;
@@ -13,16 +13,16 @@ public class Pessoa {
 	private String celular;
 	private String email;
 	private String dataDeNascimento;
-
+	
 	public Pessoa() {
 		super();
 	}
 
-	public Pessoa(int idPessoa, String nome, String endereco, String bairro, String cep, String municipio,
-			String estado, String telefone, String celular, String email, String dataDeNascimento) {
+	public Pessoa(String nome, String cpf, String endereco, String bairro, String cep, String municipio, String estado,
+			String telefone, String celular, String email, String dataDeNascimento) {
 		super();
-		this.idPessoa = idPessoa;
 		this.nome = nome;
+		this.cpf = cpf;
 		this.endereco = endereco;
 		this.bairro = bairro;
 		this.cep = cep;
@@ -34,20 +34,20 @@ public class Pessoa {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
-	public int getIdPessoa() {
-		return idPessoa;
-	}
-
-	public void setIdPessoa(int idPessoa) {
-		this.idPessoa = idPessoa;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getEndereco() {

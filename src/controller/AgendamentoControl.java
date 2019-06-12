@@ -48,8 +48,8 @@ public class AgendamentoControl {
 			if (agendamento.getCliente().getNome().trim().equals("") || agendamento.getCliente().getNome() == null) {
 				validacao += "- O Nome do Cliente é obrigatório \n";
 			}
-			if (agendamento.getCliente().getCnpjCpf().trim().equals("") || agendamento.getCliente().getCnpjCpf() == null) {
-				validacao += "- O Cpf/ Cpnj é obrigatório \n";
+			if (agendamento.getCliente().getCpf().trim().equals("") || agendamento.getCliente().getCpf() == null) {
+				validacao += "- O Cpf é obrigatório \n";
 			}
 			if (agendamento.getProcedimento().getSala().trim().equals("") || agendamento.getProcedimento().getSala() == null) {
 				validacao += "- A Sala é obrigatória \n";

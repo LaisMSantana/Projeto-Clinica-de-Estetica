@@ -40,28 +40,28 @@ public class ClienteControl {
 			if (cliente.getNome().trim().equals("")) {
 				validacao += "- Nome é obrigatório \n";
 			}
-			if (cliente.getCnpjCpf().trim().equals("")) {
-				validacao += "- O CNPJ/CPF é obrigatório \n";
+			if (cliente.getCpf().trim().equals("")) {
+				validacao += "- O CPF é obrigatório \n";
 			}
 		}
 		return validacao;
 	}
 
-	public String excluir(Cliente cliente, String nome, String cnpjCpf) {
+	public String excluir(Cliente cliente, String nome, String cpf) {
 		String mensagem = "";
 
 		if (nome == null || nome.trim().isEmpty()) {
 			mensagem = "Preenche o Nome";
 		}
-		if (cnpjCpf == null || cnpjCpf.trim().isEmpty()) {
-			mensagem = "Preenche o Cpf/ Cpnj";
+		if (cpf == null || cpf.trim().isEmpty()) {
+			mensagem = "Preenche o Cpf";
 		}
 		if (mensagem.isEmpty()) {
 			
 			
 			Cliente clienteExcluir = new Cliente();
 			clienteExcluir.setNome(nome);
-			clienteExcluir.setCnpjCpf(cnpjCpf);
+			clienteExcluir.setCpf(cpf);
 
 			ClienteBO clienteBO = new ClienteBO();
 			clienteBO.excluir(clienteExcluir);
