@@ -51,21 +51,20 @@ public class ClienteControl {
 		String mensagem = "";
 
 		if (nome == null || nome.trim().isEmpty()) {
-			mensagem = "Preenche o nome";
+			mensagem = "Preenche o Nome";
 		}
 		if (cnpjCpf == null || cnpjCpf.trim().isEmpty()) {
-			mensagem = "Preenche o cpf/cpnj";
+			mensagem = "Preenche o Cpf/ Cpnj";
 		}
 		if (mensagem.isEmpty()) {
-			Cliente cliente1 = new Cliente();
-			cliente1.setIdCliente(cliente1.getIdCliente());
 			
-			Cliente clienteNovo = new Cliente();
-			clienteNovo.setNome(nome);
-			clienteNovo.setCnpjCpf(cnpjCpf);
+			
+			Cliente clienteExcluir = new Cliente();
+			clienteExcluir.setNome(nome);
+			clienteExcluir.setCnpjCpf(cnpjCpf);
 
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.excluir(clienteNovo, cliente1);
+			clienteBO.excluir(clienteExcluir);
 		}
 		return mensagem;
 	}

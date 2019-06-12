@@ -6,6 +6,7 @@ import model.vo.Funcionario;
 public class FuncionarioControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
+	
 	private static final FuncionarioBO FuncionarioBO = new FuncionarioBO();
 
 	public static String salvar(Funcionario funcionario) {
@@ -16,7 +17,7 @@ public class FuncionarioControl {
 				if (FuncionarioBO.atualizar(funcionario)) {
 					validacao = "Funcionário atualizado com sucesso!";
 				} else {
-					validacao = "Erro ao atualizar produto";
+					validacao = "Erro ao atualizar funcionário";
 				}
 			} else {
 				if (FuncionarioBO.salvar(funcionario)) {
@@ -56,19 +57,14 @@ public class FuncionarioControl {
 			mensagem = "Preenche o cpf";
 		}
 		if (mensagem.isEmpty()) {
-			Funcionario funcionario1 = new Funcionario();
-			funcionario1.setIdFuncionario(funcionario1.getIdFuncionario());
 				
-			Funcionario funcionarioNovo = new Funcionario();
-			funcionarioNovo.setNome(nome);
-			funcionarioNovo.setCpf(cpf);
+			Funcionario funcionarioExcluir = new Funcionario();
+			funcionarioExcluir.setNome(nome);
+			funcionarioExcluir.setCpf(cpf);
 			
 			FuncionarioBO funcionarioBO = new FuncionarioBO();
-			funcionarioBO.excluir(funcionarioNovo, funcionario1);
+			funcionarioBO.excluir(funcionarioExcluir);
 		}
 		return mensagem;
 	}
-
-	
-
 }
