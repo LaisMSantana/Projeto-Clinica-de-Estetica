@@ -69,4 +69,9 @@ public class ProcedimentoControl {
 		return mensagem;
 	}
 
+	public static void salvar(String text, String text2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

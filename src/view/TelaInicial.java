@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -34,10 +35,12 @@ public class TelaInicial extends JFrame {
 	private JTable table;
 	private Ajuda ajuda;
 	private CadastroFuncionario cadastroFuncionario;
+	private CadastroCliente cadastroCliente;
 	private ListagemFuncionario listagemFuncionario;
 	private TelaSobre telaSobre;
 	private CadastroProcedimento cadastroP;
 	private JTextField txtDigite;
+	private JTextField txtNomeCliente;
 
 	/**
 	 * Launch the application.
@@ -57,8 +60,8 @@ public class TelaInicial extends JFrame {
 		});
 	}
 
-	private void adicionarComponente(Component c){
-		this.getContentPane().add(c);
+	private void adicionarComponente(JInternalFrame c){
+		this.desktopPane.add(c);
 	}
 
 	/**
@@ -67,13 +70,18 @@ public class TelaInicial extends JFrame {
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário		
 		Dimension dimension = this.getToolkit().getScreenSize();
-		int larguraDaTela = (int) dimension.getWidth();
-		int alturaDaTela = (int) dimension.getHeight();
-
+		//final int larguraDaTela = (int) dimension.getWidth();
+		//final int alturaDaTela = (int) dimension.getHeight();
+	final int	larguraDaTela = 1000;
+	final	int		alturaDaTela = 1000;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(204, 153, 204));
+		desktopPane.setSize(larguraDaTela - 10, alturaDaTela - 10);
+		desktopPane.setLocation(20, 90);
+		this.getContentPane().add(desktopPane);
 
 		this.setTitle("Vendas");
 		this.getContentPane().setLayout(null);
@@ -87,6 +95,17 @@ public class TelaInicial extends JFrame {
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar Novo");
 		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cadastroCliente == null) {
+					cadastroCliente = new CadastroCliente(larguraDaTela,alturaDaTela);
+					adicionarComponente(cadastroCliente);
+					cadastroCliente.show();
+				} else if (cadastroCliente != null) {
+					cadastroCliente.setVisible(true);
+				}
+			}
+		});
 
 		JMenuItem mntmListagem = new JMenuItem("Listar Clientes");
 		mnNewMenu.add(mntmListagem);
@@ -134,8 +153,8 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmAgendarProcedimento = new JMenuItem("Agendar Procedimento");
 		mnProcedimentos.add(mntmAgendarProcedimento);
 
-		JMenuItem mntmCadastrarProcedimemento = new JMenuItem("Cadastrar Procedimento");
-		mntmCadastrarProcedimemento.addActionListener(new ActionListener() {
+		JMenuItem mntmCadastrarProcedimento = new JMenuItem("Cadastrar Procedimento");
+		mntmCadastrarProcedimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cadastroP == null) {
 					cadastroP = new CadastroProcedimento();
@@ -147,9 +166,9 @@ public class TelaInicial extends JFrame {
 			}
 		});
 
-		mnProcedimentos.add(mntmCadastrarProcedimemento);
+		mnProcedimentos.add(mntmCadastrarProcedimento);
 
-		JMenuItem mntmRelatrios = new JMenuItem("Relatorio");
+		JMenuItem mntmRelatrios = new JMenuItem("Relatório");
 		mnProcedimentos.add(mntmRelatrios);
 
 		JMenu mnAjuda = new JMenu("Ajuda?");
@@ -187,44 +206,12 @@ public class TelaInicial extends JFrame {
 		this.getContentPane().setBounds(10, 20, larguraDaTela - 15, alturaDaTela - 15);
 		this.getContentPane().setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 78, 520, 437);
-		this.getContentPane().add(scrollPane);
-		table = new JTable();
-		scrollPane.setViewportView(table);
-
-		//TODO testar o tamanho
-		table.setBounds(280, 485, larguraDaTela / 2, 225);
-		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		table.setCellSelectionEnabled(true);
-		table.setColumnSelectionAllowed(true);
-		table.setFillsViewportHeight(true);
-		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		table.setToolTipText("Biom\u00E9dica\nConsultora\nEsteticista\n");
-		table.setModel(
-				new DefaultTableModel(
-						new Object[][] {
-						},
-						new String[] {
-								"Cliente", "Nome Procedimento", "Data", "Hor\u00E1rio", "Sala"
-						}
-						));
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		table.setBounds(10, 483, 784, 360);
-		scrollPane.setViewportView(table);
-//
-//		txtDigite = new JTextField();
-//		txtDigite.setBounds(10, 47, 185, 20);
-//		//		this.getContentPane().add(txtDigite);
-//		txtDigite.setColumns(10);
-
 		final DateTimePicker dataTeste = new DateTimePicker();
-		dataTeste.setBounds(150, 47, 300, 30);
+		dataTeste.setBounds(250, 47, 300, 25);
 		this.getContentPane().add(dataTeste);
 
-		JButton btnPegarData = new JButton("Criar data (java.util.Date)");
-		btnPegarData.addActionListener(new ActionListener() {
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Atributos próprios do componente datePicker (date e time)
 				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
@@ -239,7 +226,20 @@ public class TelaInicial extends JFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnPegarData.setBounds(500, 47, 180, 23);
-		this.getContentPane().add(btnPegarData);
+		btnPesquisar.setBounds(562, 47, 132, 23);
+		this.getContentPane().add(btnPesquisar);
+		
+		TabelaAgendamento tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
+		desktopPane.add(tabela);
+		
+		txtNomeCliente = new JTextField();
+		txtNomeCliente.setBounds(20, 47, 218, 25);
+		getContentPane().add(txtNomeCliente);
+		txtNomeCliente.setColumns(10);
+		
+		JLabel lblNomeDoCliente = new JLabel("Nome Do Cliente:");
+		lblNomeDoCliente.setBounds(20, 20, 122, 15);
+		getContentPane().add(lblNomeDoCliente);
+		tabela.show();
 	}
 }

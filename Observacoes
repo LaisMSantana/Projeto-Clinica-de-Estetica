@@ -1,0 +1,3 @@
+Regras de Negocio de Agendamento :
+fazer com que se um funcionario esta com o horario agendado não permiter outro agendamento
+no mesmo horario mandar uma mensagem avisando que horario esta indisponivel.

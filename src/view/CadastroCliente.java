@@ -1,13 +1,19 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.text.MaskFormatter;
+
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DateTimePicker;
 
 public class CadastroCliente extends JInternalFrame {
 	private JTextField txtNome;
@@ -20,31 +26,18 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField textField;
 	private JTextField txtCelular;
 	private JTextField txtCpfCnpj;
-	private JTextField txtDataNascimento;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroCliente frame = new CadastroCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public CadastroCliente() {
+	public CadastroCliente(int largura, int altura) {
 		setClosable(true);
 		setTitle("Cadastro de Clientes");
-		setBounds(100, 100, 459, 387);
+		
+//		largura = 1000;
+//		altura = 500;
+		//x, y, largura, altura		
+		setBounds(largura / 2, 0, 660, altura);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
@@ -138,13 +131,15 @@ public class CadastroCliente extends JInternalFrame {
 		txtCpfCnpj.setColumns(10);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(24, 223, 113, 14);
+		lblDataDeNascimento.setBounds(24, 223, 157, 14);
 		getContentPane().add(lblDataDeNascimento);
-		
-		txtDataNascimento = new JTextField();
-		txtDataNascimento.setBounds(136, 220, 125, 20);
-		getContentPane().add(txtDataNascimento);
-		txtDataNascimento.setColumns(10);
+		MaskFormatter formatter = new MaskFormatter();
+		try {
+			formatter.setMask("##/##/####");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -163,6 +158,10 @@ public class CadastroCliente extends JInternalFrame {
 		btnCancelar.setBounds(230, 270, 89, 23);
 		getContentPane().add(btnCancelar);
 
+		final DatePicker dataNascimento = new DatePicker();
+		dataNascimento.setBounds(180, 221, 250, 35);
+		this.getContentPane().add(dataNascimento);
+		
 	} private void cancelar() {
 		this.setVisible(false);
 	}
