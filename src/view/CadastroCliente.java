@@ -25,28 +25,8 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField txtTelefone;
 	private JTextField textField;
 	private JTextField txtCelular;
-<<<<<<< HEAD
-	private JTextField txtCpfCnpj;
-=======
 	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroCliente frame = new CadastroCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
->>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
 
 	/**
 	 * Create the frame.
