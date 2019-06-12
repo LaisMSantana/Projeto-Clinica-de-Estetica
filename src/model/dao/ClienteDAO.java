@@ -14,14 +14,14 @@ public class ClienteDAO {
 		boolean sucessoUpdate = false;
 
 		// ****REVISAR QUERY
-		String sql = " UPDATE CLIENTE cliente SET NOME=?, CNPJCPF=?" + " WHERE CLIENTE.ID = ? ";
+		String sql = " UPDATE CLIENTE cliente SET NOME=?, CPF=?" + " WHERE CLIENTE.ID = ? ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
 
 		try {
 			prepStmt.setString(1, cliente.getNome());
-			prepStmt.setString(2, cliente.getCnpjCpf());
+			prepStmt.setString(2, cliente.getCpf());
 			prepStmt.setDouble(3, cliente.getIdCliente());
 
 			int codigoRetorno = prepStmt.executeUpdate();
@@ -43,14 +43,14 @@ public class ClienteDAO {
 	public static int salvar(Cliente cliente) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO CLIENTE (NOME, CNPJCPF) " + " VALUES (?,?) ";
+		String sql = " INSERT INTO CLIENTE (NOME, CPF) " + " VALUES (?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
 
 		try {
 			prepStmt.setString(1, cliente.getNome());
-			prepStmt.setString(2, cliente.getCnpjCpf());
+			prepStmt.setString(2, cliente.getCpf());
 
 			prepStmt.execute();
 

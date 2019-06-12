@@ -19,7 +19,7 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField txtTelefone;
 	private JTextField textField;
 	private JTextField txtCelular;
-	private JTextField txtCpfCnpj;
+	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
 
 	/**
@@ -128,14 +128,14 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(txtCelular);
 		txtCelular.setColumns(10);
 		
-		JLabel lblCpfcnpj = new JLabel("CPF/CNPJ:");
-		lblCpfcnpj.setBounds(273, 190, 56, 14);
-		getContentPane().add(lblCpfcnpj);
+		JLabel lblCpf = new JLabel("CPF :");
+		lblCpf.setBounds(297, 190, 32, 14);
+		getContentPane().add(lblCpf);
 		
-		txtCpfCnpj = new JTextField();
-		txtCpfCnpj.setBounds(334, 190, 90, 20);
-		getContentPane().add(txtCpfCnpj);
-		txtCpfCnpj.setColumns(10);
+		txtCpf = new JTextField();
+		txtCpf.setBounds(334, 190, 90, 20);
+		getContentPane().add(txtCpf);
+		txtCpf.setColumns(10);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
 		lblDataDeNascimento.setBounds(24, 223, 113, 14);
