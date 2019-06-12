@@ -5,8 +5,8 @@ public class Agendamento {
 	private int idAgendamento;
 	private String data;
 	private Procedimento procedimento;
-	private Funcionario funcionario;
 	private Cliente cliente;
+	private Funcionario funcionario;
 
 	public Agendamento() {
 		super();
