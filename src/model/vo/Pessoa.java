@@ -2,7 +2,6 @@ package model.vo;
 
 public class Pessoa {
 
-	private int idPessoa;
 	private String nome;
 	private String endereco;
 	private String bairro;
@@ -18,10 +17,9 @@ public class Pessoa {
 		super();
 	}
 
-	public Pessoa(int idPessoa, String nome, String endereco, String bairro, String cep, String municipio,
-			String estado, String telefone, String celular, String email, String dataDeNascimento) {
+	public Pessoa(String nome, String endereco, String bairro, String cep, String municipio, String estado,
+			String telefone, String celular, String email, String dataDeNascimento) {
 		super();
-		this.idPessoa = idPessoa;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.bairro = bairro;
@@ -32,14 +30,6 @@ public class Pessoa {
 		this.celular = celular;
 		this.email = email;
 		this.dataDeNascimento = dataDeNascimento;
-	}
-
-	public int getIdPessoa() {
-		return idPessoa;
-	}
-
-	public void setIdPessoa(int idPessoa) {
-		this.idPessoa = idPessoa;
 	}
 
 	public String getNome() {

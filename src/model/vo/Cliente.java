@@ -9,6 +9,11 @@ public class Cliente extends Pessoa {
 		super();
 	}
 
+	public Cliente(String nome, String endereco, String bairro, String cep, String municipio, String estado,
+			String telefone, String celular, String email, String dataDeNascimento) {
+		super(nome, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
+	}
+
 	public Cliente(int idCliente, String cpf) {
 		super();
 		this.idCliente = idCliente;
@@ -30,7 +35,5 @@ public class Cliente extends Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
-	
 
 }

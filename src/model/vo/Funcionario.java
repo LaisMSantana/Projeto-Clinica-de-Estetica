@@ -14,9 +14,9 @@ public class Funcionario extends Pessoa {
 		super();
 	}
 
-	public Funcionario(int idPessoa, String nome, String endereco, String bairro, String cep, String municipio,
-			String estado, String telefone, String celular, String email, String dataDeNascimento) {
-		super(idPessoa, nome, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
+	public Funcionario(String nome, String endereco, String bairro, String cep, String municipio, String estado,
+			String telefone, String celular, String email, String dataDeNascimento) {
+		super(nome, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
 	}
 
 	public Funcionario(int idFuncionario, String cpf, String rg, String cargo, String funcao, String dataAdmissao,
@@ -86,5 +86,4 @@ public class Funcionario extends Pessoa {
 	public void setEscolaridade(String escolaridade) {
 		this.escolaridade = escolaridade;
 	}
-
 }
