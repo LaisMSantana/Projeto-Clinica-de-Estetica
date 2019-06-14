@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +9,6 @@ import java.time.LocalTime;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -20,12 +17,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
 
 import com.github.lgooddatepicker.components.DateTimePicker;
 
@@ -41,7 +34,9 @@ public class TelaInicial extends JFrame {
 	private CadastroProcedimento cadastroP;
 	private JTextField txtDigite;
 	private JTextField txtNomeCliente;
-
+	private CadastroProcedimento agendaP;
+	private Agendamento novoAgendamento;
+	private ListagemClientes listagemC;
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +64,7 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário		
-		Dimension dimension = this.getToolkit().getScreenSize();
+		//Dimension dimension = this.getToolkit().getScreenSize();
 		//final int larguraDaTela = (int) dimension.getWidth();
 		//final int alturaDaTela = (int) dimension.getHeight();
 	final int	larguraDaTela = 1000;
@@ -108,6 +103,16 @@ public class TelaInicial extends JFrame {
 		});
 
 		JMenuItem mntmListagem = new JMenuItem("Listar Clientes");
+		mntmListagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(listagemC == null) {
+					listagemC = new ListagemClientes();
+					desktopPane.add(listagemC);
+					listagemC.show();
+				} else if (listagemC != null) {
+				}
+			}
+		});
 		mnNewMenu.add(mntmListagem);
 
 		JMenuItem mntmRelatrio = new JMenuItem("Relatorio");
@@ -130,12 +135,12 @@ public class TelaInicial extends JFrame {
 		});
 		mnFuncionario.add(mntmCadastrarNovo);
 
-		JMenuItem mntmListarFuncionarios = new JMenuItem("Listar Funcion\u00E1rios");
+		JMenuItem mntmListarFuncionarios = new JMenuItem("Listar Funcionários");
 		mntmListarFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (listagemFuncionario == null) {
 					listagemFuncionario = new ListagemFuncionario();
-					adicionarComponente(listagemFuncionario);
+					desktopPane.add(listagemFuncionario);
 					listagemFuncionario.show();
 				} else if (listagemFuncionario != null) {
 					listagemFuncionario.setVisible(true);
@@ -144,18 +149,16 @@ public class TelaInicial extends JFrame {
 		});
 		mnFuncionario.add(mntmListarFuncionarios);
 
-		JMenuItem mntmRelatorio = new JMenuItem("Relat\u00F3rio");
+		JMenuItem mntmRelatorio = new JMenuItem("Relatório");
 		mnFuncionario.add(mntmRelatorio);
 
 		JMenu mnProcedimentos = new JMenu("Procedimentos");
 		menuBar.add(mnProcedimentos);
 
 		JMenuItem mntmAgendarProcedimento = new JMenuItem("Agendar Procedimento");
-		mnProcedimentos.add(mntmAgendarProcedimento);
-
-		JMenuItem mntmCadastrarProcedimento = new JMenuItem("Cadastrar Procedimento");
-		mntmCadastrarProcedimento.addActionListener(new ActionListener() {
+		mntmAgendarProcedimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		
 				if (cadastroP == null) {
 					cadastroP = new CadastroProcedimento();
 					adicionarComponente(cadastroP);
@@ -165,8 +168,38 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
+			
+		
+		mnProcedimentos.add(mntmAgendarProcedimento);
 
+		JMenuItem mntmCadastrarProcedimento = new JMenuItem("Cadastrar Procedimento");
+		mntmCadastrarProcedimento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (agendaP == null) {
+					agendaP = new CadastroProcedimento();
+					desktopPane.add(agendaP);
+					agendaP.show();
+				} else if (agendaP != null) {
+					agendaP.setVisible(true);
+				}
+			}
+		});
 		mnProcedimentos.add(mntmCadastrarProcedimento);
+		
+		JMenuItem mntmAgendarProcedimento_1 = new JMenuItem("Agendar Procedimento");
+		mntmAgendarProcedimento_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (novoAgendamento == null) {
+					novoAgendamento = new Agendamento();
+					desktopPane.add(novoAgendamento);
+					novoAgendamento.show();
+				} else if (novoAgendamento != null) {
+					novoAgendamento.setVisible(true);
+				}
+			}
+		});
+		
+		mnProcedimentos.add(mntmAgendarProcedimento_1);
 
 		JMenuItem mntmRelatrios = new JMenuItem("Relatório");
 		mnProcedimentos.add(mntmRelatrios);
