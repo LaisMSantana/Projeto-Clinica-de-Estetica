@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
@@ -14,7 +15,12 @@ import controller.AgendamentoControl;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+
+//import com.github.lgooddatepicker.components.DateTimePicker;
 
 public class Agendamento extends JInternalFrame {
 	private JTextField txtCPFCNPJ;
@@ -47,7 +53,18 @@ public class Agendamento extends JInternalFrame {
 		
 		JButton button = new JButton("Salvar");
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {	
+				// Atributos próprios do componente datePicker (date e time)
+				//LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
+				//LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
+
+				//JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
+				//JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+
+				// Preenche uma data utilizando os dois campos do componente
+				//Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
+					//	dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
+						//horaSelecionada.getSecond());
 			}
 		});
 		button.setBounds(40, 230, 120, 25);
@@ -79,13 +96,13 @@ public class Agendamento extends JInternalFrame {
 		cbSala.setBounds(79, 186, 75, 20);
 		getContentPane().add(cbSala);
 		
-		JLabel lblHorrio = new JLabel("Horário:");
-		lblHorrio.setBounds(191, 33, 46, 14);
-		getContentPane().add(lblHorrio);
+		//JLabel lblHorrio = new JLabel("Horário:");
+		//lblHorrio.setBounds(191, 33, 46, 14);
+		//getContentPane().add(lblHorrio);
 		
-		JComboBox cbHorario = new JComboBox();
-		cbHorario.setBounds(240, 30, 75, 20);
-		getContentPane().add(cbHorario);
+		//JComboBox cbHorario = new JComboBox();
+		//cbHorario.setBounds(240, 30, 75, 20);
+		//getContentPane().add(cbHorario);
 		
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
@@ -115,13 +132,35 @@ public class Agendamento extends JInternalFrame {
 		cbProcedimento.setBounds(79, 68, 236, 20);
 		getContentPane().add(cbProcedimento);
 		
-		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(40, 33, 36, 14);
-		getContentPane().add(lblData);
+		//JLabel lblData = new JLabel("Data:");
+		//lblData.setBounds(40, 33, 36, 14);
+		//getContentPane().add(lblData);
 		
-		JComboBox cbData = new JComboBox();
-		cbData.setBounds(79, 30, 75, 20);
-		getContentPane().add(cbData);
+		//JComboBox cbData = new JComboBox();
+		//cbData.setBounds(79, 30, 75, 20);
+		//getContentPane().add(cbData);
+		
+		//final DateTimePicker dataTeste = new DateTimePicker();
+		//dataTeste.setBounds(240, 30, 75, 20);
+		//this.getContentPane().add(dataTeste);
+
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Atributos próprios do componente datePicker (date e time)
+				//LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
+				//LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
+
+				//JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
+				//JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+
+				// Preenche uma data utilizando os dois campos do componente
+				//Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
+					//	dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
+						//horaSelecionada.getSecond());
+			}
+		});
+		btnPesquisar.setBounds(191, 33, 46, 14);
 
 	}
 	
