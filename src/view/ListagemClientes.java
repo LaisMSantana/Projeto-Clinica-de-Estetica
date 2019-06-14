@@ -8,10 +8,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JFormattedTextField;
 
 public class ListagemClientes extends JInternalFrame {
 	private JTextField textField;
-	private JTextField txtCPFCNPJ;
 	private JTable table;
 	/**
 	 * Launch the application.
@@ -34,14 +34,9 @@ public class ListagemClientes extends JInternalFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblCPFCNPJ = new JLabel("CPF/CNPJ :");
-		lblCPFCNPJ.setBounds(3, 48, 84, 16);
+		JLabel lblCPFCNPJ = new JLabel("CPF:");
+		lblCPFCNPJ.setBounds(3, 48, 56, 16);
 		getContentPane().add(lblCPFCNPJ);
-		
-		txtCPFCNPJ = new JTextField();
-		txtCPFCNPJ.setBounds(80, 46, 342, 22);
-		getContentPane().add(txtCPFCNPJ);
-		txtCPFCNPJ.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(171, 80, 97, 25);
@@ -53,7 +48,20 @@ public class ListagemClientes extends JInternalFrame {
 
 		table.setBounds(3, 140, 529, 244);
 		getContentPane().add(table);
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setBounds(83, 83, -13, 19);
+		getContentPane().add(formattedTextField);
+		
+		JFormattedTextField formatteCpf = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+	           formatteCpf = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        	
+	        }
+		formatteCpf.setBounds(60, 40, 83, 19);
+		getContentPane().add(formatteCpf);
 
 	}
-	
 }

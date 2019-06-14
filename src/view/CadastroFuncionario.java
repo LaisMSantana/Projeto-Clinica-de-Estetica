@@ -1,27 +1,26 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class CadastroFuncionario extends JInternalFrame {
 	private JTextField txtNome;
 	private JTextField txtEndereco;
 	private JTextField txtBairro;
-	private JTextField txtCep;
 	private JTextField txtMunicipio;
 	private JTextField txtEstado;
-	private JTextField txtTelefone;
 	private JTextField txtField;
 	private JTextField txtEmail;
-	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
 	private JLabel lblRg;
 	private JTextField txtRg;
@@ -36,6 +35,9 @@ public class CadastroFuncionario extends JInternalFrame {
 	private JTextField txtDataAdmissao;
 	private JLabel lblEscolaridade;
 	private JTextField txtEscolaridade;
+	private JFormattedTextField formattedCPf;
+	private JFormattedTextField formattedCep;
+	private JFormattedTextField formattedTelefone;
 
 	/**
 	 * Launch the application.
@@ -93,11 +95,6 @@ public class CadastroFuncionario extends JInternalFrame {
 		lblCep.setBounds(248, 82, 50, 16);
 		getContentPane().add(lblCep);
 		
-		txtCep = new JTextField();
-		txtCep.setBounds(299, 82, 108, 22);
-		getContentPane().add(txtCep);
-		txtCep.setColumns(10);
-		
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
 		lblMunicpio.setBounds(16, 120, 56, 16);
 		getContentPane().add(lblMunicpio);
@@ -120,11 +117,6 @@ public class CadastroFuncionario extends JInternalFrame {
 		lblTelefone.setBounds(16, 160, 56, 16);
 		getContentPane().add(lblTelefone);
 		
-		txtTelefone = new JTextField();
-		txtTelefone.setBounds(71, 157, 149, 22);
-		getContentPane().add(txtTelefone);
-		txtTelefone.setColumns(10);
-		
 		JLabel lblCelular = new JLabel("Celular:");
 		lblCelular.setBounds(232, 160, 66, 16);
 		getContentPane().add(lblCelular);
@@ -146,11 +138,6 @@ public class CadastroFuncionario extends JInternalFrame {
 		JLabel lblCpf = new JLabel("CPF :");
 		lblCpf.setBounds(232, 196, 50, 14);
 		getContentPane().add(lblCpf);
-		
-		txtCpf = new JTextField();
-		txtCpf.setColumns(10);
-		txtCpf.setBounds(280, 192, 142, 22);
-		getContentPane().add(txtCpf);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
 		lblDataDeNascimento.setBounds(10, 226, 149, 16);
@@ -236,6 +223,31 @@ public class CadastroFuncionario extends JInternalFrame {
 		});
 		btnCancelar.setBounds(132, 425, 97, 25);
 		getContentPane().add(btnCancelar);
+		
+		formattedCPf = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+	           formattedCPf = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        	
+	        }
+		formattedCPf.setBounds(280, 194, 143, 19);
+		getContentPane().add(formattedCPf);
+		
+		formattedCep = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
+	           formattedCep = new javax.swing.JFormattedTextField(format_textField3);
+	        }catch (Exception e){
+	        	
+	        }
+		formattedCep.setBounds(289, 82, 133, 19);
+		getContentPane().add(formattedCep);
+		
+		formattedTelefone = new JFormattedTextField((AbstractFormatter) null);
+		formattedTelefone.setBounds(81, 159, 95, 20);
+		
+		getContentPane().add(formattedTelefone);
 
 	}private void cancelar() {
 		this.setVisible(false);
