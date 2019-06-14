@@ -1,26 +1,22 @@
 package view;
 
 import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTextPane;
-
-import controller.AgendamentoControl;
-
-import java.awt.Color;
-import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.awt.event.ActionEvent;
 
-//import com.github.lgooddatepicker.components.DateTimePicker;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import com.github.lgooddatepicker.components.DateTimePicker;
+
+import com.github.lgooddatepicker.components.DateTimePicker;
 
 public class Agendamento extends JInternalFrame {
 	private JTextField txtCPFCNPJ;
@@ -48,26 +44,27 @@ public class Agendamento extends JInternalFrame {
 	public Agendamento() {
 		setTitle("Agendamento");
 		setClosable(true);
-		setBounds(100, 100, 350, 320);
+		setBounds(100, 100, 583, 439);
 		getContentPane().setLayout(null);
 		
 		JButton button = new JButton("Salvar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-				// Atributos próprios do componente datePicker (date e time)
-				//LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
-				//LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
+			//	 Atributos próprios do componente datePicker (date e time)
+				DateTimePicker dataTeste = null;
+				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
+				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
 
-				//JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
-				//JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
+				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
 
 				// Preenche uma data utilizando os dois campos do componente
-				//Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
-					//	dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
-						//horaSelecionada.getSecond());
+				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
+						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
+						horaSelecionada.getSecond());
 			}
 		});
-		button.setBounds(40, 230, 120, 25);
+		button.setBounds(24, 288, 120, 25);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("Cancelar");
@@ -76,10 +73,10 @@ public class Agendamento extends JInternalFrame {
 				cancelar();
 			}
 		});
-		button_1.setBounds(180, 230, 120, 25);
+		button_1.setBounds(176, 288, 120, 25);
 		getContentPane().add(button_1);
 		
-		JLabel lblNomeCliente = new JLabel("Nome Cliente:");
+		JLabel lblNomeCliente = new JLabel("Cliente:");
 		lblNomeCliente.setBounds(4, 130, 75, 15);
 		getContentPane().add(lblNomeCliente);
 		
@@ -89,11 +86,11 @@ public class Agendamento extends JInternalFrame {
 		getContentPane().add(txtCPFCNPJ);
 		
 		JLabel label = new JLabel("Sala:");
-		label.setBounds(24, 189, 45, 15);
+		label.setBounds(4, 245, 45, 15);
 		getContentPane().add(label);
 		
 		JComboBox cbSala = new JComboBox();
-		cbSala.setBounds(79, 186, 75, 20);
+		cbSala.setBounds(43, 242, 75, 20);
 		getContentPane().add(cbSala);
 		
 		//JLabel lblHorrio = new JLabel("Horário:");
@@ -109,55 +106,48 @@ public class Agendamento extends JInternalFrame {
 		txtNome.setBounds(79, 127, 236, 19);
 		getContentPane().add(txtNome);
 		
-		JLabel lblCpfcnpj = new JLabel("CPF/CNPJ:");
-		lblCpfcnpj.setBounds(14, 156, 65, 14);
+		JLabel lblCpfcnpj = new JLabel("CPF:");
+		lblCpfcnpj.setBounds(4, 157, 45, 14);
 		getContentPane().add(lblCpfcnpj);
 		
-		JTextPane txtpnFuncionrioResponsvel = new JTextPane();
-		txtpnFuncionrioResponsvel.setBackground(SystemColor.control);
-		txtpnFuncionrioResponsvel.setText("Funcionário "
-				+ "\nResponsável:");
-		txtpnFuncionrioResponsvel.setBounds(4, 85, 75, 34);
-		getContentPane().add(txtpnFuncionrioResponsvel);
-		
 		JComboBox cbFuncionario = new JComboBox();
-		cbFuncionario.setBounds(79, 99, 236, 20);
+		cbFuncionario.setBounds(194, 198, 194, 20);
 		getContentPane().add(cbFuncionario);
 		
 		JLabel lblProcedimento = new JLabel("Procedimento:");
-		lblProcedimento.setBounds(4, 71, 75, 14);
+		lblProcedimento.setBounds(4, 98, 114, 14);
 		getContentPane().add(lblProcedimento);
 		
 		JComboBox cbProcedimento = new JComboBox();
-		cbProcedimento.setBounds(79, 68, 236, 20);
+		cbProcedimento.setBounds(117, 95, 194, 20);
 		getContentPane().add(cbProcedimento);
 		
-		//JLabel lblData = new JLabel("Data:");
-		//lblData.setBounds(40, 33, 36, 14);
-		//getContentPane().add(lblData);
+		JLabel lblFuncionrioResponsvel = new JLabel("Funcionário Responsavel:");
+		lblFuncionrioResponsvel.setBounds(4, 201, 194, 15);
+		getContentPane().add(lblFuncionrioResponsvel);
 		
-		//JComboBox cbData = new JComboBox();
-		//cbData.setBounds(79, 30, 75, 20);
-		//getContentPane().add(cbData);
+		JLabel lblData = new JLabel("Data:");
+		lblData.setBounds(12, 30, 45, 18);
+		getContentPane().add(lblData);
 		
-		//final DateTimePicker dataTeste = new DateTimePicker();
-		//dataTeste.setBounds(240, 30, 75, 20);
-		//this.getContentPane().add(dataTeste);
+		final DateTimePicker dataTeste = new DateTimePicker();
+		dataTeste.setBounds(150, 47, 300, 30);
+		this.getContentPane().add(dataTeste);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// Atributos próprios do componente datePicker (date e time)
-				//LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
-				//LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
+				// Atributos próprios do componente datePicker (date e time);
+				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
+				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
 
-				//JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
-				//JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
+				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
 
 				// Preenche uma data utilizando os dois campos do componente
-				//Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
-					//	dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
-						//horaSelecionada.getSecond());
+				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
+						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
+						horaSelecionada.getSecond());
 			}
 		});
 		btnPesquisar.setBounds(191, 33, 46, 14);
