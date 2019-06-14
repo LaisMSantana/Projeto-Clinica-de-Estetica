@@ -26,7 +26,7 @@ public class TabelaAgendamento extends JInternalFrame {
 		table = new JTable();
 		int larguraDaTela = 200;
 		//TODO testar o tamanho
-		table.setBounds(20, 20, larguraDaTela / 2, 225);
+		//table.setBounds(20, 20, larguraDaTela / 2, 225);
 		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		table.setCellSelectionEnabled(true);
 		table.setColumnSelectionAllowed(true);

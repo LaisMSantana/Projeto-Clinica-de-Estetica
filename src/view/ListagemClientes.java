@@ -5,32 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class ListagemClientes extends JInternalFrame {
 	private JTextField textField;
 	private JTextField txtCPFCNPJ;
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListagemFuncionario frame = new ListagemFuncionario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	/**
-	 * Create the frame.
-	 */
+	
+
+
 	public ListagemClientes() {
+		setClosable(true);
 		setTitle("Listagem de Clientes");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 554, 430);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
@@ -54,7 +46,14 @@ public class ListagemClientes extends JInternalFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(171, 80, 97, 25);
 		getContentPane().add(btnPesquisar);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(new String[][] { { "#", "Cliente", "CPF", "Telefone", "Email" }, },
+				new String[] { "#", "Cliente", "CPF", "Telefone",  "Email" }));
+
+		table.setBounds(3, 140, 529, 244);
+		getContentPane().add(table);
 
 	}
-
+	
 }
