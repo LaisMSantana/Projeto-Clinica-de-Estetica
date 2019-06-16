@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.dao.AgendamentoDAO;
 import model.vo.Agendamento;
 
@@ -17,4 +19,8 @@ public class AgendamentoBO {
 		return idGerado > 0;
 	}
 
+	public ArrayList<AgendamentoBO> listarTodos() {
+		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+		return agendamentoDAO.listarTodos();
+	}
 }
