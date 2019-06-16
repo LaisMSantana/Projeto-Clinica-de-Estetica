@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import model.bo.AgendamentoBO;
 import model.bo.ClienteBO;
+import model.bo.FuncionarioBO;
 import model.vo.Agendamento;
+import model.vo.Funcionario;
 
 public class AgendamentoControl {
 	
@@ -58,6 +60,21 @@ public class AgendamentoControl {
 				validacao += "- A Sala é obrigatória \n";
 			}
 		}	
+		return validacao;
+	}
+	
+	private static String excluirAgendamento(Agendamento agendamento) {
+		String validacao = validarAgendamento(agendamento);
+		
+		if (validacao == "") {
+			if (agendamento.getIdAgendamento() > 0) {
+				if (AgendamentoBO.excluir(agendamento)) {
+					validacao = "Agendamento excluido com sucesso!";
+				} else {
+					validacao = "Erro ao excluir agendamento";
+				}
+			} 
+		}
 		return validacao;
 	}
 	

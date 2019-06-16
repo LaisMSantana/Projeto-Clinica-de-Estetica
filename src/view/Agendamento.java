@@ -17,10 +17,10 @@ import javax.swing.JTextField;
 import com.github.lgooddatepicker.components.DateTimePicker;
 
 import com.github.lgooddatepicker.components.DateTimePicker;
+import javax.swing.JFormattedTextField;
 
 public class Agendamento extends JInternalFrame {
-	private JTextField txtCPFCNPJ;
-	private JTextField txtNome;
+	private JTextField txtNomeCliente;
 
 	/**
 	 * Launch the application.
@@ -47,8 +47,8 @@ public class Agendamento extends JInternalFrame {
 		setBounds(100, 100, 583, 439);
 		getContentPane().setLayout(null);
 		
-		JButton button = new JButton("Salvar");
-		button.addActionListener(new ActionListener() {
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 			//	 Atributos próprios do componente datePicker (date e time)
 				DateTimePicker dataTeste = null;
@@ -64,33 +64,28 @@ public class Agendamento extends JInternalFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		button.setBounds(24, 288, 120, 25);
-		getContentPane().add(button);
+		btnSalvar.setBounds(24, 288, 120, 25);
+		getContentPane().add(btnSalvar);
 		
-		JButton button_1 = new JButton("Cancelar");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelar();
 			}
 		});
-		button_1.setBounds(176, 288, 120, 25);
-		getContentPane().add(button_1);
+		btnCancelar.setBounds(176, 288, 120, 25);
+		getContentPane().add(btnCancelar);
 		
 		JLabel lblNomeCliente = new JLabel("Cliente:");
-		lblNomeCliente.setBounds(4, 130, 75, 15);
+		lblNomeCliente.setBounds(36, 130, 50, 15);
 		getContentPane().add(lblNomeCliente);
 		
-		txtCPFCNPJ = new JTextField();
-		txtCPFCNPJ.setColumns(10);
-		txtCPFCNPJ.setBounds(79, 156, 236, 19);
-		getContentPane().add(txtCPFCNPJ);
-		
-		JLabel label = new JLabel("Sala:");
-		label.setBounds(4, 245, 45, 15);
-		getContentPane().add(label);
+		JLabel lblSala = new JLabel("Sala:");
+		lblSala.setBounds(47, 219, 32, 15);
+		getContentPane().add(lblSala);
 		
 		JComboBox cbSala = new JComboBox();
-		cbSala.setBounds(43, 242, 75, 20);
+		cbSala.setBounds(79, 216, 75, 20);
 		getContentPane().add(cbSala);
 		
 		//JLabel lblHorrio = new JLabel("Horário:");
@@ -101,17 +96,17 @@ public class Agendamento extends JInternalFrame {
 		//cbHorario.setBounds(240, 30, 75, 20);
 		//getContentPane().add(cbHorario);
 		
-		txtNome = new JTextField();
-		txtNome.setColumns(10);
-		txtNome.setBounds(79, 127, 236, 19);
-		getContentPane().add(txtNome);
+		txtNomeCliente = new JTextField();
+		txtNomeCliente.setColumns(10);
+		txtNomeCliente.setBounds(79, 127, 230, 20);
+		getContentPane().add(txtNomeCliente);
 		
-		JLabel lblCpfcnpj = new JLabel("CPF:");
-		lblCpfcnpj.setBounds(4, 157, 45, 14);
-		getContentPane().add(lblCpfcnpj);
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setBounds(47, 159, 45, 14);
+		getContentPane().add(lblCpf);
 		
 		JComboBox cbFuncionario = new JComboBox();
-		cbFuncionario.setBounds(194, 198, 194, 20);
+		cbFuncionario.setBounds(79, 186, 190, 20);
 		getContentPane().add(cbFuncionario);
 		
 		JLabel lblProcedimento = new JLabel("Procedimento:");
@@ -119,12 +114,12 @@ public class Agendamento extends JInternalFrame {
 		getContentPane().add(lblProcedimento);
 		
 		JComboBox cbProcedimento = new JComboBox();
-		cbProcedimento.setBounds(117, 95, 194, 20);
+		cbProcedimento.setBounds(79, 95, 190, 20);
 		getContentPane().add(cbProcedimento);
 		
-		JLabel lblFuncionrioResponsvel = new JLabel("Funcionário Responsavel:");
-		lblFuncionrioResponsvel.setBounds(4, 201, 194, 15);
-		getContentPane().add(lblFuncionrioResponsvel);
+		JLabel lblFuncionrio = new JLabel("Funcion\u00E1rio:");
+		lblFuncionrio.setBounds(14, 186, 194, 15);
+		getContentPane().add(lblFuncionrio);
 		
 		JLabel lblData = new JLabel("Data:");
 		lblData.setBounds(12, 30, 45, 18);
@@ -133,6 +128,25 @@ public class Agendamento extends JInternalFrame {
 		final DateTimePicker dataTeste = new DateTimePicker();
 		dataTeste.setBounds(150, 47, 300, 30);
 		this.getContentPane().add(dataTeste);
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnExcluir.setBounds(326, 289, 120, 25);
+		getContentPane().add(btnExcluir);
+		
+		JFormattedTextField formatteCpf = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+	           formatteCpf = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        	
+	        }
+		formatteCpf.setBounds(79, 156, 190, 20);
+		getContentPane().add(formatteCpf);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {

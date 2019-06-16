@@ -44,11 +44,11 @@ public class Ajuda extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblDigiteAquiAs = new JLabel("Digite aqui a sua D\u00FAvida ");
-		lblDigiteAquiAs.setBounds(34, 12, 184, 15);
+		lblDigiteAquiAs.setBounds(90, 12, 128, 20);
 		getContentPane().add(lblDigiteAquiAs);
 		
 		textField = new JTextField();
-		textField.setBounds(12, 39, 281, 19);
+		textField.setBounds(12, 40, 280, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -65,7 +65,7 @@ public class Ajuda extends JInternalFrame {
 				}
 			}
 		});
-		btnPesquisar.setBounds(12, 70, 117, 25);
+		btnPesquisar.setBounds(12, 70, 115, 25);
 		getContentPane().add(btnPesquisar);
 		
 		JButton button = new JButton("www.google.com");
@@ -83,7 +83,7 @@ public class Ajuda extends JInternalFrame {
 					}
 				}
 			});
-		button.setBounds(127, 70, 166, 25);
+		button.setBounds(127, 70, 165, 25);
 			getContentPane().add(button);
 
 		}

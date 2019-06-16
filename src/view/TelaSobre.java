@@ -56,12 +56,12 @@ public class TelaSobre extends JInternalFrame {
 		JLabel lblVersao = new JLabel("Vers\u00E3o 1.0");
 		lblVersao.setFont(new Font("Yu Gothic", Font.PLAIN, 11));
 		lblVersao.setForeground(Color.BLACK);
-		lblVersao.setBounds(232, 94, 116, 15);
+		lblVersao.setBounds(270, 94, 116, 15);
 		getContentPane().add(lblVersao);
 		
 		JLabel lblSobreClnica = new JLabel("Sobre Cl\u00EDnica");
 		lblSobreClnica.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 30));
-		lblSobreClnica.setBounds(139, 46, 209, 38);
+		lblSobreClnica.setBounds(210, 45, 209, 38);
 		getContentPane().add(lblSobreClnica);
 
 	}

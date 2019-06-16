@@ -44,31 +44,29 @@ public class CadastroProcedimento extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setBounds(135, 26, 45, 15);
+		lblNewLabel.setBounds(135, 25, 45, 15);
 		getContentPane().add(lblNewLabel);
 		
 		txtNomeProcedimento = new JTextField();
-		txtNomeProcedimento.setBounds(27, 58, 278, 19);
+		txtNomeProcedimento.setBounds(25, 60, 280, 20);
 		getContentPane().add(txtNomeProcedimento);
 		txtNomeProcedimento.setColumns(10);
 		
 		JLabel lblSala = new JLabel("Sala:");
-		lblSala.setBounds(135, 84, 70, 15);
+		lblSala.setBounds(135, 85, 70, 15);
 		getContentPane().add(lblSala);
 		
 		txtSala = new JTextField();
-		txtSala.setBounds(97, 111, 114, 19);
+		txtSala.setBounds(100, 110, 115, 20);
 		getContentPane().add(txtSala);
 		txtSala.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProcedimentoControl.salvar(txtNomeProcedimento.getText(),txtSala.getText());
-				System.out.println("Salvo com Sucesso");
 			}
 		});
-		btnSalvar.setBounds(27, 163, 117, 25);
+		btnSalvar.setBounds(30, 160, 115, 25);
 		getContentPane().add(btnSalvar);
 		
 		
@@ -78,7 +76,7 @@ public class CadastroProcedimento extends JInternalFrame {
 				cancelar();
 			}
 		});
-		btnCancelar.setBounds(175, 163, 117, 25);
+		btnCancelar.setBounds(175, 160, 115, 25);
 		getContentPane().add(btnCancelar);
 
 	}

@@ -259,19 +259,19 @@ public class TelaInicial extends JFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnPesquisar.setBounds(562, 47, 132, 23);
+		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 		
 		TabelaAgendamento tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
 		desktopPane.add(tabela);
 		
 		txtNomeCliente = new JTextField();
-		txtNomeCliente.setBounds(20, 47, 218, 25);
+		txtNomeCliente.setBounds(20, 50, 220, 20);
 		getContentPane().add(txtNomeCliente);
 		txtNomeCliente.setColumns(10);
 		
 		JLabel lblNomeDoCliente = new JLabel("Nome Do Cliente:");
-		lblNomeDoCliente.setBounds(20, 20, 122, 15);
+		lblNomeDoCliente.setBounds(20, 30, 122, 15);
 		getContentPane().add(lblNomeDoCliente);
 		tabela.show();
 	}

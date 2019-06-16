@@ -23,4 +23,9 @@ public class AgendamentoBO {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 		return agendamentoDAO.listarTodos();
 	}
+
+	public boolean excluir(Agendamento agendamento) {
+		int idGerado = agendamentoDAO.excluir(agendamento);
+		return idGerado > 0;
+	}
 }

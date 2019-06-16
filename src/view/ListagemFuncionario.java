@@ -40,26 +40,26 @@ public class ListagemFuncionario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(16, 13, 40, 16);
+		lblNome.setBounds(15, 15, 40, 15);
 		getContentPane().add(lblNome);
 		
 		textField = new JTextField();
-		textField.setBounds(60, 10, 362, 22);
+		textField.setBounds(60, 10, 360, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		
 		JLabel lblCargo = new JLabel("Cargo :");
-		lblCargo.setBounds(16, 48, 40, 16);
+		lblCargo.setBounds(15, 50, 40, 15);
 		getContentPane().add(lblCargo);
 		
 		txtCargo = new JTextField();
-		txtCargo.setBounds(60, 45, 362, 22);
+		txtCargo.setBounds(60, 45, 360, 20);
 		getContentPane().add(txtCargo);
 		txtCargo.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(171, 80, 97, 25);
+		btnPesquisar.setBounds(200, 80, 100, 25);
 		getContentPane().add(btnPesquisar);
 		
 		//Lista de funcionários na Tabela

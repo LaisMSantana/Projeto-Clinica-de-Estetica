@@ -15,6 +15,8 @@ import javax.swing.text.MaskFormatter;
 //import com.github.lgooddatepicker.components.DatePicker;
 //import com.github.lgooddatepicker.components.DateTimePicker;
 
+
+
 public class CadastroCliente extends JInternalFrame {
 	private JTextField txtNome;
 	private JTextField txtEndereco;
@@ -27,6 +29,7 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField txtCelular;
 	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
+
 
 	/**
 	 * Create the frame.

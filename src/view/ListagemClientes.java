@@ -26,16 +26,16 @@ public class ListagemClientes extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(3, 12, 56, 16);
+		lblNome.setBounds(20, 12, 56, 16);
 		getContentPane().add(lblNome);
 		
 		textField = new JTextField();
-		textField.setBounds(60, 10, 362, 22);
+		textField.setBounds(60, 10, 360, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCPFCNPJ = new JLabel("CPF:");
-		lblCPFCNPJ.setBounds(3, 48, 56, 16);
+		lblCPFCNPJ.setBounds(30, 40, 56, 16);
 		getContentPane().add(lblCPFCNPJ);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -60,7 +60,7 @@ public class ListagemClientes extends JInternalFrame {
 	        }catch (Exception e){
 	        	
 	        }
-		formatteCpf.setBounds(60, 40, 83, 19);
+		formatteCpf.setBounds(60, 40, 80, 20);
 		getContentPane().add(formatteCpf);
 
 	}
