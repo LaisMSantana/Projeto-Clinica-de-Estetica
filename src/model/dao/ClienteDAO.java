@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.bo.ClienteBO;
 import model.vo.Cliente;
 
 public class ClienteDAO {
@@ -87,5 +89,10 @@ public class ClienteDAO {
 			Banco.closeConnection(conn);
 		}
 		return resultado;
+	}
+
+	public ArrayList<ClienteBO> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

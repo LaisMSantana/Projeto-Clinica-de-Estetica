@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.bo.AgendamentoBO;
+import model.bo.ClienteBO;
 import model.vo.Agendamento;
 
 public class AgendamentoControl {
@@ -57,7 +60,11 @@ public class AgendamentoControl {
 		}	
 		return validacao;
 	}
-
+	
+	public ArrayList<AgendamentoBO> listarTodosAgendamentos() {
+		AgendamentoBO agendamentoBO = new AgendamentoBO();
+		return agendamentoBO.listarTodos();
+	}
 	
 
 }

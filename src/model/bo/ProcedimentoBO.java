@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.dao.ProcedimentoDAO;
 import model.vo.Procedimento;
 
@@ -35,7 +37,8 @@ public class ProcedimentoBO {
 		return mensagem;
 	}
 
-
-
-
+	public ArrayList<ProcedimentoBO> listarTodos() {
+		ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO();
+		return procedimentoDAO.listarTodos();
+	}
 }

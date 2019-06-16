@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.dao.FuncionarioDAO;
 import model.vo.Funcionario;
 
@@ -11,12 +13,12 @@ public class FuncionarioBO {
 		int idGerado = funcionarioDAO.salvar(funcionario);
 		return idGerado > 0;
 	}
-	
+
 	public boolean atualizar(Funcionario funcionario) {
 		boolean sucesso = funcionarioDAO.atualizar(funcionario);
 		return sucesso;
 	}
-	
+
 	public String excluir(Funcionario funcionario) {
 		String mensagem = "";
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
@@ -33,5 +35,10 @@ public class FuncionarioBO {
 			}
 		}
 		return mensagem;
+	}
+
+	public ArrayList<FuncionarioBO> listarTodos() {
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+		return funcionarioDAO.listarTodos();
 	}
 }

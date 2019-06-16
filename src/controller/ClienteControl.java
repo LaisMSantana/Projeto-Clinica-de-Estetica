@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.bo.ClienteBO;
 import model.vo.Cliente;
 
@@ -69,6 +71,8 @@ public class ClienteControl {
 		return mensagem;
 	}
 
-	
-
+	public ArrayList<ClienteBO> listarTodosClientes() {
+		ClienteBO clienteBO = new ClienteBO();
+		return clienteBO.listarTodos();
+	}
 }

@@ -3,11 +3,13 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -145,8 +147,9 @@ public class CadastroFuncionario extends JInternalFrame {
 		
 		txtDataNascimento = new JTextField();
 		txtDataNascimento.setColumns(10);
-		txtDataNascimento.setBounds(164, 223, 56, 22);
+		txtDataNascimento.setBounds(145, 223, 75, 22);
 		getContentPane().add(txtDataNascimento);
+		
 		
 		lblRg = new JLabel("RG :");
 		lblRg.setBounds(249, 223, 39, 14);

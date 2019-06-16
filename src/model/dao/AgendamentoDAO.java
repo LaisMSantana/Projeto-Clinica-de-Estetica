@@ -3,7 +3,9 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 
 public class AgendamentoDAO {
@@ -40,6 +42,11 @@ public class AgendamentoDAO {
 
 	public int salvar(Agendamento agendamento) {
 		return 0;
+	}
+
+	public ArrayList<AgendamentoBO> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

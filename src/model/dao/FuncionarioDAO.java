@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.bo.FuncionarioBO;
 import model.vo.Funcionario;
 
 public class FuncionarioDAO {
@@ -36,7 +38,7 @@ public class FuncionarioDAO {
 		}
 		return novoId;
 	}
-	
+
 	public boolean atualizar(Funcionario funcionario) {
 		boolean sucessoUpdate = false;
 
@@ -89,4 +91,8 @@ public class FuncionarioDAO {
 		return resultado;
 	}
 
+	public ArrayList<FuncionarioBO> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

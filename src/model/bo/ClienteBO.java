@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.dao.ClienteDAO;
 import model.vo.Cliente;
 
@@ -31,5 +33,10 @@ public class ClienteBO {
 			}
 		}
 		return mensagem;
+	}
+
+	public ArrayList<ClienteBO> listarTodos() {
+		ClienteDAO clienteDAO = new ClienteDAO();
+		return clienteDAO.listarTodos();
 	}
 }

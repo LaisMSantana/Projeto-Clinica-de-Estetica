@@ -1,6 +1,9 @@
 package controller;
 
 
+import java.util.ArrayList;
+
+import model.bo.ClienteBO;
 import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
@@ -68,10 +71,11 @@ public class ProcedimentoControl {
 		}
 		return mensagem;
 	}
-
-	public static void salvar(String text, String text2) {
-		// TODO Auto-generated method stub
-		
+	
+	public ArrayList<ProcedimentoBO> listarTodosProcedimentos() {
+		ProcedimentoBO procedimentoBO = new ProcedimentoBO();
+		return procedimentoBO.listarTodos();
 	}
+	
 
 }

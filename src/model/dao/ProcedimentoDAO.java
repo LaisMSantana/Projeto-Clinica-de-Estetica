@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
+import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
 public class ProcedimentoDAO {
@@ -87,5 +91,10 @@ public class ProcedimentoDAO {
 			Banco.closeConnection(conn);
 		}
 		return resultado;
+	}
+
+	public ArrayList<ProcedimentoBO> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

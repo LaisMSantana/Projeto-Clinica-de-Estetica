@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.bo.ClienteBO;
 import model.bo.FuncionarioBO;
 import model.vo.Funcionario;
 
@@ -66,5 +69,10 @@ public class FuncionarioControl {
 			funcionarioBO.excluir(funcionarioExcluir);
 		}
 		return mensagem;
+	}
+	
+	public ArrayList<FuncionarioBO> listarTodosFuncionarios() {
+		FuncionarioBO funcionarioBO = new FuncionarioBO();
+		return funcionarioBO.listarTodos();
 	}
 }
