@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -19,8 +21,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.github.lgooddatepicker.components.DateTimePicker;
+
+import controller.AgendamentoControl;
+import model.dao.AgendamentoDAO;
+import model.util.GeradordePlanilha;
 
 public class TelaInicial extends JFrame {
 
@@ -37,6 +44,8 @@ public class TelaInicial extends JFrame {
 	private CadastroProcedimento agendaP;
 	private Agendamento novoAgendamento;
 	private ListagemClientes listagemC;
+	private AgendamentoControl agendamentoControl = new AgendamentoControl();
+
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +64,7 @@ public class TelaInicial extends JFrame {
 		});
 	}
 
-	private void adicionarComponente(JInternalFrame c){
+	private void adicionarComponente(JInternalFrame c) {
 		this.desktopPane.add(c);
 	}
 
@@ -63,15 +72,15 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
-		// consulta o tamanho do monitor do usuário		
-		//Dimension dimension = this.getToolkit().getScreenSize();
-		//final int larguraDaTela = (int) dimension.getWidth();
-		//final int alturaDaTela = (int) dimension.getHeight();
-	final int	larguraDaTela = 1000;
-	final	int		alturaDaTela = 1000;
+		// consulta o tamanho do monitor do usuário
+		// Dimension dimension = this.getToolkit().getScreenSize();
+		// final int larguraDaTela = (int) dimension.getWidth();
+		// final int alturaDaTela = (int) dimension.getHeight();
+		final int larguraDaTela = 1000;
+		final int alturaDaTela = 1000;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(204, 153, 204));
 		desktopPane.setSize(larguraDaTela - 10, alturaDaTela - 10);
@@ -93,7 +102,7 @@ public class TelaInicial extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cadastroCliente == null) {
-					cadastroCliente = new CadastroCliente(larguraDaTela,alturaDaTela);
+					cadastroCliente = new CadastroCliente(larguraDaTela, alturaDaTela);
 					adicionarComponente(cadastroCliente);
 					cadastroCliente.show();
 				} else if (cadastroCliente != null) {
@@ -105,7 +114,7 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmListagem = new JMenuItem("Listar Clientes");
 		mntmListagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(listagemC == null) {
+				if (listagemC == null) {
 					listagemC = new ListagemClientes();
 					desktopPane.add(listagemC);
 					listagemC.show();
@@ -158,7 +167,7 @@ public class TelaInicial extends JFrame {
 		JMenuItem mntmAgendarProcedimento = new JMenuItem("Agendar Procedimento");
 		mntmAgendarProcedimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+
 				if (cadastroP == null) {
 					cadastroP = new CadastroProcedimento();
 					adicionarComponente(cadastroP);
@@ -168,8 +177,7 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
-			
-		
+
 		mnProcedimentos.add(mntmAgendarProcedimento);
 
 		JMenuItem mntmCadastrarProcedimento = new JMenuItem("Cadastrar Procedimento");
@@ -185,7 +193,7 @@ public class TelaInicial extends JFrame {
 			}
 		});
 		mnProcedimentos.add(mntmCadastrarProcedimento);
-		
+
 		JMenuItem mntmAgendarProcedimento_1 = new JMenuItem("Agendar Procedimento");
 		mntmAgendarProcedimento_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -198,11 +206,31 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
-		
+
 		mnProcedimentos.add(mntmAgendarProcedimento_1);
 
 		JMenuItem mntmRelatrios = new JMenuItem("Relatório");
 		mnProcedimentos.add(mntmRelatrios);
+
+		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
+		menuBar.add(mnRelatrios);
+
+		JMenuItem mntmAgendamentos = new JMenuItem("Agendamentos");
+		mntmAgendamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel", "xlsx");
+				fileChooser.setFileFilter(filter);
+				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					String caminhoArquivo = file.getAbsolutePath();
+					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo);
+					JOptionPane.showMessageDialog(null, mensagem);
+				}
+
+			}
+		});
+		mnRelatrios.add(mntmAgendamentos);
 
 		JMenu mnAjuda = new JMenu("Ajuda?");
 		menuBar.add(mnAjuda);
@@ -261,15 +289,15 @@ public class TelaInicial extends JFrame {
 		});
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
-		
+
 		TabelaAgendamento tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
 		desktopPane.add(tabela);
-		
+
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 20);
 		getContentPane().add(txtNomeCliente);
 		txtNomeCliente.setColumns(10);
-		
+
 		JLabel lblNomeDoCliente = new JLabel("Nome Do Cliente:");
 		lblNomeDoCliente.setBounds(20, 30, 122, 15);
 		getContentPane().add(lblNomeDoCliente);

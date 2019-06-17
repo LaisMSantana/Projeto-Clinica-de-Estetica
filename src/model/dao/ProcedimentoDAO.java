@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
@@ -20,7 +18,7 @@ public class ProcedimentoDAO {
 		String sql = " INSERT INTO PROCEDIMENTO (NOME, SALA) " + " VALUES (?,?) ";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, procedimento.getNome());
@@ -48,7 +46,7 @@ public class ProcedimentoDAO {
 		String sql = " UPDATE PROCEDIMENTO procedimento SET NOME=?, SALA=?" + " WHERE PROCEDIMENTO.ID = ? ";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, procedimento.getNome());

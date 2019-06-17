@@ -1,12 +1,14 @@
 package model.bo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.dao.AgendamentoDAO;
+import model.util.GeradordePlanilha;
 import model.vo.Agendamento;
 
 public class AgendamentoBO {
 	
+	private GeradordePlanilha geradorPlanilha = new GeradordePlanilha();
 	private AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
 	public boolean atualizar(Agendamento agendamento) {
@@ -19,7 +21,7 @@ public class AgendamentoBO {
 		return idGerado > 0;
 	}
 
-	public ArrayList<AgendamentoBO> listarTodos() {
+	public List<Agendamento> listarTodos() {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 		return agendamentoDAO.listarTodos();
 	}
@@ -27,5 +29,14 @@ public class AgendamentoBO {
 	public boolean excluir(Agendamento agendamento) {
 		int idGerado = agendamentoDAO.excluir(agendamento);
 		return idGerado > 0;
+	}
+	
+	public String gerarRelatorio(String caminhoArquivo) {
+		if (!caminhoArquivo.toLowerCase().endsWith(".xlsx")) {
+			caminhoArquivo += ".xlsx";
+		}
+		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos());
+		return mensagem;
+		
 	}
 }

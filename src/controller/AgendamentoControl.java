@@ -1,12 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.bo.AgendamentoBO;
-import model.bo.ClienteBO;
-import model.bo.FuncionarioBO;
 import model.vo.Agendamento;
-import model.vo.Funcionario;
 
 public class AgendamentoControl {
 	
@@ -41,7 +38,7 @@ public class AgendamentoControl {
 		if (agendamento == null) {
 			validacao = "Agendamento está NULO!";
 		} else {
-			if (agendamento.getData().trim().equals("") || agendamento.getData() == null) {
+			if (agendamento.getData() == null) {
 				validacao += "- Data é obrigatório \n";
 			}
 			if (agendamento.getProcedimento().getNome().trim().equals("") || agendamento.getProcedimento().getNome() == null) {
@@ -78,10 +75,13 @@ public class AgendamentoControl {
 		return validacao;
 	}
 	
-	public ArrayList<AgendamentoBO> listarTodosAgendamentos() {
+	public List<Agendamento> listarTodosAgendamentos() {
 		AgendamentoBO agendamentoBO = new AgendamentoBO();
 		return agendamentoBO.listarTodos();
 	}
 	
 
+	public String gerarRelatorio(String caminhoArquivo) {
+		return AgendamentoBO.gerarRelatorio(caminhoArquivo);
+	}
 }

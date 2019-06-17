@@ -18,7 +18,7 @@ public class FuncionarioDAO {
 		String sql = " INSERT INTO FUNCIONARIO (NOME, CPF) " + " VALUES (?,?) ";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, funcionario.getNome());
@@ -46,7 +46,7 @@ public class FuncionarioDAO {
 		String sql = " UPDATE FUNCIONARIO funcionario SET NOME=?, CPF=?" + " WHERE FUNCIONARIO.ID = ? ";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, funcionario.getNome());

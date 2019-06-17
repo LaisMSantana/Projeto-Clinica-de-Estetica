@@ -1,9 +1,11 @@
 package model.vo;
 
+import java.util.Date;
+
 public class Agendamento {
 
 	private int idAgendamento;
-	private String data;
+	private Date data;
 	private Procedimento procedimento;
 	private Cliente cliente;
 	private Funcionario funcionario;
@@ -12,7 +14,7 @@ public class Agendamento {
 		super();
 	}
 
-	public Agendamento(int idAgendamento, String data, Procedimento procedimento, Funcionario funcionario,
+	public Agendamento(int idAgendamento, Date data, Procedimento procedimento, Funcionario funcionario,
 			Cliente cliente) {
 		super();
 		this.idAgendamento = idAgendamento;
@@ -30,11 +32,11 @@ public class Agendamento {
 		this.idAgendamento = idAgendamento;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
