@@ -44,7 +44,7 @@ public class Agendamento extends JInternalFrame {
 	public Agendamento() {
 		setTitle("Agendamento");
 		setClosable(true);
-		setBounds(100, 100, 583, 439);
+		setBounds(100, 100, 490, 440);
 		getContentPane().setLayout(null);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -64,7 +64,7 @@ public class Agendamento extends JInternalFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnSalvar.setBounds(24, 288, 120, 25);
+		btnSalvar.setBounds(25, 290, 120, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -73,60 +73,52 @@ public class Agendamento extends JInternalFrame {
 				cancelar();
 			}
 		});
-		btnCancelar.setBounds(176, 288, 120, 25);
+		btnCancelar.setBounds(175, 290, 120, 25);
 		getContentPane().add(btnCancelar);
 		
 		JLabel lblNomeCliente = new JLabel("Cliente:");
-		lblNomeCliente.setBounds(36, 130, 50, 15);
+		lblNomeCliente.setBounds(35, 130, 50, 15);
 		getContentPane().add(lblNomeCliente);
 		
 		JLabel lblSala = new JLabel("Sala:");
-		lblSala.setBounds(47, 219, 32, 15);
+		lblSala.setBounds(50, 220, 30, 15);
 		getContentPane().add(lblSala);
 		
 		JComboBox cbSala = new JComboBox();
-		cbSala.setBounds(79, 216, 75, 20);
+		cbSala.setBounds(80, 215, 75, 20);
 		getContentPane().add(cbSala);
-		
-		//JLabel lblHorrio = new JLabel("Horário:");
-		//lblHorrio.setBounds(191, 33, 46, 14);
-		//getContentPane().add(lblHorrio);
-		
-		//JComboBox cbHorario = new JComboBox();
-		//cbHorario.setBounds(240, 30, 75, 20);
-		//getContentPane().add(cbHorario);
 		
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setColumns(10);
-		txtNomeCliente.setBounds(79, 127, 230, 20);
+		txtNomeCliente.setBounds(80, 130, 230, 20);
 		getContentPane().add(txtNomeCliente);
 		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(47, 159, 45, 14);
+		lblCpf.setBounds(50, 160, 45, 15);
 		getContentPane().add(lblCpf);
 		
 		JComboBox cbFuncionario = new JComboBox();
-		cbFuncionario.setBounds(79, 186, 190, 20);
+		cbFuncionario.setBounds(80, 185, 190, 20);
 		getContentPane().add(cbFuncionario);
 		
 		JLabel lblProcedimento = new JLabel("Procedimento:");
-		lblProcedimento.setBounds(4, 98, 114, 14);
+		lblProcedimento.setBounds(5, 100, 115, 15);
 		getContentPane().add(lblProcedimento);
 		
 		JComboBox cbProcedimento = new JComboBox();
-		cbProcedimento.setBounds(79, 95, 190, 20);
+		cbProcedimento.setBounds(80, 95, 190, 20);
 		getContentPane().add(cbProcedimento);
 		
 		JLabel lblFuncionrio = new JLabel("Funcion\u00E1rio:");
-		lblFuncionrio.setBounds(14, 186, 194, 15);
+		lblFuncionrio.setBounds(15, 185, 195, 15);
 		getContentPane().add(lblFuncionrio);
 		
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(12, 30, 45, 18);
+		lblData.setBounds(10, 30, 45, 15);
 		getContentPane().add(lblData);
 		
 		final DateTimePicker dataTeste = new DateTimePicker();
-		dataTeste.setBounds(150, 47, 300, 30);
+		dataTeste.setBounds(150, 50, 300, 25);
 		this.getContentPane().add(dataTeste);
 		
 		JButton btnExcluir = new JButton("Excluir");
@@ -135,7 +127,7 @@ public class Agendamento extends JInternalFrame {
 				
 			}
 		});
-		btnExcluir.setBounds(326, 289, 120, 25);
+		btnExcluir.setBounds(325, 290, 120, 25);
 		getContentPane().add(btnExcluir);
 		
 		JFormattedTextField formatteCpf = new JFormattedTextField();
@@ -145,7 +137,7 @@ public class Agendamento extends JInternalFrame {
 	        }catch (Exception e){
 	        	
 	        }
-		formatteCpf.setBounds(79, 156, 190, 20);
+		formatteCpf.setBounds(80, 155, 190, 20);
 		getContentPane().add(formatteCpf);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -164,7 +156,7 @@ public class Agendamento extends JInternalFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnPesquisar.setBounds(191, 33, 46, 14);
+		btnPesquisar.setBounds(190, 30, 45, 15);
 
 	}
 	

@@ -1,6 +1,7 @@
 package view;
 
-import java.awt.EventQueue;
+import java.awt.List;
+import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
@@ -8,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
+import model.bo.AgendamentoBO;
 
 public class TabelaAgendamento extends JInternalFrame {
 	private JTable table;
@@ -45,5 +48,6 @@ public class TabelaAgendamento extends JInternalFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.setBounds(10, 483, 784, 360);
 		scrollPane.setViewportView(table);
+
 	}
 }

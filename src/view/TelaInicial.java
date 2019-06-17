@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,11 +74,11 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário
-		// Dimension dimension = this.getToolkit().getScreenSize();
-		// final int larguraDaTela = (int) dimension.getWidth();
-		// final int alturaDaTela = (int) dimension.getHeight();
-		final int larguraDaTela = 1000;
-		final int alturaDaTela = 1000;
+		Dimension dimension = this.getToolkit().getScreenSize();
+		final int larguraDaTela = (int) dimension.getWidth();
+		final int alturaDaTela = (int) dimension.getHeight();
+		//final int larguraDaTela = 1000;
+		//final int alturaDaTela = 1000;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
