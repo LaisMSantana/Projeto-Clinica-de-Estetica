@@ -12,17 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-<<<<<<< HEAD
 import com.github.lgooddatepicker.components.DatePicker;
-=======
-import javafx.scene.control.DatePicker;
->>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
-
-//import com.github.lgooddatepicker.components.DatePicker;
-//import com.github.lgooddatepicker.components.DateTimePicker;
-
-
-
 public class CadastroCliente extends JInternalFrame {
 	private JTextField txtNome;
 	private JTextField txtEndereco;
@@ -190,16 +180,9 @@ public class CadastroCliente extends JInternalFrame {
 		btnCancelar.setBounds(230, 270, 90, 25);
 		getContentPane().add(btnCancelar);
 
-<<<<<<< HEAD
 		final DatePicker dataNascimento = new DatePicker();
 		dataNascimento.setBounds(180, 221, 250, 35);
 		this.getContentPane().add(dataNascimento);
-=======
-		//final DatePicker dataNascimento = new DatePicker();
-		//dataNascimento.setBounds(180, 220, 250, 25);
-		//this.getContentPane().add(dataNascimento);
->>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
-		
 	} private void cancelar() {
 		this.setVisible(false);
 	}
