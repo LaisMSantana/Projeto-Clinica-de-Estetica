@@ -186,9 +186,9 @@ public class CadastroCliente extends JInternalFrame {
 		btnCancelar.setBounds(230, 270, 90, 25);
 		getContentPane().add(btnCancelar);
 
-		final DatePicker dataNascimento = new DatePicker();
-		dataNascimento.setBounds(180, 220, 250, 25);
-		this.getContentPane().add(dataNascimento);
+		//final DatePicker dataNascimento = new DatePicker();
+		//dataNascimento.setBounds(180, 220, 250, 25);
+		//this.getContentPane().add(dataNascimento);
 		
 	} private void cancelar() {
 		this.setVisible(false);
