@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import com.github.lgooddatepicker.components.DatePicker;
+
 //import com.github.lgooddatepicker.components.DatePicker;
 //import com.github.lgooddatepicker.components.DateTimePicker;
 
@@ -162,9 +164,9 @@ public class CadastroCliente extends JInternalFrame {
 		btnCancelar.setBounds(230, 270, 89, 23);
 		getContentPane().add(btnCancelar);
 
-		//final DatePicker dataNascimento = new DatePicker();
-		//dataNascimento.setBounds(180, 221, 250, 35);
-		//this.getContentPane().add(dataNascimento);
+		final DatePicker dataNascimento = new DatePicker();
+		dataNascimento.setBounds(180, 221, 250, 35);
+		this.getContentPane().add(dataNascimento);
 		
 	} private void cancelar() {
 		this.setVisible(false);

@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

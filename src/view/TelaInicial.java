@@ -1,12 +1,14 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -26,8 +28,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import com.github.lgooddatepicker.components.DateTimePicker;
 
 import controller.AgendamentoControl;
-import model.dao.AgendamentoDAO;
-import model.util.GeradordePlanilha;
+import model.bo.AgendamentoBO;
+import model.vo.Agendamento;
 
 public class TelaInicial extends JFrame {
 
@@ -42,9 +44,10 @@ public class TelaInicial extends JFrame {
 	private JTextField txtDigite;
 	private JTextField txtNomeCliente;
 	private CadastroProcedimento agendaP;
-	private Agendamento novoAgendamento;
+	private CadastroAgendamento novoAgendamento;
 	private ListagemClientes listagemC;
 	private AgendamentoControl agendamentoControl = new AgendamentoControl();
+	private model.vo.Agendamento agendamento;
 
 	/**
 	 * Launch the application.
@@ -73,11 +76,11 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário
-		// Dimension dimension = this.getToolkit().getScreenSize();
-		// final int larguraDaTela = (int) dimension.getWidth();
-		// final int alturaDaTela = (int) dimension.getHeight();
-		final int larguraDaTela = 1000;
-		final int alturaDaTela = 1000;
+		 Dimension dimension = this.getToolkit().getScreenSize();
+		 final int larguraDaTela = (int) dimension.getWidth();
+		 final int alturaDaTela = (int) dimension.getHeight();
+		//final int larguraDaTela = 1000;
+		//final int alturaDaTela = 1000;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -198,7 +201,7 @@ public class TelaInicial extends JFrame {
 		mntmAgendarProcedimento_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (novoAgendamento == null) {
-					novoAgendamento = new Agendamento();
+					novoAgendamento = new CadastroAgendamento();
 					desktopPane.add(novoAgendamento);
 					novoAgendamento.show();
 				} else if (novoAgendamento != null) {
@@ -292,6 +295,11 @@ public class TelaInicial extends JFrame {
 
 		TabelaAgendamento tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
 		desktopPane.add(tabela);
+		AgendamentoBO agendamentoBO = new AgendamentoBO();
+		ArrayList<Agendamento> agendamentos = new ArrayList();
+		
+		agendamentos = (ArrayList<Agendamento>) agendamentoBO.listarTodos();
+		atualizarTabela(agendamentos);
 
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 20);
@@ -302,5 +310,10 @@ public class TelaInicial extends JFrame {
 		lblNomeDoCliente.setBounds(20, 30, 122, 15);
 		getContentPane().add(lblNomeDoCliente);
 		tabela.show();
+	}
+
+	private void atualizarTabela(ArrayList<Agendamento> agendamentos) {
+		// TODO Auto-generated method stub
+		
 	}
 }

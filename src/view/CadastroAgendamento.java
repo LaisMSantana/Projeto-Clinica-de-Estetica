@@ -19,7 +19,7 @@ import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.DateTimePicker;
 import javax.swing.JFormattedTextField;
 
-public class Agendamento extends JInternalFrame {
+public class CadastroAgendamento extends JInternalFrame {
 	private JTextField txtNomeCliente;
 
 	/**
@@ -29,7 +29,7 @@ public class Agendamento extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Agendamento frame = new Agendamento();
+					CadastroAgendamento frame = new CadastroAgendamento();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Agendamento extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Agendamento() {
+	public CadastroAgendamento() {
 		setTitle("Agendamento");
 		setClosable(true);
 		setBounds(100, 100, 583, 439);
