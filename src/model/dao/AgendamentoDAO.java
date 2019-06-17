@@ -73,28 +73,41 @@ public class AgendamentoDAO {
 		return novoId;
 	}
 
+	public boolean existeAgendamentoNovo(AgendamentoDAO agendamentoDAO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int excluir(Agendamento agendamento) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		int resultado = 0;
+
+		String query = "DELETE FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+		try {
+			resultado = stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query de Exclusão de Agendamento. Erro: " + e.getMessage());
+		} finally {
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		return resultado;
+	}
+
 	public List<Agendamento> listarTodos() {
 		List<Agendamento> agendamentos = new ArrayList<Agendamento>();
 		Connection conexao = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conexao);
 		try {
-			ResultSet rs = stmt.executeQuery(
-					"SELECT "
-					+ "AGENDAMENTO.IDAGENDAMENTO, "
-					+ "AGENDAMENTO.DATA, "
-					+ "CLIENTE.IDCLIENTE, "
-					+ "CLIENTE.NOME, "
-					+ "FUNCIONARIO.IDFUNCIONARIO, "
-					+ "FUNCIONARIO.NOME, "
-					+ "PROCEDIMENTO.IDPROCEDIMENTO, "
-					+ "PROCEDIMENTO.NOME, "
-					+ "PROCEDIMENTO.SALA "
-					+ "FROM AGENDAMENTO "
-					+ "JOIN CLIENTE ON AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
+			ResultSet rs = stmt.executeQuery("SELECT " + "AGENDAMENTO.IDAGENDAMENTO, " + "AGENDAMENTO.DATA, "
+					+ "CLIENTE.IDCLIENTE, " + "CLIENTE.NOME, " + "FUNCIONARIO.IDFUNCIONARIO, " + "FUNCIONARIO.NOME, "
+					+ "PROCEDIMENTO.IDPROCEDIMENTO, " + "PROCEDIMENTO.NOME, " + "PROCEDIMENTO.SALA "
+					+ "FROM AGENDAMENTO " + "JOIN CLIENTE ON AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
 					+ "JOIN FUNCIONARIO ON AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
 					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO ");
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				Agendamento agendamento = new Agendamento();
 				agendamento.setIdAgendamento(rs.getInt(1));
 				agendamento.setData(rs.getTimestamp(2));
@@ -113,7 +126,7 @@ public class AgendamentoDAO {
 				agendamento.setProcedimento(procedimento);
 				agendamentos.add(agendamento);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("Erro ao inserir Agendamento. Causa: \n: " + e.getMessage());
 		} finally {
@@ -121,23 +134,6 @@ public class AgendamentoDAO {
 			Banco.closeConnection(conexao);
 		}
 		return agendamentos;
-	}
-
-	public int excluir(Agendamento agendamento) {
-		Connection conn = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conn);
-		int resultado = 0;
-
-		String query = "DELETE FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
-		try {
-			resultado = stmt.executeUpdate(query);
-		} catch (SQLException e) {
-			System.out.println("Erro ao executar a Query de Exclusão de Agendamento. Erro: " + e.getMessage());
-		} finally {
-			Banco.closeStatement(stmt);
-			Banco.closeConnection(conn);
-		}
-		return resultado;
 	}
 
 }

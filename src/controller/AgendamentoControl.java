@@ -6,14 +6,14 @@ import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 
 public class AgendamentoControl {
-	
+
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
 	private static final AgendamentoBO AgendamentoBO = new AgendamentoBO(); 
-	
+
 	public static String salvar(Agendamento agendamento) {
 		String validacao = validarAgendamento(agendamento);
-		
+
 		if (validacao == "") {
 			if (agendamento.getIdAgendamento() > 0) {
 				if (AgendamentoBO.atualizar(agendamento)) {
@@ -59,27 +59,22 @@ public class AgendamentoControl {
 		}	
 		return validacao;
 	}
-	
+
 	private static String excluirAgendamento(Agendamento agendamento) {
-		String validacao = validarAgendamento(agendamento);
-		
-		if (validacao == "") {
-			if (agendamento.getIdAgendamento() > 0) {
-				if (AgendamentoBO.excluir(agendamento)) {
-					validacao = "Agendamento excluido com sucesso!";
-				} else {
-					validacao = "Erro ao excluir agendamento";
-				}
-			} 
-		}
-		return validacao;
+		String mensagem = "";
+		if (agendamento == null) {
+			mensagem = "Selecione um agendamento";
+		} else {
+			mensagem = AgendamentoBO.excluir(agendamento);
+		} 
+		return mensagem;
 	}
-	
+
 	public List<Agendamento> listarTodosAgendamentos() {
 		AgendamentoBO agendamentoBO = new AgendamentoBO();
 		return agendamentoBO.listarTodos();
 	}
-	
+
 
 	public String gerarRelatorio(String caminhoArquivo) {
 		return AgendamentoBO.gerarRelatorio(caminhoArquivo);

@@ -37,7 +37,7 @@ public class ProcedimentoBO {
 		return mensagem;
 	}
 
-	public ArrayList<ProcedimentoBO> listarTodos() {
+	public ArrayList<Procedimento> listarTodos() {
 		ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO();
 		return procedimentoDAO.listarTodos();
 	}

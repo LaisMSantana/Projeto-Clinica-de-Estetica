@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.bo.ClienteBO;
 import model.bo.FuncionarioBO;
 import model.vo.Funcionario;
 
@@ -71,7 +70,7 @@ public class FuncionarioControl {
 		return mensagem;
 	}
 	
-	public ArrayList<FuncionarioBO> listarTodosFuncionarios() {
+	public ArrayList<Funcionario> listarTodosFuncionarios() {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
 		return funcionarioBO.listarTodos();
 	}

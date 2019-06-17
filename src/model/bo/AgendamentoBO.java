@@ -21,22 +21,34 @@ public class AgendamentoBO {
 		return idGerado > 0;
 	}
 
+	public String excluir(Agendamento agendamento) {
+		String mensagem = "";
+		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+
+		if (!agendamentoDAO.existeAgendamentoNovo(agendamentoDAO)) {
+			mensagem = "Agendamento inexistente";
+		} else {
+			int statusPersistencia = agendamentoDAO.excluir(agendamento);
+
+			if (statusPersistencia == 1) {
+				mensagem = "Agendamento excluido com sucesso";
+			} else if (statusPersistencia == 0) {
+				mensagem = "Erro ao excluir Agendamento";
+			}
+		}
+		return mensagem;
+	}
+	
 	public List<Agendamento> listarTodos() {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 		return agendamentoDAO.listarTodos();
 	}
 
-	public boolean excluir(Agendamento agendamento) {
-		int idGerado = agendamentoDAO.excluir(agendamento);
-		return idGerado > 0;
-	}
-	
 	public String gerarRelatorio(String caminhoArquivo) {
 		if (!caminhoArquivo.toLowerCase().endsWith(".xlsx")) {
 			caminhoArquivo += ".xlsx";
 		}
 		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos());
-		return mensagem;
-		
+		return mensagem;	
 	}
 }
