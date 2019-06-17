@@ -37,7 +37,7 @@ public class FuncionarioBO {
 		return mensagem;
 	}
 
-	public ArrayList<FuncionarioBO> listarTodos() {
+	public ArrayList<Funcionario> listarTodos() {
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 		return funcionarioDAO.listarTodos();
 	}

@@ -76,9 +76,15 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário
+<<<<<<< HEAD
 		 Dimension dimension = this.getToolkit().getScreenSize();
 		 final int larguraDaTela = (int) dimension.getWidth();
 		 final int alturaDaTela = (int) dimension.getHeight();
+=======
+		Dimension dimension = this.getToolkit().getScreenSize();
+		final int larguraDaTela = (int) dimension.getWidth();
+		final int alturaDaTela = (int) dimension.getHeight();
+>>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
 		//final int larguraDaTela = 1000;
 		//final int alturaDaTela = 1000;
 		setAutoRequestFocus(false);

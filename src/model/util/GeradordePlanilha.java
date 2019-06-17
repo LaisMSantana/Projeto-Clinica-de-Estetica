@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import model.bo.ClienteBO;
 import model.dao.AgendamentoDAO;
 import model.vo.Agendamento;
 
@@ -78,4 +80,6 @@ public class GeradordePlanilha {
 		List<Agendamento> agendamentos = agendamentoDAO.listarTodos();
 		new GeradordePlanilha().gerarPlanilha("/home/jhully/teste_agendamentos.xlsx", agendamentos);
 	}
+
+
 }

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
 public class ProcedimentoDAO {
@@ -91,8 +90,26 @@ public class ProcedimentoDAO {
 		return resultado;
 	}
 
-	public ArrayList<ProcedimentoBO> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Procedimento> listarTodos() {
+		ArrayList<Procedimento> procedimentos = new ArrayList<Procedimento>();
+		Connection conexao = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conexao);
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT " + "PROCEDIMENTO.IDPROCEDIMENTO," + "PROCEDIMENTO.NOME," + "PROCEDIMENTO.SALA");
+			while (rs.next()) {
+				Procedimento procedimento = new Procedimento();
+				procedimento.setIdProcedimento(rs.getInt(1));
+				procedimento.setNome(rs.getString(2));
+				procedimento.setSala(rs.getString(3));
+				
+				procedimentos.add(procedimento);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao inserir Procedimento. Causa: \n: " + e.getMessage());
+		} finally {
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conexao);
+		}
+		return procedimentos;
 	}
 }

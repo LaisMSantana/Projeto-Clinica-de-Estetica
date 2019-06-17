@@ -12,7 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+<<<<<<< HEAD
 import com.github.lgooddatepicker.components.DatePicker;
+=======
+import javafx.scene.control.DatePicker;
+>>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
 
 //import com.github.lgooddatepicker.components.DatePicker;
 //import com.github.lgooddatepicker.components.DateTimePicker;
@@ -31,7 +35,11 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField txtCelular;
 	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
-
+	private JFormattedTextField formattedCPf;
+	private JFormattedTextField formattedCep;
+	private JFormattedTextField formattedCelular;
+	private JFormattedTextField formattedFone;
+	
 
 	/**
 	 * Create the frame.
@@ -47,97 +55,115 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(33, 11, 46, 14);
+		lblNome.setBounds(30, 10, 45, 15);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(78, 8, 346, 20);
+		txtNome.setBounds(80, 10, 345, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(16, 47, 63, 14);
+		lblEndereco.setBounds(15, 50, 60, 15);
 		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
-		txtEndereco.setBounds(78, 44, 346, 20);
+		txtEndereco.setBounds(80, 45, 345, 20);
 		getContentPane().add(txtEndereco);
 		txtEndereco.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(33, 84, 46, 14);
+		lblBairro.setBounds(30, 85, 45, 15);
 		getContentPane().add(lblBairro);
 		
 		txtBairro = new JTextField();
-		txtBairro.setBounds(78, 81, 183, 20);
+		txtBairro.setBounds(80, 80, 180, 20);
 		getContentPane().add(txtBairro);
 		txtBairro.setColumns(10);
 		
 		JLabel lblCep = new JLabel("CEP :");
-		lblCep.setBounds(297, 84, 32, 14);
+		lblCep.setBounds(300, 85, 30, 15);
 		getContentPane().add(lblCep);
 		
-		txtCep = new JTextField();
-		txtCep.setBounds(334, 81, 90, 20);
-		getContentPane().add(txtCep);
-		txtCep.setColumns(10);
+		formattedCep = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
+	           formattedCep = new javax.swing.JFormattedTextField(format_textField3);
+	        }catch (Exception e){
+	        }
+		formattedCep.setBounds(335, 80, 90, 20);
+		getContentPane().add(formattedCep);
 		
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
-		lblMunicpio.setBounds(16, 124, 56, 14);
+		lblMunicpio.setBounds(15, 125, 55, 15);
 		getContentPane().add(lblMunicpio);
 		
 		txtMunicipio = new JTextField();
-		txtMunicipio.setBounds(78, 121, 183, 20);
+		txtMunicipio.setBounds(80, 120, 180, 20);
 		getContentPane().add(txtMunicipio);
 		txtMunicipio.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado :");
-		lblEstado.setBounds(283, 124, 46, 14);
+		lblEstado.setBounds(280, 125, 45, 15);
 		getContentPane().add(lblEstado);
 		
 		txtEstado = new JTextField();
-		txtEstado.setBounds(334, 121, 90, 20);
+		txtEstado.setBounds(335, 120, 90, 20);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone :");
-		lblTelefone.setBounds(16, 157, 56, 14);
+		lblTelefone.setBounds(15, 160, 55, 15);
 		getContentPane().add(lblTelefone);
 		
-		txtTelefone = new JTextField();
-		txtTelefone.setBounds(78, 154, 183, 20);
-		getContentPane().add(txtTelefone);
-		txtTelefone.setColumns(10);
+
+		formattedFone = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)####-####");
+	           formattedFone = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        }
+		formattedFone.setBounds(80, 155, 180, 20);
+		getContentPane().add(formattedFone);
+		
 		
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(33, 190, 46, 14);
+		lblEmail.setBounds(30, 190, 45, 15);
 		getContentPane().add(lblEmail);
 		
 		textField = new JTextField();
-		textField.setBounds(78, 187, 186, 20);
+		textField.setBounds(80, 190, 185, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCelular = new JLabel("Celular :");
-		lblCelular.setBounds(283, 157, 46, 14);
+		lblCelular.setBounds(280, 160, 45, 15);
 		getContentPane().add(lblCelular);
 		
-		txtCelular = new JTextField();
-		txtCelular.setBounds(334, 156, 90, 20);
-		getContentPane().add(txtCelular);
-		txtCelular.setColumns(10);
-		
+		formattedCelular = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)#####-####");
+	   		   formattedCelular = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        }
+		formattedCelular.setBounds(335, 155, 90, 20);
+		getContentPane().add(formattedCelular);
+	
 		JLabel lblCpf = new JLabel("CPF :");
-		lblCpf.setBounds(297, 190, 32, 14);
+		lblCpf.setBounds(300, 190, 30, 15);
 		getContentPane().add(lblCpf);
 		
-		txtCpf = new JTextField();
-		txtCpf.setBounds(334, 190, 90, 20);
-		getContentPane().add(txtCpf);
-		txtCpf.setColumns(10);
+		formattedCPf = new JFormattedTextField();
+		try{
+	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+	           formattedCPf = new javax.swing.JFormattedTextField(format_textField4);
+	        }catch (Exception e){
+	        }
+		formattedCPf.setBounds(335, 190, 90, 20);
+		getContentPane().add(formattedCPf);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(24, 223, 157, 14);
+		lblDataDeNascimento.setBounds(25, 225, 160, 15);
 		getContentPane().add(lblDataDeNascimento);
 		MaskFormatter formatter = new MaskFormatter();
 		try {
@@ -152,7 +178,7 @@ public class CadastroCliente extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSalvar.setBounds(129, 270, 89, 23);
+		btnSalvar.setBounds(120, 270, 90, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -161,12 +187,18 @@ public class CadastroCliente extends JInternalFrame {
 			cancelar();	
 			}
 		});
-		btnCancelar.setBounds(230, 270, 89, 23);
+		btnCancelar.setBounds(230, 270, 90, 25);
 		getContentPane().add(btnCancelar);
 
+<<<<<<< HEAD
 		final DatePicker dataNascimento = new DatePicker();
 		dataNascimento.setBounds(180, 221, 250, 35);
 		this.getContentPane().add(dataNascimento);
+=======
+		//final DatePicker dataNascimento = new DatePicker();
+		//dataNascimento.setBounds(180, 220, 250, 25);
+		//this.getContentPane().add(dataNascimento);
+>>>>>>> branch 'master' of https://github.com/jhullymuller/projetoClinica-Estetica.git
 		
 	} private void cancelar() {
 		this.setVisible(false);

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import model.bo.ClienteBO;
 import model.vo.Cliente;
 
 public class ClienteDAO {
@@ -91,8 +89,39 @@ public class ClienteDAO {
 		return resultado;
 	}
 
-	public ArrayList<ClienteBO> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Cliente> listarTodos() {
+		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+		Connection conexao = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conexao);
+		try {
+			ResultSet rs = stmt.executeQuery(
+					"SELECT " + "CLIENTE.IDCLIENTE," + "CLIENTE.NOME," + "CLIENTE.ENDERECO," + "CLIENTE.BAIRRO,"
+							+ "CLIENTE.CEP," + "CLIENTE.MUNICIPIO," + "CLIENTE.ESTADO," + "CLIENTE.TELEFONE,"
+							+ "CLIENTE.CELULAR," + "CLIENTE.EMAIL," + "CLIENTE.CPF," + "CLIENTE.DATANASCIMENTO");
+
+			while (rs.next()) {
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente(rs.getInt(1));
+				cliente.setNome(rs.getString(2));
+				cliente.setEndereco(rs.getString(3));
+				cliente.setBairro(rs.getString(4));
+				cliente.setCep(rs.getString(5));
+				cliente.setMunicipio(rs.getString(6));
+				cliente.setEstado(rs.getString(7));
+				cliente.setTelefone(rs.getString(8));
+				cliente.setCelular(rs.getString(9));
+				cliente.setEmail(rs.getString(10));
+				cliente.setCpf(rs.getString(11));
+				cliente.setDataDeNascimento(rs.getString(12));
+				clientes.add(cliente);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao inserir Cliente. Causa: \n: " + e.getMessage());
+		} finally {
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conexao);
+		}
+		return clientes;
 	}
+
 }

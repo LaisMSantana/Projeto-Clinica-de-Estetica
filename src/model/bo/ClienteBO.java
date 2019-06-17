@@ -7,6 +7,7 @@ import model.vo.Cliente;
 
 public class ClienteBO {
 
+
 	public boolean atualizar(Cliente cliente) {
 		boolean sucesso = ClienteDAO.atualizar(cliente);
 		return sucesso;
@@ -35,8 +36,10 @@ public class ClienteBO {
 		return mensagem;
 	}
 
-	public ArrayList<ClienteBO> listarTodos() {
+	public ArrayList<Cliente> listarTodos() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		return clienteDAO.listarTodos();
 	}
+
+	
 }

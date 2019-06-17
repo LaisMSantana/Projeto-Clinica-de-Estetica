@@ -3,7 +3,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.bo.ClienteBO;
 import model.bo.ProcedimentoBO;
 import model.vo.Procedimento;
 
@@ -72,10 +71,8 @@ public class ProcedimentoControl {
 		return mensagem;
 	}
 	
-	public ArrayList<ProcedimentoBO> listarTodosProcedimentos() {
+	public ArrayList<Procedimento> listarTodosProcedimentos() {
 		ProcedimentoBO procedimentoBO = new ProcedimentoBO();
 		return procedimentoBO.listarTodos();
 	}
-	
-
 }

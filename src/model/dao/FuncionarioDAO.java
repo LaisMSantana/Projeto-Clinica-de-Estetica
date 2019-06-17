@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.bo.FuncionarioBO;
 import model.vo.Funcionario;
 
 public class FuncionarioDAO {
@@ -91,8 +90,44 @@ public class FuncionarioDAO {
 		return resultado;
 	}
 
-	public ArrayList<FuncionarioBO> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Funcionario> listarTodos() {
+		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		Connection conexao = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conexao);
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT " + "FUNCIONARIO.IDFUNCIONARIO," + "FUNCIONARIO.NOME,"
+					+ "FUNCIONARIO.ENDERECO," + "FUNCIONARIO.BAIRRO," + "FUNCIONARIO.CEP," + "FUNCIONARIO.MUNICIPIO,"
+					+ "FUNCIONARIO.ESTADO," + "FUNCIONARIO.TELEFONE," + "FUNCIONARIO.CELULAR," + "FUNCIONARIO.EMAIL,"
+					+ "FUNCIONARIO.CPF," + "FUNCIONARIO.DATANASCIMENTO," + "FUNCIONARIO.RG," + "FUNCIONARIO.CARGO,"
+					+ "FUNCIONARIO.FUNCAO," + "FUNCIONARIO.DATAADMISSAO," + "FUNCIONARIO.ESCOLARIDADE");
+			while (rs.next()) {
+				Funcionario funcionario = new Funcionario();
+				funcionario.setIdFuncionario(rs.getInt(1));
+				funcionario.setNome(rs.getString(2));
+				funcionario.setEndereco(rs.getString(3));
+				funcionario.setBairro(rs.getString(4));
+				funcionario.setCep(rs.getString(5));
+				funcionario.setMunicipio(rs.getString(6));
+				funcionario.setEstado(rs.getString(7));
+				funcionario.setTelefone(rs.getString(8));
+				funcionario.setCelular(rs.getString(9));
+				funcionario.setEmail(rs.getString(10));
+				funcionario.setCpf(rs.getString(11));
+				funcionario.setDataDeNascimento(rs.getString(12));
+				funcionario.setRg(rs.getString(13));
+				funcionario.setCargo(rs.getString(14));
+				funcionario.setFuncao(rs.getString(15));
+				funcionario.setDataAdmissao(rs.getString(16));
+				funcionario.setEscolaridade(rs.getString(17));
+				
+				funcionarios.add(funcionario);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao inserir Funcionário. Causa: \n: " + e.getMessage());
+		} finally {
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conexao);
+		}
+		return funcionarios;
 	}
 }
