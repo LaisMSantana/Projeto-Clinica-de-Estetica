@@ -95,13 +95,14 @@ public class ProcedimentoDAO {
 		Connection conexao = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conexao);
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT " + "PROCEDIMENTO.IDPROCEDIMENTO," + "PROCEDIMENTO.NOME," + "PROCEDIMENTO.SALA");
+			ResultSet rs = stmt.executeQuery("SELECT " + "PROCEDIMENTO.IDPROCEDIMENTO," + "PROCEDIMENTO.NOME,"
+					+ "PROCEDIMENTO.SALA" + "FROM PROCEDIMENTO");
 			while (rs.next()) {
 				Procedimento procedimento = new Procedimento();
 				procedimento.setIdProcedimento(rs.getInt(1));
 				procedimento.setNome(rs.getString(2));
 				procedimento.setSala(rs.getString(3));
-				
+
 				procedimentos.add(procedimento);
 			}
 		} catch (SQLException e) {

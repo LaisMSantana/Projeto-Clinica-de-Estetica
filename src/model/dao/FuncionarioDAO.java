@@ -99,7 +99,8 @@ public class FuncionarioDAO {
 					+ "FUNCIONARIO.ENDERECO," + "FUNCIONARIO.BAIRRO," + "FUNCIONARIO.CEP," + "FUNCIONARIO.MUNICIPIO,"
 					+ "FUNCIONARIO.ESTADO," + "FUNCIONARIO.TELEFONE," + "FUNCIONARIO.CELULAR," + "FUNCIONARIO.EMAIL,"
 					+ "FUNCIONARIO.CPF," + "FUNCIONARIO.DATANASCIMENTO," + "FUNCIONARIO.RG," + "FUNCIONARIO.CARGO,"
-					+ "FUNCIONARIO.FUNCAO," + "FUNCIONARIO.DATAADMISSAO," + "FUNCIONARIO.ESCOLARIDADE");
+					+ "FUNCIONARIO.FUNCAO," + "FUNCIONARIO.DATAADMISSAO," + "FUNCIONARIO.ESCOLARIDADE"
+					+ "FROM FUNCIONARIO");
 			while (rs.next()) {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setIdFuncionario(rs.getInt(1));
@@ -119,7 +120,7 @@ public class FuncionarioDAO {
 				funcionario.setFuncao(rs.getString(15));
 				funcionario.setDataAdmissao(rs.getString(16));
 				funcionario.setEscolaridade(rs.getString(17));
-				
+
 				funcionarios.add(funcionario);
 			}
 		} catch (SQLException e) {

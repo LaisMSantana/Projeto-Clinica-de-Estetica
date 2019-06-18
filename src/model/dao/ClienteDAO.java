@@ -94,10 +94,10 @@ public class ClienteDAO {
 		Connection conexao = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conexao);
 		try {
-			ResultSet rs = stmt.executeQuery(
-					"SELECT " + "CLIENTE.IDCLIENTE," + "CLIENTE.NOME," + "CLIENTE.ENDERECO," + "CLIENTE.BAIRRO,"
-							+ "CLIENTE.CEP," + "CLIENTE.MUNICIPIO," + "CLIENTE.ESTADO," + "CLIENTE.TELEFONE,"
-							+ "CLIENTE.CELULAR," + "CLIENTE.EMAIL," + "CLIENTE.CPF," + "CLIENTE.DATANASCIMENTO");
+			ResultSet rs = stmt.executeQuery("SELECT " + "CLIENTE.IDCLIENTE," + "CLIENTE.NOME," + "CLIENTE.ENDERECO,"
+					+ "CLIENTE.BAIRRO," + "CLIENTE.CEP," + "CLIENTE.MUNICIPIO," + "CLIENTE.ESTADO,"
+					+ "CLIENTE.TELEFONE," + "CLIENTE.CELULAR," + "CLIENTE.EMAIL," + "CLIENTE.CPF,"
+					+ "CLIENTE.DATANASCIMENTO" + "FROM CLIENTE");
 
 			while (rs.next()) {
 				Cliente cliente = new Cliente();
