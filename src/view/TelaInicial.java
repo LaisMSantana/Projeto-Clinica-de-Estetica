@@ -299,7 +299,7 @@ public class TelaInicial extends JFrame {
 		ArrayList<Agendamento> agendamentos = new ArrayList();
 		
 		agendamentos = (ArrayList<Agendamento>) agendamentoBO.listarTodos();
-		atualizarTabela(agendamentos);
+		tabela.atualizarTabela(agendamentos);
 
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 20);
@@ -312,8 +312,5 @@ public class TelaInicial extends JFrame {
 		tabela.show();
 	}
 
-	private void atualizarTabela(ArrayList<Agendamento> agendamentos) {
-		// TODO Auto-generated method stub
 		
-	}
 }

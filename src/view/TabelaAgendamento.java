@@ -2,6 +2,8 @@ package view;
 
 
 import java.awt.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
@@ -12,6 +14,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import model.bo.AgendamentoBO;
+import model.vo.Agendamento;
 
 public class TabelaAgendamento extends JInternalFrame {
 	private JTable table;
@@ -49,6 +52,22 @@ public class TabelaAgendamento extends JInternalFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.setBounds(10, 483, 784, 360);
 		scrollPane.setViewportView(table);
+		
+	}public  void atualizarTabela(ArrayList<Agendamento> agendamentos) {
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		Object novaLinha [] = new Object[5];
 
+		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat hora = new SimpleDateFormat("HH:mm");
+		
+		for (Agendamento agendamento : agendamentos) {
+			novaLinha[0]= agendamento.getCliente().getNome();
+			novaLinha[1]= agendamento.getProcedimento().getNome();
+			novaLinha[2]= data.format(agendamento.getData());
+			novaLinha[3]= hora.format(agendamento.getData());
+			novaLinha[4]= agendamento.getProcedimento().getSala();
+			
+			model.addRow(novaLinha);
+		}
 	}
 }
