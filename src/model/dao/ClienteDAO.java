@@ -94,10 +94,10 @@ public class ClienteDAO {
 		Connection conexao = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conexao);
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT " + "CLIENTE.IDCLIENTE," + "CLIENTE.NOME," + "CLIENTE.ENDERECO,"
-					+ "CLIENTE.BAIRRO," + "CLIENTE.CEP," + "CLIENTE.MUNICIPIO," + "CLIENTE.ESTADO,"
-					+ "CLIENTE.TELEFONE," + "CLIENTE.CELULAR," + "CLIENTE.EMAIL," + "CLIENTE.CPF,"
-					+ "CLIENTE.DATANASCIMENTO" + "FROM CLIENTE");
+			ResultSet rs = stmt.executeQuery("SELECT IDCLIENTE, NOME, ENDERECO,"
+					+ "BAIRRO,CEP,MUNICIPIO,ESTADO,"
+					+ "TELEFONE,CELULAR,EMAIL,CPF,"
+					+ "DATANASCIMENTO FROM CLIENTE");
 
 			while (rs.next()) {
 				Cliente cliente = new Cliente();
@@ -116,6 +116,7 @@ public class ClienteDAO {
 				clientes.add(cliente);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("Erro ao inserir Cliente. Causa: \n: " + e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);

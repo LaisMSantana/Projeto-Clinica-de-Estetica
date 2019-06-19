@@ -1,14 +1,20 @@
 package view;
 
-import java.awt.EventQueue;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JFormattedTextField;
+
+import model.bo.ClienteBO;
+import model.vo.Agendamento;
+import model.vo.Cliente;
 
 public class ListagemClientes extends JInternalFrame {
 	private JTextField textField;
@@ -45,7 +51,16 @@ public class ListagemClientes extends JInternalFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new String[][] { { "#", "Cliente", "CPF", "Telefone", "Email" }, },
 				new String[] { "#", "Cliente", "CPF", "Telefone",  "Email" }));
-
+		
+		ClienteBO clienteBO = new ClienteBO();
+		ArrayList<Cliente> clientes = new ArrayList();
+		
+		clientes = (ArrayList<Cliente>) clienteBO.listarTodos();
+		atualizarTabela(clientes);
+		
+		
+		
+		
 		table.setBounds(3, 140, 529, 244);
 		getContentPane().add(table);
 		
@@ -63,5 +78,22 @@ public class ListagemClientes extends JInternalFrame {
 		formatteCpf.setBounds(60, 40, 80, 20);
 		getContentPane().add(formatteCpf);
 
+	}
+	private void atualizarTabela(ArrayList<Cliente> clientes) {
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		Object novaLinha [] = new Object[5];
+
+		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat hora = new SimpleDateFormat("HH:mm");
+		
+		for (Cliente cliente : clientes) {
+			novaLinha[0]= cliente.getIdCliente();
+			novaLinha[1]= cliente.getNome();
+			novaLinha[2]= cliente.getCpf();
+			novaLinha[3]= cliente.getTelefone();
+			novaLinha[4]= cliente.getEmail();
+			
+			model.addRow(novaLinha);
+		}		
 	}
 }
