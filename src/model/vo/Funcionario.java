@@ -13,12 +13,6 @@ public class Funcionario extends Pessoa {
 		super();
 	}
 
-	public Funcionario(String nome, String cpf, String endereco, String bairro, String cep, String municipio,
-			String estado, String telefone, String celular, String email, String dataDeNascimento) {
-		super(nome, cpf, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
-
-	}
-
 	public Funcionario(int idFuncionario, String rg, String cargo, String funcao, String dataAdmissao,
 			String escolaridade) {
 		super();

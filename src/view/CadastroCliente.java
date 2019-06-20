@@ -1,18 +1,23 @@
 package view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import com.github.lgooddatepicker.components.DatePicker;
+
+import controller.ClienteControl;
+import model.vo.Cliente;
 public class CadastroCliente extends JInternalFrame {
 	private JTextField txtNome;
 	private JTextField txtEndereco;
@@ -21,7 +26,7 @@ public class CadastroCliente extends JInternalFrame {
 	private JTextField txtMunicipio;
 	private JTextField txtEstado;
 	private JTextField txtTelefone;
-	private JTextField textField;
+	private JTextField txtEmail;
 	private JTextField txtCelular;
 	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
@@ -29,7 +34,9 @@ public class CadastroCliente extends JInternalFrame {
 	private JFormattedTextField formattedCep;
 	private JFormattedTextField formattedCelular;
 	private JFormattedTextField formattedFone;
-	
+	private ClienteControl clienteControl;
+	private Cliente cliente;
+	DatePicker dataNascimento;
 
 	/**
 	 * Create the frame.
@@ -38,9 +45,9 @@ public class CadastroCliente extends JInternalFrame {
 		setClosable(true);
 		setTitle("Cadastro de Clientes");
 		
-		largura = 1000;
-		altura = 500;
-		//x, y, largura, altura		
+    largura = 1000;
+	altura = 500;
+//		x, y, largura, altura		
 		setBounds(largura / 2, 0, 660, altura);
 		getContentPane().setLayout(null);
 		
@@ -121,10 +128,10 @@ public class CadastroCliente extends JInternalFrame {
 		lblEmail.setBounds(30, 190, 45, 15);
 		getContentPane().add(lblEmail);
 		
-		textField = new JTextField();
-		textField.setBounds(80, 190, 185, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtEmail = new JTextField();
+		txtEmail.setBounds(80, 190, 185, 20);
+		getContentPane().add(txtEmail);
+		txtEmail.setColumns(10);
 		
 		JLabel lblCelular = new JLabel("Celular :");
 		lblCelular.setBounds(280, 160, 45, 15);
@@ -155,7 +162,7 @@ public class CadastroCliente extends JInternalFrame {
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
 		lblDataDeNascimento.setBounds(25, 225, 160, 15);
 		getContentPane().add(lblDataDeNascimento);
-		MaskFormatter formatter = new MaskFormatter();
+		final MaskFormatter formatter = new MaskFormatter();
 		try {
 			formatter.setMask("##/##/####");
 		} catch (ParseException e1) {
@@ -166,6 +173,23 @@ public class CadastroCliente extends JInternalFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Cliente cliente = new Cliente();
+				cliente.setNome(txtNome.getText());
+				cliente.setEndereco(txtEndereco.getText());
+				cliente.setBairro(txtBairro.getText());
+				cliente.setMunicipio(txtMunicipio.getText());
+				cliente.setTelefone(formattedFone.getText());
+				cliente.setEmail(txtEmail.getText());
+				cliente.setCep(formattedCep.getText());
+				cliente.setEstado(txtEstado.getText());
+				cliente.setCelular(formattedCelular.getText());
+				if (dataNascimento.getDate() != null) {
+					Date data = Date.from(dataNascimento.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+					cliente.setDataDeNascimento(data);
+				}
+				cliente.setCpf(formattedCPf.getText());
+				String retorno = ClienteControl.salvar(cliente);
+				JOptionPane.showMessageDialog(null, retorno);
 			}
 		});
 		btnSalvar.setBounds(120, 270, 90, 25);
@@ -180,7 +204,7 @@ public class CadastroCliente extends JInternalFrame {
 		btnCancelar.setBounds(230, 270, 90, 25);
 		getContentPane().add(btnCancelar);
 
-		final DatePicker dataNascimento = new DatePicker();
+		dataNascimento = new DatePicker();
 		dataNascimento.setBounds(180, 221, 250, 35);
 		this.getContentPane().add(dataNascimento);
 	} private void cancelar() {

@@ -1,5 +1,7 @@
 package model.vo;
 
+import java.util.Date;
+
 public class Pessoa {
 
 	private String nome;
@@ -12,14 +14,14 @@ public class Pessoa {
 	private String telefone;
 	private String celular;
 	private String email;
-	private String dataDeNascimento;
+	private Date dataDeNascimento;
 	
 	public Pessoa() {
 		super();
 	}
 
 	public Pessoa(String nome, String cpf, String endereco, String bairro, String cep, String municipio, String estado,
-			String telefone, String celular, String email, String dataDeNascimento) {
+			String telefone, String celular, String email, Date dataDeNascimento) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -114,11 +116,11 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public String getDataDeNascimento() {
+	public Date getDataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setDataDeNascimento(String dataDeNascimento) {
+	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 

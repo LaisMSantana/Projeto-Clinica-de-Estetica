@@ -114,7 +114,7 @@ public class FuncionarioDAO {
 				funcionario.setCelular(rs.getString(9));
 				funcionario.setEmail(rs.getString(10));
 				funcionario.setCpf(rs.getString(11));
-				funcionario.setDataDeNascimento(rs.getString(12));
+				funcionario.setDataDeNascimento(rs.getDate(12));
 				funcionario.setRg(rs.getString(13));
 				funcionario.setCargo(rs.getString(14));
 				funcionario.setFuncao(rs.getString(15));

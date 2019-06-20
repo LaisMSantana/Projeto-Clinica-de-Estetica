@@ -70,10 +70,5 @@ public class ClienteControl {
 		}
 		return mensagem;
 	}
-
-	public ArrayList<Cliente> listarTodosClientes() {
-		ClienteBO clienteBO = new ClienteBO();
-		return clienteBO.listarTodos();
-	}
 	
 }

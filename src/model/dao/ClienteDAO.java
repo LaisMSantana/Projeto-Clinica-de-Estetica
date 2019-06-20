@@ -43,15 +43,33 @@ public class ClienteDAO {
 	public static int salvar(Cliente cliente) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO CLIENTE (NOME, CPF) " + " VALUES (?,?) ";
+		String sql = " INSERT INTO CLIENTE (NOME,"
+				+ "CPF,"
+				+ "BAIRRO,"
+				+ "CELULAR,"
+				+ "CEP,"
+				+ "DATANASCIMENTO,"
+				+ "EMAIL,"
+				+ "ENDERECO,"
+				+ "ESTADO,"
+				+ "MUNICIPIO,"
+				+ "TELEFONE) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
-
+		
 		try {
 			prepStmt.setString(1, cliente.getNome());
-			prepStmt.setString(2, cliente.getCpf());
-
+			prepStmt.setString(2, cliente.getCpf().replace(".", "").replace("-", ""));
+			prepStmt.setString(3, cliente.getBairro());
+			prepStmt.setString(4, cliente.getCelular().replace("(","").replace(")","").replace("-", ""));
+			prepStmt.setString(5, cliente.getCep().replace("-", ""));	
+			prepStmt.setDate(6, new java.sql.Date(cliente.getDataDeNascimento().getTime()));
+			prepStmt.setString(7, cliente.getEmail());
+			prepStmt.setString(8, cliente.getEndereco());
+			prepStmt.setString(9, cliente.getEstado());
+			prepStmt.setString(10, cliente.getMunicipio());
+			prepStmt.setString(11, cliente.getTelefone().replace("(","").replace(")","").replace("-", ""));
 			prepStmt.execute();
 
 			ResultSet generatedKeys = prepStmt.getGeneratedKeys();
@@ -60,6 +78,7 @@ public class ClienteDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao inserir Cliente. Causa: \n: " + e.getMessage());
+			e.printStackTrace();
 		} finally {
 			Banco.closePreparedStatement(prepStmt);
 			Banco.closeConnection(conexao);
@@ -89,15 +108,30 @@ public class ClienteDAO {
 		return resultado;
 	}
 
-	public ArrayList<Cliente> listarTodos() {
+	public ArrayList<Cliente> listarTodos(String nome, String cpf) {
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		Connection conexao = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conexao);
+		PreparedStatement stmt = null;
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT IDCLIENTE, NOME, ENDERECO,"
-					+ "BAIRRO,CEP,MUNICIPIO,ESTADO,"
-					+ "TELEFONE,CELULAR,EMAIL,CPF,"
-					+ "DATANASCIMENTO FROM CLIENTE");
+			String sql = "SELECT IDCLIENTE, NOME, ENDERECO,"
+					+ "BAIRRO,CEP,MUNICIPIO,ESTADO, "
+					+ "TELEFONE,CELULAR,EMAIL,CPF, "
+					+ "DATANASCIMENTO FROM CLIENTE "
+					+ "WHERE UPPER(NOME) LIKE ? AND CPF LIKE ? ";
+			stmt = Banco.getPreparedStatement(conexao, sql);
+			if (nome == null) {
+				nome = "%%";
+			} else {
+				nome = "%"+nome.trim().toUpperCase()+"%";
+			}
+			if (cpf == null) {
+				cpf = "%%";
+			} else {
+				cpf = "%" + cpf.replace(".", "").replace("-", "").trim() + "%";
+			}
+			stmt.setString(1, nome);
+			stmt.setString(2, cpf);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Cliente cliente = new Cliente();
@@ -112,7 +146,7 @@ public class ClienteDAO {
 				cliente.setCelular(rs.getString(9));
 				cliente.setEmail(rs.getString(10));
 				cliente.setCpf(rs.getString(11));
-				cliente.setDataDeNascimento(rs.getString(12));
+				cliente.setDataDeNascimento(rs.getDate(12));
 				clientes.add(cliente);
 			}
 		} catch (SQLException e) {
