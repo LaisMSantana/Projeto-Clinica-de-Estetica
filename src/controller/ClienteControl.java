@@ -9,20 +9,20 @@ public class ClienteControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
-	private static final ClienteBO ClienteBO = new ClienteBO();
+	private static final ClienteBO clienteBO = new ClienteBO();
 
 	public static String salvar(Cliente cliente) {
 		String validacao = validarCliente(cliente);
 
 		if (validacao == "") {
 			if (cliente.getIdCliente() > 0) {
-				if (ClienteBO.atualizar(cliente)) {
+				if (clienteBO.atualizar(cliente)) {
 					validacao = "Cliente atualizado com sucesso!";
 				} else {
 					validacao = "Erro ao atualizar Cliente";
 				}
 			} else {
-				if (ClienteBO.salvar(cliente)) {
+				if (clienteBO.salvar(cliente)) {
 					validacao = "Cliente salvo com sucesso!";
 				} else {
 					validacao = "Erro ao salvar Cliente";
@@ -70,5 +70,7 @@ public class ClienteControl {
 		}
 		return mensagem;
 	}
+
+	
 	
 }

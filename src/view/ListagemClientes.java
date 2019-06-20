@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.ClienteControl;
 import model.bo.ClienteBO;
 import model.vo.Cliente;
 
@@ -22,6 +23,7 @@ public class ListagemClientes extends JInternalFrame {
 	JFormattedTextField formatteCpf;
 	private JTable table;
 	ClienteBO clienteBO = new ClienteBO();
+	ClienteControl clienteControl;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +56,7 @@ public class ListagemClientes extends JInternalFrame {
 				atualizarTabela(clientes);
 			}
 		});
-		btnPesquisar.setBounds(171, 80, 97, 25);
+		btnPesquisar.setBounds(60, 83, 97, 25);
 		getContentPane().add(btnPesquisar);
 		
 		table = new JTable();
@@ -78,6 +80,16 @@ public class ListagemClientes extends JInternalFrame {
 	        }
 		formatteCpf.setBounds(60, 40, 80, 20);
 		getContentPane().add(formatteCpf);
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/// fazer o excluir funcionar ClienteControl.excluir();
+				
+			}
+		});
+		btnExcluir.setBounds(188, 83, 117, 25);
+		getContentPane().add(btnExcluir);
 		
 		ArrayList<Cliente> clientes = clienteBO.listarTodos(txtNome.getText(),formatteCpf.getText());
 		atualizarTabela(clientes);
