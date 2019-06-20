@@ -36,9 +36,9 @@ public class ClienteBO {
 		return mensagem;
 	}
 
-	public ArrayList<Cliente> listarTodos() {
+	public ArrayList<Cliente> listarTodos(String nome, String cpf) {
 		ClienteDAO clienteDAO = new ClienteDAO();
-		return clienteDAO.listarTodos();
+		return clienteDAO.listarTodos(nome, cpf);
 	}
 
 	

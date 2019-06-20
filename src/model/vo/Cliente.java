@@ -8,11 +8,6 @@ public class Cliente extends Pessoa {
 		super();
 	}
 
-	public Cliente(String nome, String cpf, String endereco, String bairro, String cep, String municipio, String estado,
-			String telefone, String celular, String email, String dataDeNascimento) {
-		super(nome, cpf, endereco, bairro, cep, municipio, estado, telefone, celular, email, dataDeNascimento);
-	}
-
 	public Cliente(int idCliente) {
 		super();
 		this.idCliente = idCliente;
