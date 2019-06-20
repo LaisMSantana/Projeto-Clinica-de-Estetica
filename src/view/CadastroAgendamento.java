@@ -44,7 +44,7 @@ public class CadastroAgendamento extends JInternalFrame {
 	public CadastroAgendamento() {
 		setTitle("Agendamento");
 		setClosable(true);
-		setBounds(100, 100, 583, 439);
+		setBounds(100, 100, 500, 440);
 		getContentPane().setLayout(null);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -64,7 +64,7 @@ public class CadastroAgendamento extends JInternalFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnSalvar.setBounds(24, 288, 120, 25);
+		btnSalvar.setBounds(90, 290, 120, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -73,7 +73,7 @@ public class CadastroAgendamento extends JInternalFrame {
 				cancelar();
 			}
 		});
-		btnCancelar.setBounds(176, 288, 120, 25);
+		btnCancelar.setBounds(260, 290, 120, 25);
 		getContentPane().add(btnCancelar);
 		
 		JLabel lblNomeCliente = new JLabel("Cliente:");

@@ -38,8 +38,8 @@ public class CadastroCliente extends JInternalFrame {
 		setClosable(true);
 		setTitle("Cadastro de Clientes");
 		
-//		largura = 1000;
-//		altura = 500;
+		largura = 1000;
+		altura = 500;
 		//x, y, largura, altura		
 		setBounds(largura / 2, 0, 660, altura);
 		getContentPane().setLayout(null);

@@ -6,8 +6,17 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import model.bo.FuncionarioBO;
+import model.vo.Funcionario;
+
 import javax.swing.JButton;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class ListagemFuncionario extends JInternalFrame {
 	private JTextField textField;
@@ -59,19 +68,55 @@ public class ListagemFuncionario extends JInternalFrame {
 		txtCargo.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(200, 80, 100, 25);
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPesquisar.setBounds(440, 10, 95, 25);
 		getContentPane().add(btnPesquisar);
 		
-		//Lista de funcionários na Tabela
 		//Lista de funcionários na Tabela
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
 				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" }));
+		
+		FuncionarioBO funcionarioBO = new FuncionarioBO();
+		ArrayList<Funcionario> funcionarios = new ArrayList();
+		
+		funcionarios = (ArrayList<Funcionario>) funcionarioBO.listarTodos();
+		atualizarTabela(funcionarios);
 
 		table.setBounds(0, 117, 554, 201);
 		getContentPane().add(table);
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnExcluir.setBounds(440, 45, 95, 25);
+		getContentPane().add(btnExcluir);
 
 
 	}
+
+	private void atualizarTabela(ArrayList<Funcionario> funcionarios) {
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		Object novaLinha [] = new Object[5];
+
+		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat hora = new SimpleDateFormat("HH:mm");
+		
+		for (Funcionario funcionario : funcionarios) {
+			novaLinha[0]= funcionario.getIdFuncionario();
+			novaLinha[1]= funcionario.getNome();
+			novaLinha[2]= funcionario.getCargo();
+			novaLinha[3]= funcionario.getTelefone();
+			novaLinha[4]= funcionario.getEmail();
+			
+			model.addRow(novaLinha);
+		}
+    }
 }

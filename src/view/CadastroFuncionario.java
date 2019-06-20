@@ -40,7 +40,6 @@ public class CadastroFuncionario extends JInternalFrame {
 	private JFormattedTextField formattedCelular;
 	private JFormattedTextField formattedRG;
 	private JFormattedTextField formattedFone;
-	private JButton btnExcluir;
 
 	/**
 	 * Launch the application.
@@ -196,7 +195,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtEscolaridade);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(20, 400, 95, 25);
+		btnSalvar.setBounds(95, 400, 95, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -205,7 +204,7 @@ public class CadastroFuncionario extends JInternalFrame {
 			cancelar();
 			}
 		});
-		btnCancelar.setBounds(180, 400, 95, 25);
+		btnCancelar.setBounds(260, 400, 95, 25);
 		getContentPane().add(btnCancelar);
 		
 		formattedCPf = new JFormattedTextField();
@@ -270,10 +269,6 @@ public class CadastroFuncionario extends JInternalFrame {
 	        }
 		formattedFone.setBounds(60, 140, 130, 20);
 		getContentPane().add(formattedFone);
-		
-		btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(330, 400, 95, 25);
-		getContentPane().add(btnExcluir);
 
 	}private void cancelar() {
 		this.setVisible(false);

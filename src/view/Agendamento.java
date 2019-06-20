@@ -64,7 +64,7 @@ public class Agendamento extends JInternalFrame {
 						horaSelecionada.getSecond());
 			}
 		});
-		btnSalvar.setBounds(25, 290, 120, 25);
+		btnSalvar.setBounds(90, 290, 120, 25);
 		getContentPane().add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -73,7 +73,7 @@ public class Agendamento extends JInternalFrame {
 				cancelar();
 			}
 		});
-		btnCancelar.setBounds(175, 290, 120, 25);
+		btnCancelar.setBounds(260, 290, 120, 25);
 		getContentPane().add(btnCancelar);
 		
 		JLabel lblNomeCliente = new JLabel("Cliente:");
@@ -114,11 +114,11 @@ public class Agendamento extends JInternalFrame {
 		getContentPane().add(lblFuncionrio);
 		
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(10, 30, 45, 15);
+		lblData.setBounds(45, 50, 45, 15);
 		getContentPane().add(lblData);
 		
 		final DateTimePicker dataTeste = new DateTimePicker();
-		dataTeste.setBounds(150, 50, 300, 25);
+		dataTeste.setBounds(80, 50, 300, 25);
 		this.getContentPane().add(dataTeste);
 		
 		JButton btnExcluir = new JButton("Excluir");
