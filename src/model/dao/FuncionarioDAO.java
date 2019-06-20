@@ -118,7 +118,7 @@ public class FuncionarioDAO {
 				funcionario.setRg(rs.getString(13));
 				funcionario.setCargo(rs.getString(14));
 				funcionario.setFuncao(rs.getString(15));
-				funcionario.setDataAdmissao(rs.getString(16));
+				funcionario.setDataAdmissao(rs.getDate(16));
 				funcionario.setEscolaridade(rs.getString(17));
 
 				funcionarios.add(funcionario);

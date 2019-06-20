@@ -1,19 +1,21 @@
 package model.vo;
 
+import java.util.Date;
+
 public class Funcionario extends Pessoa {
 
 	private int idFuncionario;
 	private String rg;
 	private String cargo;
 	private String funcao;
-	private String dataAdmissao;
+	private Date dataAdmissao;
 	private String escolaridade;
 
 	public Funcionario() {
 		super();
 	}
 
-	public Funcionario(int idFuncionario, String rg, String cargo, String funcao, String dataAdmissao,
+	public Funcionario(int idFuncionario, String rg, String cargo, String funcao, Date dataAdmissao,
 			String escolaridade) {
 		super();
 		this.idFuncionario = idFuncionario;
@@ -56,11 +58,11 @@ public class Funcionario extends Pessoa {
 		this.funcao = funcao;
 	}
 
-	public String getDataAdmissao() {
+	public Date getDataAdmissao() {
 		return dataAdmissao;
 	}
 
-	public void setDataAdmissao(String dataAdmissao) {
+	public void setDataAdmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 

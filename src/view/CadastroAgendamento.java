@@ -50,6 +50,8 @@ public class CadastroAgendamento extends JInternalFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+				
+				
 			//	 Atributos próprios do componente datePicker (date e time)
 				DateTimePicker dataTeste = null;
 				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
@@ -122,21 +124,12 @@ public class CadastroAgendamento extends JInternalFrame {
 		getContentPane().add(lblFuncionrio);
 		
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(12, 30, 45, 18);
+		lblData.setBounds(45, 50, 45, 15);
 		getContentPane().add(lblData);
 		
 		final DateTimePicker dataTeste = new DateTimePicker();
-		dataTeste.setBounds(150, 47, 300, 30);
+		dataTeste.setBounds(80, 50, 300, 25);
 		this.getContentPane().add(dataTeste);
-		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnExcluir.setBounds(326, 289, 120, 25);
-		getContentPane().add(btnExcluir);
 		
 		JFormattedTextField formatteCpf = new JFormattedTextField();
 		try{

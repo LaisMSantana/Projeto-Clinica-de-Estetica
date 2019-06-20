@@ -4,14 +4,23 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.text.MaskFormatter;
+
+import com.github.lgooddatepicker.components.DatePicker;
+
+import controller.FuncionarioControl;
+import model.vo.Funcionario;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -33,13 +42,13 @@ public class CadastroFuncionario extends JInternalFrame {
 	private JLabel lblDataAdmissao;
 	private JLabel lblEscolaridade;
 	private JTextField txtEscolaridade;
-	private JFormattedTextField formattedCPf;
+	private JFormattedTextField formattedCpf;
 	private JFormattedTextField formattedCep;
-	private JFormattedTextField formattedDtNascimento;
-	private JFormattedTextField formattedDtAdmissao;
 	private JFormattedTextField formattedCelular;
-	private JFormattedTextField formattedRG;
+	private JFormattedTextField formattedRg;
 	private JFormattedTextField formattedFone;
+	DatePicker dataNascimento;
+	DatePicker dataAdmissao;
 
 	/**
 	 * Launch the application.
@@ -154,7 +163,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(cbCargo);
 		
 		lblFuncao = new JLabel("Fun\u00E7\u00E3o :");
-		lblFuncao.setBounds(240, 230, 114, 16);
+		lblFuncao.setBounds(240, 230, 56, 16);
 		getContentPane().add(lblFuncao);
 		
 		JRadioButton rdbtnLimpezaPele = new JRadioButton("Limpeza de Pele");
@@ -195,6 +204,35 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtEscolaridade);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Funcionario funcionario = new Funcionario();
+				funcionario.setNome(txtNome.getText());
+				funcionario.setEndereco(txtEndereco.getText());
+				funcionario.setBairro(txtBairro.getText());
+				funcionario.setMunicipio(txtMunicipio.getText());
+				funcionario.setEstado(txtEstado.getText());
+				funcionario.setEmail(txtEmail.getText());
+				funcionario.setEscolaridade(txtEscolaridade.getText());
+				funcionario.setCpf(formattedCpf.getText());
+				funcionario.setCep(formattedCep.getText());
+				funcionario.setCelular(formattedCelular.getText());
+				funcionario.setRg(formattedRg.getText());
+				funcionario.setCargo(null);
+				funcionario.setFuncao(null);
+				funcionario.setTelefone(formattedFone.getText());
+				if (dataNascimento.getDate() != null) {
+					Date dataNasc = Date.from(dataNascimento.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+					funcionario.setDataDeNascimento(dataNasc);
+				}
+				if (dataAdmissao.getDate() != null) {
+					Date dataAdm = Date.from(dataAdmissao.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+					funcionario.setDataAdmissao(dataAdm);
+				}
+				String retorno = FuncionarioControl.salvar(funcionario);
+				JOptionPane.showMessageDialog(null, retorno);
+			}
+		});
 		btnSalvar.setBounds(95, 400, 95, 25);
 		getContentPane().add(btnSalvar);
 		
@@ -207,14 +245,14 @@ public class CadastroFuncionario extends JInternalFrame {
 		btnCancelar.setBounds(260, 400, 95, 25);
 		getContentPane().add(btnCancelar);
 		
-		formattedCPf = new JFormattedTextField();
+		formattedCpf = new JFormattedTextField();
 		try{
 	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
-	           formattedCPf = new javax.swing.JFormattedTextField(format_textField4);
+	           formattedCpf = new javax.swing.JFormattedTextField(format_textField4);
 	        }catch (Exception e){
 	        }
-		formattedCPf.setBounds(280, 170, 130, 20);
-		getContentPane().add(formattedCPf);
+		formattedCpf.setBounds(280, 170, 130, 20);
+		getContentPane().add(formattedCpf);
 		
 		formattedCep = new JFormattedTextField();
 		try{
@@ -225,23 +263,13 @@ public class CadastroFuncionario extends JInternalFrame {
 		formattedCep.setBounds(280, 80, 127, 20);
 		getContentPane().add(formattedCep);
 		
-		formattedDtNascimento = new JFormattedTextField();
-		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("##/##/####");
-	           formattedDtNascimento = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){	
-	        }
-		formattedDtNascimento.setBounds(60, 220, 100, 20);
-		getContentPane().add(formattedDtNascimento);
+		dataNascimento = new DatePicker();
+		dataNascimento.setBounds(60, 220, 170, 20);
+		this.getContentPane().add(dataNascimento);
 		
-		formattedDtAdmissao = new JFormattedTextField();
-		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("##/##/####");
-	           formattedDtAdmissao = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){	
-	        }
-		formattedDtAdmissao.setBounds(60, 370, 100, 20);
-		getContentPane().add(formattedDtAdmissao);
+		dataAdmissao = new DatePicker();
+		dataAdmissao.setBounds(60, 370, 170, 20);
+		this.getContentPane().add(dataAdmissao);
 		
 		formattedCelular = new JFormattedTextField();
 		try{
@@ -252,14 +280,14 @@ public class CadastroFuncionario extends JInternalFrame {
 		formattedCelular.setBounds(280, 140, 130, 20);
 		getContentPane().add(formattedCelular);
 		
-		formattedRG = new JFormattedTextField();
+		formattedRg = new JFormattedTextField();
 		try{
 	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("##.###.###-#");
-	           formattedRG = new javax.swing.JFormattedTextField(format_textField4);
+	           formattedRg = new javax.swing.JFormattedTextField(format_textField4);
 			}catch (Exception e){
 	        }
-		formattedRG.setBounds(280, 200, 130, 20);
-		getContentPane().add(formattedRG);
+		formattedRg.setBounds(280, 200, 130, 20);
+		getContentPane().add(formattedRg);
 		
 		formattedFone = new JFormattedTextField();
 		try{

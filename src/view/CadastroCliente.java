@@ -52,7 +52,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(30, 10, 45, 15);
+		lblNome.setBounds(40, 10, 45, 15);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
@@ -61,7 +61,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtNome.setColumns(10);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(15, 50, 60, 15);
+		lblEndereco.setBounds(25, 50, 60, 15);
 		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
@@ -70,7 +70,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEndereco.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(30, 85, 45, 15);
+		lblBairro.setBounds(40, 85, 45, 15);
 		getContentPane().add(lblBairro);
 		
 		txtBairro = new JTextField();
@@ -79,7 +79,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtBairro.setColumns(10);
 		
 		JLabel lblCep = new JLabel("CEP :");
-		lblCep.setBounds(300, 85, 30, 15);
+		lblCep.setBounds(305, 85, 30, 15);
 		getContentPane().add(lblCep);
 		
 		formattedCep = new JFormattedTextField();
@@ -92,7 +92,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(formattedCep);
 		
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
-		lblMunicpio.setBounds(15, 125, 55, 15);
+		lblMunicpio.setBounds(25, 125, 55, 15);
 		getContentPane().add(lblMunicpio);
 		
 		txtMunicipio = new JTextField();
@@ -101,7 +101,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtMunicipio.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado :");
-		lblEstado.setBounds(280, 125, 45, 15);
+		lblEstado.setBounds(290, 125, 45, 15);
 		getContentPane().add(lblEstado);
 		
 		txtEstado = new JTextField();
@@ -110,7 +110,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEstado.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone :");
-		lblTelefone.setBounds(15, 160, 55, 15);
+		lblTelefone.setBounds(25, 160, 55, 15);
 		getContentPane().add(lblTelefone);
 		
 
@@ -125,7 +125,7 @@ public class CadastroCliente extends JInternalFrame {
 		
 		
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(30, 190, 45, 15);
+		lblEmail.setBounds(45, 190, 45, 15);
 		getContentPane().add(lblEmail);
 		
 		txtEmail = new JTextField();
@@ -134,7 +134,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEmail.setColumns(10);
 		
 		JLabel lblCelular = new JLabel("Celular :");
-		lblCelular.setBounds(280, 160, 45, 15);
+		lblCelular.setBounds(290, 160, 45, 15);
 		getContentPane().add(lblCelular);
 		
 		formattedCelular = new JFormattedTextField();
@@ -147,7 +147,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(formattedCelular);
 	
 		JLabel lblCpf = new JLabel("CPF :");
-		lblCpf.setBounds(300, 190, 30, 15);
+		lblCpf.setBounds(305, 190, 30, 15);
 		getContentPane().add(lblCpf);
 		
 		formattedCPf = new JFormattedTextField();
@@ -205,7 +205,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(btnCancelar);
 
 		dataNascimento = new DatePicker();
-		dataNascimento.setBounds(180, 221, 250, 35);
+		dataNascimento.setBounds(135, 220, 250, 25);
 		this.getContentPane().add(dataNascimento);
 	} private void cancelar() {
 		this.setVisible(false);
