@@ -190,7 +190,24 @@ public class CadastroCliente extends JInternalFrame {
 				cliente.setCpf(formattedCPf.getText());
 				String retorno = ClienteControl.salvar(cliente);
 				JOptionPane.showMessageDialog(null, retorno);
+				limpar();
 			}
+
+			private void limpar() {
+				
+				txtNome.setText(""); 
+				txtEndereco.setText(""); 
+				txtBairro.setText(""); 
+				txtMunicipio.setText("");
+				formattedFone.setText("");
+				txtEmail.setText("");
+				formattedCep.setText("");
+				txtEstado.setText("");
+				formattedCelular.setText("");
+				formattedCPf.setText("");
+				}
+				
+			
 		});
 		btnSalvar.setBounds(120, 270, 90, 25);
 		getContentPane().add(btnSalvar);
