@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import model.vo.Funcionario;
 
@@ -15,19 +14,9 @@ public class FuncionarioDAO {
 	public int salvar(Funcionario funcionario) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO FUNCIONARIO (NOME,"
-				+ " CPF,"
-				+ "BAIRRO,"
-				+ "CARGO,"
-				+ "CELULAR,"
-				+ "CEP,"
-				+ "EMAIL,"
-				+ "ENDERECO,"
-				+ "ESCOLARIDADE,"
-				+ "ESTADO,"
-				+ "FUNCAO,"
-				+ "MUNICIPIO,"
-				+ "TELEFONE) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String sql = " INSERT INTO FUNCIONARIO (NOME," + " CPF," + "BAIRRO," + "CARGO," + "CELULAR," + "CEP," + "EMAIL,"
+				+ "ENDERECO," + "ESCOLARIDADE," + "ESTADO," + "FUNCAO," + "MUNICIPIO," + "TELEFONE) "
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
@@ -37,7 +26,7 @@ public class FuncionarioDAO {
 			prepStmt.setString(2, funcionario.getCpf().replace(".", "").replace("-", ""));
 			prepStmt.setString(3, funcionario.getBairro());
 			prepStmt.setString(4, funcionario.getCargo());
-			prepStmt.setString(5, funcionario.getCelular().replace("(","").replace(")","").replace("-", ""));
+			prepStmt.setString(5, funcionario.getCelular().replace("(", "").replace(")", "").replace("-", ""));
 			prepStmt.setString(6, funcionario.getCep().replace("-", ""));
 			prepStmt.setString(7, funcionario.getEmail());
 			prepStmt.setString(8, funcionario.getEndereco());
@@ -45,9 +34,7 @@ public class FuncionarioDAO {
 			prepStmt.setString(10, funcionario.getEstado());
 			prepStmt.setString(11, funcionario.getFuncao());
 			prepStmt.setString(12, funcionario.getMunicipio());
-			prepStmt.setString(13, funcionario.getTelefone().replace("(","").replace(")","").replace("-", ""));
-
-			
+			prepStmt.setString(13, funcionario.getTelefone().replace("(", "").replace(")", "").replace("-", ""));
 
 			prepStmt.execute();
 
@@ -99,12 +86,12 @@ public class FuncionarioDAO {
 		return false;
 	}
 
-	public int excluir(Funcionario funcionario) {
+	public int excluir(Integer id) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
 
-		String query = "DELETE FROM FUNCIONARIO WHERE IDFUNCIONARIO = " + funcionario.getIdFuncionario();
+		String query = "DELETE FROM FUNCIONARIO WHERE IDFUNCIONARIO = " + id;
 		try {
 			resultado = stmt.executeUpdate(query);
 		} catch (SQLException e) {
@@ -116,17 +103,29 @@ public class FuncionarioDAO {
 		return resultado;
 	}
 
-	public ArrayList<Funcionario> listarTodos() {
+	public ArrayList<Funcionario> listarTodos(String nome, String cpf) {
 		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 		Connection conexao = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conexao);
+		PreparedStatement stmt = null;
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT " + "FUNCIONARIO.IDFUNCIONARIO," + "FUNCIONARIO.NOME,"
-					+ "FUNCIONARIO.ENDERECO," + "FUNCIONARIO.BAIRRO," + "FUNCIONARIO.CEP," + "FUNCIONARIO.MUNICIPIO,"
-					+ "FUNCIONARIO.ESTADO," + "FUNCIONARIO.TELEFONE," + "FUNCIONARIO.CELULAR," + "FUNCIONARIO.EMAIL,"
-					+ "FUNCIONARIO.CPF," + "FUNCIONARIO.DATANASCIMENTO," + "FUNCIONARIO.RG," + "FUNCIONARIO.CARGO,"
-					+ "FUNCIONARIO.FUNCAO," + "FUNCIONARIO.DATAADMISSAO," + "FUNCIONARIO.ESCOLARIDADE"
-					+ "FROM FUNCIONARIO");
+			String sql = "SELECT IDFUNCIONARIO, NOME, ENDERECO," + "BAIRRO, CEP, MUNICIPIO, ESTADO,"
+					+ " TELEFONE, CELULAR, EMAIL, CPF, DATANASCIMENTO," + " RG, CARGO, FUNCAO, DATAADMISSAO,"
+					+ " ESCOLARIDADE FROM FUNCIONARIO" + "WHERE UPPER (NOME) LIKE ? AND CPF LIKE ?";
+			stmt = Banco.getPreparedStatement(conexao, sql);
+			if (nome == null) {
+				nome = "%%";
+			} else {
+				nome = "%" + nome.trim().toUpperCase() + "%";
+			}
+			if (cpf == null) {
+				cpf = "%%";
+			} else {
+				cpf = "%" + cpf.replace(".", "").replace("-", "").trim() + "%";
+			}
+			stmt.setString(1, nome);
+			stmt.setString(2, cpf);
+			ResultSet rs = stmt.executeQuery();
+			
 			while (rs.next()) {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setIdFuncionario(rs.getInt(1));
@@ -159,5 +158,4 @@ public class FuncionarioDAO {
 		return funcionarios;
 	}
 
-	
 }

@@ -43,33 +43,24 @@ public class ClienteDAO {
 	public int salvar(Cliente cliente) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO CLIENTE (NOME,"
-				+ "CPF,"
-				+ "BAIRRO,"
-				+ "CELULAR,"
-				+ "CEP,"
-				+ "DATANASCIMENTO,"
-				+ "EMAIL,"
-				+ "ENDERECO,"
-				+ "ESTADO,"
-				+ "MUNICIPIO,"
-				+ "TELEFONE) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+		String sql = " INSERT INTO CLIENTE (NOME," + "CPF," + "BAIRRO," + "CELULAR," + "CEP," + "DATANASCIMENTO,"
+				+ "EMAIL," + "ENDERECO," + "ESTADO," + "MUNICIPIO," + "TELEFONE) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
-		
+
 		try {
 			prepStmt.setString(1, cliente.getNome());
 			prepStmt.setString(2, cliente.getCpf().replace(".", "").replace("-", ""));
 			prepStmt.setString(3, cliente.getBairro());
-			prepStmt.setString(4, cliente.getCelular().replace("(","").replace(")","").replace("-", ""));
-			prepStmt.setString(5, cliente.getCep().replace("-", ""));	
+			prepStmt.setString(4, cliente.getCelular().replace("(", "").replace(")", "").replace("-", ""));
+			prepStmt.setString(5, cliente.getCep().replace("-", ""));
 			prepStmt.setDate(6, new java.sql.Date(cliente.getDataDeNascimento().getTime()));
 			prepStmt.setString(7, cliente.getEmail());
 			prepStmt.setString(8, cliente.getEndereco());
 			prepStmt.setString(9, cliente.getEstado());
 			prepStmt.setString(10, cliente.getMunicipio());
-			prepStmt.setString(11, cliente.getTelefone().replace("(","").replace(")","").replace("-", ""));
+			prepStmt.setString(11, cliente.getTelefone().replace("(", "").replace(")", "").replace("-", ""));
 			prepStmt.execute();
 
 			ResultSet generatedKeys = prepStmt.getGeneratedKeys();
@@ -96,7 +87,7 @@ public class ClienteDAO {
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
 
-		String query = "DELETE FROM CLIENTE WHERE IDCLIENTE= " + id;
+		String query = "DELETE FROM CLIENTE WHERE IDCLIENTE = " + id;
 		try {
 			resultado = stmt.executeUpdate(query);
 		} catch (SQLException e) {
@@ -113,16 +104,14 @@ public class ClienteDAO {
 		Connection conexao = Banco.getConnection();
 		PreparedStatement stmt = null;
 		try {
-			String sql = "SELECT IDCLIENTE, NOME, ENDERECO,"
-					+ "BAIRRO,CEP,MUNICIPIO,ESTADO, "
-					+ "TELEFONE,CELULAR,EMAIL,CPF, "
-					+ "DATANASCIMENTO FROM CLIENTE "
+			String sql = "SELECT IDCLIENTE, NOME, ENDERECO," + "BAIRRO,CEP,MUNICIPIO,ESTADO, "
+					+ "TELEFONE,CELULAR,EMAIL,CPF, " + "DATANASCIMENTO FROM CLIENTE "
 					+ "WHERE UPPER(NOME) LIKE ? AND CPF LIKE ? ";
 			stmt = Banco.getPreparedStatement(conexao, sql);
 			if (nome == null) {
 				nome = "%%";
 			} else {
-				nome = "%"+nome.trim().toUpperCase()+"%";
+				nome = "%" + nome.trim().toUpperCase() + "%";
 			}
 			if (cpf == null) {
 				cpf = "%%";

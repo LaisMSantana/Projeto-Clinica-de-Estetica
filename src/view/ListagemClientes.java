@@ -24,11 +24,10 @@ public class ListagemClientes extends JInternalFrame {
 	private JTable table;
 	ClienteBO clienteBO = new ClienteBO();
 	ClienteControl clienteControl =new ClienteControl();
+	
 	/**
 	 * Launch the application.
 	 */
-	
-
 
 	public ListagemClientes() {
 		setClosable(true);

@@ -1,7 +1,6 @@
 package model.bo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.dao.FuncionarioDAO;
 import model.vo.Funcionario;
@@ -10,37 +9,22 @@ public class FuncionarioBO {
 
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
+	public boolean atualizar(Funcionario funcionario) {
+		boolean sucesso = funcionarioDAO.atualizar(funcionario);
+		return sucesso;
+	}
+	
 	public boolean salvar(Funcionario funcionario) {
 		int idGerado = funcionarioDAO.salvar(funcionario);
 		return idGerado > 0;
 	}
 
-	public boolean atualizar(Funcionario funcionario) {
-		boolean sucesso = funcionarioDAO.atualizar(funcionario);
-		return sucesso;
+	public void excluir(Integer id) {
+		funcionarioDAO.excluir(id);
 	}
 
-	public String excluir(Funcionario funcionario) {
-		String mensagem = "";
-		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-
-		if (funcionarioDAO.existeFuncionarioNovo(funcionarioDAO) == false) {
-			mensagem = "Funcionário inexistente";
-		} else {
-			int statusPersistencia = funcionarioDAO.excluir(funcionario);
-
-			if (statusPersistencia == 1) {
-				mensagem = "Funcionário excluido com sucesso";
-			} else if (statusPersistencia == 0) {
-				mensagem = "Erro ao excluir Funcionário";
-			}
-		}
-		return mensagem;
-	}
-
-	public ArrayList<Funcionario> listarTodos() {
-		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-		return funcionarioDAO.listarTodos();
+	public ArrayList<Funcionario> listarTodos(String nome, String cpf) {
+		return funcionarioDAO.listarTodos(nome, cpf);
 	}
 	
 	}

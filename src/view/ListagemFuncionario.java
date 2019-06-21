@@ -7,7 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.FuncionarioControl;
 import model.bo.FuncionarioBO;
+import model.vo.Cliente;
 import model.vo.Funcionario;
 
 import javax.swing.JButton;
@@ -19,9 +21,11 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class ListagemFuncionario extends JInternalFrame {
-	private JTextField textField;
+	private JTextField txtNome;
 	private JTextField txtCargo;
 	private JTable table;
+	FuncionarioBO funcionarioBO = new FuncionarioBO();
+	FuncionarioControl funcionarioControl = new  FuncionarioControl();
 
 	/**
 	 * Launch the application.
@@ -52,10 +56,10 @@ public class ListagemFuncionario extends JInternalFrame {
 		lblNome.setBounds(15, 15, 40, 15);
 		getContentPane().add(lblNome);
 		
-		textField = new JTextField();
-		textField.setBounds(60, 10, 360, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(60, 10, 360, 20);
+		getContentPane().add(txtNome);
+		txtNome.setColumns(10);
 		
 		
 		JLabel lblCargo = new JLabel("Cargo :");
@@ -80,12 +84,6 @@ public class ListagemFuncionario extends JInternalFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
 				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" }));
-		
-		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		ArrayList<Funcionario> funcionarios = new ArrayList();
-		
-		funcionarios = (ArrayList<Funcionario>) funcionarioBO.listarTodos();
-		atualizarTabela(funcionarios);
 
 		table.setBounds(0, 117, 554, 201);
 		getContentPane().add(table);
@@ -93,12 +91,21 @@ public class ListagemFuncionario extends JInternalFrame {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/// fazer o excluir funcionar 
+				int linhaSelecionada = table.getSelectedRow();
+				Integer id = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
+				funcionarioControl.excluir(id);
+				ArrayList<Funcionario> funcionarios = funcionarioBO.listarTodos(txtNome.getText(),txtCargo.getText());
+				atualizarTabela(funcionarios);
 				
 			}
 		});
 		btnExcluir.setBounds(440, 45, 95, 25);
 		getContentPane().add(btnExcluir);
 
+		ArrayList<Funcionario> funcionarios = funcionarioBO.listarTodos(txtNome.getText(),txtCargo.getText());
+		atualizarTabela(funcionarios);
+		
 
 	}
 

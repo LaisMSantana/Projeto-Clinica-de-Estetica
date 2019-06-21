@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.bo.ClienteBO;
 import model.vo.Cliente;
 
@@ -9,6 +7,7 @@ public class ClienteControl {
 	private String nome;
 	private String cpf;
 	private String telefone;
+
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
@@ -59,6 +58,4 @@ public class ClienteControl {
 		clienteBO.excluir(id);
 	}
 
-	
-	
 }
