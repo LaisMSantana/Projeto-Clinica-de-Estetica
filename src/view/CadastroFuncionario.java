@@ -34,11 +34,6 @@ public class CadastroFuncionario extends JInternalFrame {
 	private JLabel lblRg;
 	private JLabel lblCargo;
 	private JLabel lblFuncao;
-	private JRadioButton rdbtnMassagemRelaxante;
-	private JRadioButton rdbtnMasssagemModeladora;
-	private JRadioButton rdbtnDrenagemLinftica;
-	private JRadioButton rdbtnVendaRenovacao;
-	private JRadioButton rdbtnBotox;
 	private JLabel lblDataAdmissao;
 	private JLabel lblEscolaridade;
 	private JTextField txtEscolaridade;
@@ -49,6 +44,8 @@ public class CadastroFuncionario extends JInternalFrame {
 	private JFormattedTextField formattedFone;
 	DatePicker dataNascimento;
 	DatePicker dataAdmissao;
+
+	private FuncionarioControl funcionarioControl = new FuncionarioControl();
 
 	/**
 	 * Launch the application.
@@ -74,135 +71,113 @@ public class CadastroFuncionario extends JInternalFrame {
 		setTitle("Cadastro de Funcionários");
 		setBounds(100, 100, 465, 482);
 		getContentPane().setLayout(null);
-		
+
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(23, 20, 37, 16);
+		lblNome.setBounds(5, 20, 55, 16);
 		getContentPane().add(lblNome);
-		
+
 		txtNome = new JTextField();
 		txtNome.setBounds(60, 20, 360, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
-		
+
 		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(5, 50, 56, 16);
+		lblEndereco.setBounds(5, 50, 85, 16);
 		getContentPane().add(lblEndereco);
-		
+
 		txtEndereco = new JTextField();
-		txtEndereco.setBounds(60, 50, 360, 20);
+		txtEndereco.setBounds(88, 50, 332, 20);
 		getContentPane().add(txtEndereco);
 		txtEndereco.setColumns(10);
-		
+
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(23, 80, 41, 16);
+		lblBairro.setBounds(5, 80, 59, 16);
 		getContentPane().add(lblBairro);
-		
+
 		txtBairro = new JTextField();
 		txtBairro.setBounds(60, 80, 150, 20);
 		getContentPane().add(txtBairro);
 		txtBairro.setColumns(10);
-		
+
 		JLabel lblCep = new JLabel("CEP :");
 		lblCep.setBounds(250, 80, 50, 16);
 		getContentPane().add(lblCep);
-		
+
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
-		lblMunicpio.setBounds(8, 110, 56, 16);
+		lblMunicpio.setBounds(8, 110, 78, 16);
 		getContentPane().add(lblMunicpio);
-		
+
 		txtMunicipio = new JTextField();
-		txtMunicipio.setBounds(60, 110, 150, 20);
+		txtMunicipio.setBounds(88, 110, 122, 20);
 		getContentPane().add(txtMunicipio);
 		txtMunicipio.setColumns(10);
-		
+
 		JLabel lblEstado = new JLabel("Estado:");
 		lblEstado.setBounds(240, 110, 56, 16);
 		getContentPane().add(lblEstado);
-		
+
 		txtEstado = new JTextField();
-		txtEstado.setBounds(280, 110, 37, 20);
+		txtEstado.setBounds(301, 110, 85, 20);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
-		
+
 		JLabel lblTelefone = new JLabel("Fone:");
-		lblTelefone.setBounds(30, 140, 37, 16);
+		lblTelefone.setBounds(10, 138, 50, 16);
 		getContentPane().add(lblTelefone);
-		
+
 		JLabel lblCelular = new JLabel("Celular:");
-		lblCelular.setBounds(240, 140, 37, 16);
+		lblCelular.setBounds(240, 140, 60, 16);
 		getContentPane().add(lblCelular);
-		
+
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(30, 170, 59, 14);
+		lblEmail.setBounds(5, 166, 59, 14);
 		getContentPane().add(lblEmail);
-		
+
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(60, 170, 150, 20);
+		txtEmail.setBounds(48, 166, 184, 20);
 		getContentPane().add(txtEmail);
-		
+
 		JLabel lblCpf = new JLabel("CPF :");
 		lblCpf.setBounds(250, 170, 50, 14);
 		getContentPane().add(lblCpf);
-		
+
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
 		lblDataDeNascimento.setBounds(10, 200, 106, 16);
 		getContentPane().add(lblDataDeNascimento);
-		
-		
+
+
 		lblRg = new JLabel("RG :");
 		lblRg.setBounds(255, 200, 39, 14);
 		getContentPane().add(lblRg);
-		
+
 		lblCargo = new JLabel("Cargo :");
 		lblCargo.setBounds(10, 250, 62, 22);
 		getContentPane().add(lblCargo);
-		
+
 		JComboBox cbCargo = new JComboBox();
 		cbCargo.setBounds(60, 270, 150, 20);
 		getContentPane().add(cbCargo);
-		
+		cbCargo.addItem("Esteticista");
+		cbCargo.addItem("Fisioterapeuta");
+		cbCargo.addItem("Consultora");		
 		lblFuncao = new JLabel("Fun\u00E7\u00E3o :");
-		lblFuncao.setBounds(240, 230, 56, 16);
+		lblFuncao.setBounds(288, 321, 68, 16);
 		getContentPane().add(lblFuncao);
-		
-		JRadioButton rdbtnLimpezaPele = new JRadioButton("Limpeza de Pele");
-		rdbtnLimpezaPele.setBounds(280, 250, 127, 25);
-		getContentPane().add(rdbtnLimpezaPele);
-		
-		rdbtnMassagemRelaxante = new JRadioButton("Massagem Relaxante");
-		rdbtnMassagemRelaxante.setBounds(280, 270, 149, 25);
-		getContentPane().add(rdbtnMassagemRelaxante);
-		
-		rdbtnMasssagemModeladora = new JRadioButton("Masssagem Modeladora");
-		rdbtnMasssagemModeladora.setBounds(280, 290, 167, 25);
-		getContentPane().add(rdbtnMasssagemModeladora);
-		
-		rdbtnDrenagemLinftica = new JRadioButton("Drenagem Linfatica");
-		rdbtnDrenagemLinftica.setBounds(280, 310, 167, 25);
-		getContentPane().add(rdbtnDrenagemLinftica);
-		
-		rdbtnVendaRenovacao = new JRadioButton("Venda/ Renovação");
-		rdbtnVendaRenovacao.setBounds(280, 330, 167, 25);
-		getContentPane().add(rdbtnVendaRenovacao);
-		
-		rdbtnBotox = new JRadioButton("Botox");
-		rdbtnBotox.setBounds(280, 350, 127, 25);
-		getContentPane().add(rdbtnBotox);
-		
+
 		lblDataAdmissao = new JLabel("Data de Admissão :");
 		lblDataAdmissao.setBounds(10, 350, 149, 16);
 		getContentPane().add(lblDataAdmissao);
-		
+
 		lblEscolaridade = new JLabel("Escolaridade :");
 		lblEscolaridade.setBounds(10, 300, 113, 16);
 		getContentPane().add(lblEscolaridade);
-		
+
 		txtEscolaridade = new JTextField();
 		txtEscolaridade.setColumns(10);
 		txtEscolaridade.setBounds(60, 320, 150, 20);
 		getContentPane().add(txtEscolaridade);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,70 +208,106 @@ public class CadastroFuncionario extends JInternalFrame {
 				JOptionPane.showMessageDialog(null, retorno);
 			}
 		});
-		btnSalvar.setBounds(95, 400, 95, 25);
+		btnSalvar.setBounds(5, 413, 95, 25);
 		getContentPane().add(btnSalvar);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			cancelar();
+				cancelar();
 			}
 		});
-		btnCancelar.setBounds(260, 400, 95, 25);
+		btnCancelar.setBounds(112, 413, 120, 25);
 		getContentPane().add(btnCancelar);
-		
+
 		formattedCpf = new JFormattedTextField();
 		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
-	           formattedCpf = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){
-	        }
-		formattedCpf.setBounds(280, 170, 130, 20);
+			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+			formattedCpf = new javax.swing.JFormattedTextField(format_textField4);
+		}catch (Exception e){
+		}
+		formattedCpf.setBounds(301, 170, 109, 20);
 		getContentPane().add(formattedCpf);
-		
+
 		formattedCep = new JFormattedTextField();
 		try{
-	           javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
-	           formattedCep = new javax.swing.JFormattedTextField(format_textField3);
-	        }catch (Exception e){
-	        }
-		formattedCep.setBounds(280, 80, 127, 20);
+			javax.swing.text.MaskFormatter format_textField3 = new javax.swing.text.MaskFormatter("#####-###");
+			formattedCep = new javax.swing.JFormattedTextField(format_textField3);
+		}catch (Exception e){
+		}
+		formattedCep.setBounds(301, 80, 106, 20);
 		getContentPane().add(formattedCep);
-		
+
 		dataNascimento = new DatePicker();
 		dataNascimento.setBounds(60, 220, 170, 20);
 		this.getContentPane().add(dataNascimento);
-		
+
 		dataAdmissao = new DatePicker();
 		dataAdmissao.setBounds(60, 370, 170, 20);
 		this.getContentPane().add(dataAdmissao);
-		
+
 		formattedCelular = new JFormattedTextField();
 		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)#####-####");
-	   		   formattedCelular = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){
-	        }
-		formattedCelular.setBounds(280, 140, 130, 20);
+			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)#####-####");
+			formattedCelular = new javax.swing.JFormattedTextField(format_textField4);
+		}catch (Exception e){
+		}
+		formattedCelular.setBounds(301, 140, 109, 20);
 		getContentPane().add(formattedCelular);
-		
+
 		formattedRg = new JFormattedTextField();
 		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("##.###.###-#");
-	           formattedRg = new javax.swing.JFormattedTextField(format_textField4);
-			}catch (Exception e){
-	        }
-		formattedRg.setBounds(280, 200, 130, 20);
+			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("##.###.###-#");
+			formattedRg = new javax.swing.JFormattedTextField(format_textField4);
+		}catch (Exception e){
+		}
+		formattedRg.setBounds(301, 200, 109, 20);
 		getContentPane().add(formattedRg);
-		
+
 		formattedFone = new JFormattedTextField();
 		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)####-####");
-	           formattedFone = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){
-	        }
+			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)####-####");
+			formattedFone = new javax.swing.JFormattedTextField(format_textField4);
+		}catch (Exception e){
+		}
 		formattedFone.setBounds(60, 140, 130, 20);
 		getContentPane().add(formattedFone);
+
+		JComboBox comboBox1 = new JComboBox();
+		comboBox1.setBounds(255, 346, 182, 24);
+		getContentPane().add(comboBox1);
+		comboBox1.addItem("Selecione uma opcao");
+		comboBox1.addItem("Massagem");
+		comboBox1.addItem("Limpeza de Pele");		
+		comboBox1.addItem("Peeling");
+		comboBox1.addItem("Botox");
+		comboBox1.addItem("Venda");
+
+		JComboBox comboBox2 = new JComboBox();
+		comboBox2.setBounds(250, 378, 182, 24);
+		getContentPane().add(comboBox2);
+		comboBox2.addItem("Selecione uma opcao");
+		comboBox2.addItem("Massagem");
+		comboBox2.addItem("Limpeza de Pele");		
+		comboBox2.addItem("Peeling");
+		comboBox2.addItem("Botox");
+		comboBox2.addItem("Venda");
+
+
+
+		JComboBox comboBox3 = new JComboBox();
+		comboBox3.setBounds(250, 413, 187, 24);
+		getContentPane().add(comboBox3);
+		comboBox3.addItem("Selecione uma opcao");
+		comboBox3.addItem("Massagem");
+		comboBox3.addItem("Limpeza de Pele");		
+		comboBox3.addItem("Peeling");
+		comboBox3.addItem("Botox");
+		comboBox3.addItem("Venda");
+
+
+
+
 
 	}private void cancelar() {
 		this.setVisible(false);

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.vo.Funcionario;
 
@@ -14,14 +15,39 @@ public class FuncionarioDAO {
 	public int salvar(Funcionario funcionario) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO FUNCIONARIO (NOME, CPF) " + " VALUES (?,?) ";
+		String sql = " INSERT INTO FUNCIONARIO (NOME,"
+				+ " CPF,"
+				+ "BAIRRO,"
+				+ "CARGO,"
+				+ "CELULAR,"
+				+ "CEP,"
+				+ "EMAIL,"
+				+ "ENDERECO,"
+				+ "ESCOLARIDADE,"
+				+ "ESTADO,"
+				+ "FUNCAO,"
+				+ "MUNICIPIO,"
+				+ "TELEFONE) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, funcionario.getNome());
-			prepStmt.setString(2, funcionario.getCpf());
+			prepStmt.setString(2, funcionario.getCpf().replace(".", "").replace("-", ""));
+			prepStmt.setString(3, funcionario.getBairro());
+			prepStmt.setString(4, funcionario.getCargo());
+			prepStmt.setString(5, funcionario.getCelular().replace("(","").replace(")","").replace("-", ""));
+			prepStmt.setString(6, funcionario.getCep().replace("-", ""));
+			prepStmt.setString(7, funcionario.getEmail());
+			prepStmt.setString(8, funcionario.getEndereco());
+			prepStmt.setString(9, funcionario.getEscolaridade());
+			prepStmt.setString(10, funcionario.getEstado());
+			prepStmt.setString(11, funcionario.getFuncao());
+			prepStmt.setString(12, funcionario.getMunicipio());
+			prepStmt.setString(13, funcionario.getTelefone().replace("(","").replace(")","").replace("-", ""));
+
+			
 
 			prepStmt.execute();
 
@@ -125,10 +151,13 @@ public class FuncionarioDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao inserir Funcionário. Causa: \n: " + e.getMessage());
+			e.printStackTrace();
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conexao);
 		}
 		return funcionarios;
 	}
+
+	
 }

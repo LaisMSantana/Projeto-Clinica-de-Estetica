@@ -1,6 +1,7 @@
 package model.bo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.dao.FuncionarioDAO;
 import model.vo.Funcionario;
@@ -41,4 +42,6 @@ public class FuncionarioBO {
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 		return funcionarioDAO.listarTodos();
 	}
-}
+	
+	}
+
