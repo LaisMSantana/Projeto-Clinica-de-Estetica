@@ -10,7 +10,7 @@ import model.vo.Cliente;
 
 public class ClienteDAO {
 
-	public static boolean atualizar(Cliente cliente) {
+	public boolean atualizar(Cliente cliente) {
 		boolean sucessoUpdate = false;
 
 		// ****REVISAR QUERY
@@ -40,7 +40,7 @@ public class ClienteDAO {
 		return sucessoUpdate;
 	}
 
-	public static int salvar(Cliente cliente) {
+	public int salvar(Cliente cliente) {
 		int novoId = -1;
 
 		String sql = " INSERT INTO CLIENTE (NOME,"
@@ -91,12 +91,12 @@ public class ClienteDAO {
 		return false;
 	}
 
-	public int excluir(Cliente cliente) {
+	public int excluir(Integer id) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
 
-		String query = "DELETE FROM CLIENTE WHERE IDCLIENTE= " + cliente.getIdCliente();
+		String query = "DELETE FROM CLIENTE WHERE IDCLIENTE= " + id;
 		try {
 			resultado = stmt.executeUpdate(query);
 		} catch (SQLException e) {

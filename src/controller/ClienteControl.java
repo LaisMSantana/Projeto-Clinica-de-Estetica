@@ -6,6 +6,9 @@ import model.bo.ClienteBO;
 import model.vo.Cliente;
 
 public class ClienteControl {
+	private String nome;
+	private String cpf;
+	private String telefone;
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
@@ -49,26 +52,11 @@ public class ClienteControl {
 		return validacao;
 	}
 
-	public String excluir(Cliente cliente, String nome, String cpf) {
-		String mensagem = "";
 
-		if (nome == null || nome.trim().isEmpty()) {
-			mensagem = "Preenche o Nome";
-		}
-		if (cpf == null || cpf.trim().isEmpty()) {
-			mensagem = "Preenche o Cpf";
-		}
-		if (mensagem.isEmpty()) {
-			
-			
-			Cliente clienteExcluir = new Cliente();
-			clienteExcluir.setNome(nome);
-			clienteExcluir.setCpf(cpf);
 
-			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.excluir(clienteExcluir);
-		}
-		return mensagem;
+	public void excluir(Integer id) {
+		ClienteBO clienteBO = new ClienteBO();
+		clienteBO.excluir(id);
 	}
 
 	

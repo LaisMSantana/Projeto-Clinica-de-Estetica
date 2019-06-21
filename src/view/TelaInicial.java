@@ -77,10 +77,10 @@ public class TelaInicial extends JFrame {
 	public TelaInicial() {
 		// consulta o tamanho do monitor do usuário
 		 Dimension dimension = this.getToolkit().getScreenSize();
-		 final int larguraDaTela = (int) dimension.getWidth();
-		 final int alturaDaTela = (int) dimension.getHeight();
-		//final int larguraDaTela = 1000;
-		//final int alturaDaTela = 1000;
+		 // final int larguraDaTela = (int) dimension.getWidth();
+		 //final int alturaDaTela = (int) dimension.getHeight();
+		final int larguraDaTela = 1000;
+		final int alturaDaTela = 1000;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -183,21 +183,7 @@ public class TelaInicial extends JFrame {
 
 		mnProcedimentos.add(mntmAgendarProcedimento);
 
-		JMenuItem mntmCadastrarProcedimento = new JMenuItem("Cadastrar Procedimento");
-		mntmCadastrarProcedimento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (agendaP == null) {
-					agendaP = new CadastroProcedimento();
-					desktopPane.add(agendaP);
-					agendaP.show();
-				} else if (agendaP != null) {
-					agendaP.setVisible(true);
-				}
-			}
-		});
-		mnProcedimentos.add(mntmCadastrarProcedimento);
-
-		JMenuItem mntmAgendarProcedimento_1 = new JMenuItem("Agendar Procedimento");
+		JMenuItem mntmAgendarProcedimento_1 = new JMenuItem("Novo Agendamento");
 		mntmAgendarProcedimento_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (novoAgendamento == null) {

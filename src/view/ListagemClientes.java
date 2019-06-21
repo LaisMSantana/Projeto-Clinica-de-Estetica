@@ -23,7 +23,7 @@ public class ListagemClientes extends JInternalFrame {
 	JFormattedTextField formatteCpf;
 	private JTable table;
 	ClienteBO clienteBO = new ClienteBO();
-	ClienteControl clienteControl;
+	ClienteControl clienteControl =new ClienteControl();
 	/**
 	 * Launch the application.
 	 */
@@ -84,7 +84,12 @@ public class ListagemClientes extends JInternalFrame {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// fazer o excluir funcionar ClienteControl.excluir();
+				/// fazer o excluir funcionar 
+				int linhaSelecionada = table.getSelectedRow();
+				Integer id = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
+				clienteControl.excluir(id);
+				ArrayList<Cliente> clientes = clienteBO.listarTodos(txtNome.getText(),formatteCpf.getText());
+				atualizarTabela(clientes);
 				
 			}
 		});

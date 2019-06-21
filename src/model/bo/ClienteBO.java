@@ -2,44 +2,35 @@ package model.bo;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import controller.ClienteControl;
 import model.dao.ClienteDAO;
 import model.vo.Cliente;
 
 public class ClienteBO {
-
+	
+	ClienteDAO clienteDAO = new ClienteDAO();
 
 	public boolean atualizar(Cliente cliente) {
-		boolean sucesso = ClienteDAO.atualizar(cliente);
+		boolean sucesso = clienteDAO.atualizar(cliente);
 		return sucesso;
 	}
 
 	public boolean salvar(Cliente cliente) {
-		int idGerado = ClienteDAO.salvar(cliente);
+		int idGerado = clienteDAO.salvar(cliente);
 		return idGerado > 0;
 	}
 
-	public String excluir(Cliente cliente) {
-		String mensagem = "";
-		ClienteDAO clienteDAO = new ClienteDAO();
 
-		if (clienteDAO.existeClienteNovo(clienteDAO) == false) {
-			mensagem = "Cliente inexistente";
-		} else {
-			int statusPersistencia = clienteDAO.excluir(cliente);
-
-			if (statusPersistencia == 1) {
-				mensagem = "Funcionário excluido com sucesso";
-			} else if (statusPersistencia == 0) {
-				mensagem = "Erro ao excluir Funcionário";
-			}
-		}
-		return mensagem;
+	public void excluir(Integer id) {
+		clienteDAO.excluir(id);
 	}
 
-	public ArrayList<Cliente> listarTodos(String nome, String cpf) {
-		ClienteDAO clienteDAO = new ClienteDAO();
-		return clienteDAO.listarTodos(nome, cpf);
-	}
-
+public ArrayList<Cliente> listarTodos(String nome, String cpf) {
 	
+	return clienteDAO.listarTodos(nome, cpf);
+}
+
+
 }
