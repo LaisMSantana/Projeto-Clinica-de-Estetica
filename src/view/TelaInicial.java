@@ -167,7 +167,7 @@ public class TelaInicial extends JFrame {
 		JMenu mnProcedimentos = new JMenu("Procedimentos");
 		menuBar.add(mnProcedimentos);
 
-		JMenuItem mntmAgendarProcedimento = new JMenuItem("Agendar Procedimento");
+		JMenuItem mntmAgendarProcedimento = new JMenuItem("Cadastrar  Procedimento");
 		mntmAgendarProcedimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

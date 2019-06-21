@@ -30,6 +30,7 @@ public class ProcedimentoDAO {
 				novoId = generatedKeys.getInt(1);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("Erro ao inserir Procedimento. Causa: \n: " + e.getMessage());
 		} finally {
 			Banco.closePreparedStatement(prepStmt);
