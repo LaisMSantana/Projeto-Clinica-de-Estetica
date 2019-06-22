@@ -206,7 +206,25 @@ public class CadastroFuncionario extends JInternalFrame {
 				}
 				String retorno = FuncionarioControl.salvar(funcionario);
 				JOptionPane.showMessageDialog(null, retorno);
+				limpar();
 			}
+			private void limpar() {
+
+				txtNome.setText(""); 
+				txtEndereco.setText(""); 
+				txtBairro.setText(""); 
+				txtMunicipio.setText("");
+				txtEstado.setText("");
+				formattedFone.setText("");
+				txtEmail.setText("");
+				formattedCep.setText("");
+				txtEstado.setText("");
+				formattedCelular.setText("");
+				formattedRg.setText("");
+				txtEscolaridade.setText("");
+				formattedCpf.setText("");
+			}
+
 		});
 		btnSalvar.setBounds(5, 413, 95, 25);
 		getContentPane().add(btnSalvar);
