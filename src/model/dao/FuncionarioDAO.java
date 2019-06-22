@@ -14,8 +14,19 @@ public class FuncionarioDAO {
 	public int salvar(Funcionario funcionario) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO FUNCIONARIO (NOME," + " CPF," + "BAIRRO," + "CARGO," + "CELULAR," + "CEP," + "EMAIL,"
-				+ "ENDERECO," + "ESCOLARIDADE," + "ESTADO," + "FUNCAO," + "MUNICIPIO," + "TELEFONE) "
+		String sql = " INSERT INTO FUNCIONARIO (NOME," 
+				+ " CPF,"
+				+ "BAIRRO,"
+				+ "CARGO," 
+				+ "CELULAR,"
+				+ "CEP,"
+				+ "EMAIL,"
+				+ "ENDERECO,"
+				+ "ESCOLARIDADE,"
+				+ "ESTADO,"
+				+ "FUNCAO,"
+				+ "MUNICIPIO,"
+				+ "TELEFONE) "
 				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
@@ -55,14 +66,14 @@ public class FuncionarioDAO {
 		boolean sucessoUpdate = false;
 
 		// ****REVISAR QUERY
-		String sql = " UPDATE FUNCIONARIO funcionario SET NOME=?, CPF=?" + " WHERE FUNCIONARIO.ID = ? ";
+		String sql = " UPDATE FUNCIONARIO funcionario SET NOME=?, CARGO=?" + " WHERE FUNCIONARIO.ID = ? ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, funcionario.getNome());
-			prepStmt.setString(2, funcionario.getCpf());
+			prepStmt.setString(2, funcionario.getCargo());
 			prepStmt.setDouble(3, funcionario.getIdFuncionario());
 
 			int codigoRetorno = prepStmt.executeUpdate();
@@ -103,29 +114,47 @@ public class FuncionarioDAO {
 		return resultado;
 	}
 
-	public ArrayList<Funcionario> listarTodos(String nome, String cpf) {
+	public ArrayList<Funcionario> listarTodos(String nome, String cargo) {
 		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 		Connection conexao = Banco.getConnection();
 		PreparedStatement stmt = null;
 		try {
-			String sql = "SELECT IDFUNCIONARIO, NOME, ENDERECO," + "BAIRRO, CEP, MUNICIPIO, ESTADO,"
-					+ " TELEFONE, CELULAR, EMAIL, CPF, DATANASCIMENTO," + " RG, CARGO, FUNCAO, DATAADMISSAO,"
-					+ " ESCOLARIDADE FROM FUNCIONARIO" + "WHERE UPPER (NOME) LIKE ? AND CPF LIKE ?";
+			String sql = "SELECT IDFUNCIONARIO, "
+					+ "NOME,"
+					+ " ENDERECO,"
+					+ "BAIRRO,"
+					+ " CEP,"
+					+ " MUNICIPIO,"
+					+ " ESTADO,"
+					+ " TELEFONE,"
+					+ " CELULAR,"
+					+ " EMAIL,"
+					+ " CPF,"
+					+ " DATANASCIMENTO,"
+					+ " RG,"
+					+ " CARGO,"
+					+ " FUNCAO,"
+					+ " DATAADMISSAO,"
+					+ " ESCOLARIDADE FROM FUNCIONARIO WHERE UPPER(NOME) LIKE ? ";
+			if (cargo != null && cargo.trim().length() > 0) {
+				sql += "AND UPPER(CARGO) LIKE ?";
+			}
+			
 			stmt = Banco.getPreparedStatement(conexao, sql);
+			
 			if (nome == null) {
 				nome = "%%";
 			} else {
 				nome = "%" + nome.trim().toUpperCase() + "%";
 			}
-			if (cpf == null) {
-				cpf = "%%";
-			} else {
-				cpf = "%" + cpf.replace(".", "").replace("-", "").trim() + "%";
-			}
 			stmt.setString(1, nome);
-			stmt.setString(2, cpf);
-			ResultSet rs = stmt.executeQuery();
 			
+			if (cargo != null && cargo.trim().length() > 0) {
+				cargo = "%" + cargo.trim().toUpperCase() + "%";
+				stmt.setString(2, cargo);
+			}
+			ResultSet rs = stmt.executeQuery();
+
 			while (rs.next()) {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setIdFuncionario(rs.getInt(1));

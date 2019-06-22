@@ -74,7 +74,10 @@ public class ListagemFuncionario extends JInternalFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<Funcionario> funcionarios = funcionarioBO.listarTodos(txtNome.getText(),txtCargo.getText());
+				atualizarTabela(funcionarios);
 			}
+			
 		});
 		btnPesquisar.setBounds(440, 10, 95, 25);
 		getContentPane().add(btnPesquisar);
@@ -110,19 +113,16 @@ public class ListagemFuncionario extends JInternalFrame {
 	}
 
 	private void atualizarTabela(ArrayList<Funcionario> funcionarios) {
-		DefaultTableModel model = (DefaultTableModel)table.getModel();
-		Object novaLinha [] = new Object[5];
-
-		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-		DateFormat hora = new SimpleDateFormat("HH:mm");
-		
+		DefaultTableModel model = new DefaultTableModel(new String[][] { { "#", "Nome do Funcionario", "Cargo", "Telefone", "Email" }, },
+				new String[] { "#", "Nome do Funcionario", "Cargo", "Telefone",  "Email" });
+		table.setModel(model);
 		for (Funcionario funcionario : funcionarios) {
+			Object novaLinha [] = new Object[5];
 			novaLinha[0]= funcionario.getIdFuncionario();
 			novaLinha[1]= funcionario.getNome();
 			novaLinha[2]= funcionario.getCargo();
 			novaLinha[3]= funcionario.getTelefone();
 			novaLinha[4]= funcionario.getEmail();
-			
 			model.addRow(novaLinha);
 		}
     }

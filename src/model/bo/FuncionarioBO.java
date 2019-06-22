@@ -23,8 +23,8 @@ public class FuncionarioBO {
 		funcionarioDAO.excluir(id);
 	}
 
-	public ArrayList<Funcionario> listarTodos(String nome, String cpf) {
-		return funcionarioDAO.listarTodos(nome, cpf);
+	public ArrayList<Funcionario> listarTodos(String nome, String cargo) {
+		return funcionarioDAO.listarTodos(nome, cargo);
 	}
 	
 	}
