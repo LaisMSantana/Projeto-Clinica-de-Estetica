@@ -64,6 +64,12 @@ public class CadastroAgendamento extends JInternalFrame {
 				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
 						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
 						horaSelecionada.getSecond());
+				
+				limpar();
+			}
+
+			private void limpar() {
+				
 			}
 		});
 		btnSalvar.setBounds(90, 290, 120, 25);

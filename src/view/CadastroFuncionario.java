@@ -155,7 +155,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		lblCargo.setBounds(10, 250, 62, 22);
 		getContentPane().add(lblCargo);
 
-		JComboBox cbCargo = new JComboBox();
+		final JComboBox cbCargo = new JComboBox();
 		cbCargo.setBounds(60, 270, 150, 20);
 		getContentPane().add(cbCargo);
 		cbCargo.addItem("Esteticista");
@@ -193,7 +193,7 @@ public class CadastroFuncionario extends JInternalFrame {
 				funcionario.setCep(formattedCep.getText());
 				funcionario.setCelular(formattedCelular.getText());
 				funcionario.setRg(formattedRg.getText());
-				funcionario.setCargo(null);
+				funcionario.setCargo(cbCargo.getSelectedItem().toString());
 				funcionario.setFuncao(null);
 				funcionario.setTelefone(formattedFone.getText());
 				if (dataNascimento.getDate() != null) {
@@ -291,37 +291,37 @@ public class CadastroFuncionario extends JInternalFrame {
 		formattedFone.setBounds(60, 140, 130, 20);
 		getContentPane().add(formattedFone);
 
-		JComboBox comboBox1 = new JComboBox();
-		comboBox1.setBounds(255, 346, 182, 24);
-		getContentPane().add(comboBox1);
-		comboBox1.addItem("Selecione uma opcao");
-		comboBox1.addItem("Massagem");
-		comboBox1.addItem("Limpeza de Pele");		
-		comboBox1.addItem("Peeling");
-		comboBox1.addItem("Botox");
-		comboBox1.addItem("Venda");
+		JComboBox cbFuncao1 = new JComboBox();
+		cbFuncao1.setBounds(250, 348, 190, 20);
+		getContentPane().add(cbFuncao1);
+		cbFuncao1.addItem("Selecione uma opcao");
+		cbFuncao1.addItem("Massagem");
+		cbFuncao1.addItem("Limpeza de Pele");		
+		cbFuncao1.addItem("Peeling");
+		cbFuncao1.addItem("Botox");
+		cbFuncao1.addItem("Venda");
 
-		JComboBox comboBox2 = new JComboBox();
-		comboBox2.setBounds(250, 378, 182, 24);
-		getContentPane().add(comboBox2);
-		comboBox2.addItem("Selecione uma opcao");
-		comboBox2.addItem("Massagem");
-		comboBox2.addItem("Limpeza de Pele");		
-		comboBox2.addItem("Peeling");
-		comboBox2.addItem("Botox");
-		comboBox2.addItem("Venda");
+		JComboBox cbFuncao2 = new JComboBox();
+		cbFuncao2.setBounds(250, 378, 190, 20);
+		getContentPane().add(cbFuncao2);
+		cbFuncao2.addItem("Selecione uma opcao");
+		cbFuncao2.addItem("Massagem");
+		cbFuncao2.addItem("Limpeza de Pele");		
+		cbFuncao2.addItem("Peeling");
+		cbFuncao2.addItem("Botox");
+		cbFuncao2.addItem("Venda");
 
 
 
-		JComboBox comboBox3 = new JComboBox();
-		comboBox3.setBounds(250, 413, 187, 24);
-		getContentPane().add(comboBox3);
-		comboBox3.addItem("Selecione uma opcao");
-		comboBox3.addItem("Massagem");
-		comboBox3.addItem("Limpeza de Pele");		
-		comboBox3.addItem("Peeling");
-		comboBox3.addItem("Botox");
-		comboBox3.addItem("Venda");
+		JComboBox cbFuncao3 = new JComboBox();
+		cbFuncao3.setBounds(250, 413, 190, 20);
+		getContentPane().add(cbFuncao3);
+		cbFuncao3.addItem("Selecione uma opcao");
+		cbFuncao3.addItem("Massagem");
+		cbFuncao3.addItem("Limpeza de Pele");		
+		cbFuncao3.addItem("Peeling");
+		cbFuncao3.addItem("Botox");
+		cbFuncao3.addItem("Venda");
 
 
 
