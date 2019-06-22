@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.vo.Agendamento;
@@ -95,18 +99,39 @@ public class AgendamentoDAO {
 		return resultado;
 	}
 
-	public List<Agendamento> listarTodos() {
+		public List<Agendamento> listarTodos(String nomeCliente, LocalDate dataSelecionada) {
 		List<Agendamento> agendamentos = new ArrayList<Agendamento>();
 		Connection conexao = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conexao);
+		PreparedStatement stmt = null;
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT " + "AGENDAMENTO.IDAGENDAMENTO, " + "AGENDAMENTO.DATA, "
-					+ "CLIENTE.IDCLIENTE, " + "CLIENTE.NOME, " + "FUNCIONARIO.IDFUNCIONARIO, " + "FUNCIONARIO.NOME, "
-					+ "PROCEDIMENTO.IDPROCEDIMENTO, " + "PROCEDIMENTO.NOME, " + "PROCEDIMENTO.SALA "
+			String sql = "SELECT " 
+					+ "AGENDAMENTO.IDAGENDAMENTO, "
+					+ "AGENDAMENTO.DATA, "
+					+ "CLIENTE.IDCLIENTE, "
+					+ "CLIENTE.NOME, "
+					+ "FUNCIONARIO.IDFUNCIONARIO, " 
+					+ "FUNCIONARIO.NOME, "
+					+ "PROCEDIMENTO.IDPROCEDIMENTO, "
+					+ "PROCEDIMENTO.NOME, "
+					+ "PROCEDIMENTO.SALA "
 					+ "FROM AGENDAMENTO " + "JOIN CLIENTE ON AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
 					+ "JOIN FUNCIONARIO ON AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
-					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO ");
-
+					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO "
+					+ "WHERE UPPER(CLIENTE.NOME) LIKE ? ";
+			if (dataSelecionada != null) {
+				sql += " AND DATE(AGENDAMENTO.DATA) = ? ";
+			}
+			stmt = Banco.getPreparedStatement(conexao, sql);
+			if (nomeCliente == null) {
+				nomeCliente = "%%";
+			} else {
+				nomeCliente = "%"+nomeCliente.trim().toUpperCase()+"%";
+			}
+			stmt.setString(1, nomeCliente);
+			if (dataSelecionada != null) {
+				stmt.setDate(2, new java.sql.Date(Date.from(dataSelecionada.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()));
+			}
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Agendamento agendamento = new Agendamento();
 				agendamento.setIdAgendamento(rs.getInt(1));
@@ -128,7 +153,8 @@ public class AgendamentoDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Erro ao inserir Agendamento. Causa: \n: " + e.getMessage());
+			e.printStackTrace();
+			System.out.println("Erro ao listar Agendamento. Causa: \n: " + e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conexao);

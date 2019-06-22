@@ -77,7 +77,7 @@ public class GeradordePlanilha {
 
 	public static void main(String[] args) {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
-		List<Agendamento> agendamentos = agendamentoDAO.listarTodos();
+		List<Agendamento> agendamentos = agendamentoDAO.listarTodos(null, null);
 		new GeradordePlanilha().gerarPlanilha("/home/jhully/teste_agendamentos.xlsx", agendamentos);
 	}
 

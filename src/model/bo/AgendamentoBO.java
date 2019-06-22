@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import model.dao.AgendamentoDAO;
@@ -39,16 +41,16 @@ public class AgendamentoBO {
 		return mensagem;
 	}
 	
-	public List<Agendamento> listarTodos() {
+	public List<Agendamento> listarTodos(String nomeCliente, LocalDate dataSelecionada) {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
-		return agendamentoDAO.listarTodos();
+		return agendamentoDAO.listarTodos(nomeCliente, dataSelecionada);
 	}
 
-	public String gerarRelatorio(String caminhoArquivo) {
+	public String gerarRelatorio(String caminhoArquivo, String nomeCliente, LocalDate dataSelecionada) {
 		if (!caminhoArquivo.toLowerCase().endsWith(".xlsx")) {
 			caminhoArquivo += ".xlsx";
 		}
-		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos());
+		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos(nomeCliente, dataSelecionada));
 		return mensagem;	
 	}
 }

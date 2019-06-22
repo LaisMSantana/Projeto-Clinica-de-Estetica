@@ -6,10 +6,13 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -24,12 +27,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
+import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DateTimePicker;
 
 import controller.AgendamentoControl;
 import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
+import model.vo.Cliente;
 
 public class TelaInicial extends JFrame {
 
@@ -43,6 +49,8 @@ public class TelaInicial extends JFrame {
 	private CadastroProcedimento cadastroP;
 	private JTextField txtDigite;
 	private JTextField txtNomeCliente;
+	private DatePicker dataFiltro;
+	private TabelaAgendamento tabela;
 	private CadastroProcedimento agendaP;
 	private CadastroAgendamento novoAgendamento;
 	private ListagemClientes listagemC;
@@ -110,6 +118,9 @@ public class TelaInicial extends JFrame {
 					cadastroCliente.show();
 				} else if (cadastroCliente != null) {
 					cadastroCliente.setVisible(true);
+					cadastroCliente.show();
+					desktopPane.add(cadastroCliente);
+					desktopPane.moveToFront(cadastroCliente);
 				}
 			}
 		});
@@ -122,6 +133,9 @@ public class TelaInicial extends JFrame {
 					desktopPane.add(listagemC);
 					listagemC.show();
 				} else if (listagemC != null) {
+					listagemC.setVisible(true);
+					desktopPane.add(listagemC);
+					desktopPane.moveToFront(listagemC);
 				}
 			}
 		});
@@ -142,6 +156,8 @@ public class TelaInicial extends JFrame {
 					cadastroFuncionario.show();
 				} else if (cadastroFuncionario != null) {
 					cadastroFuncionario.setVisible(true);
+					desktopPane.add(cadastroFuncionario);
+					desktopPane.moveToFront(cadastroFuncionario);
 				}
 			}
 		});
@@ -156,6 +172,8 @@ public class TelaInicial extends JFrame {
 					listagemFuncionario.show();
 				} else if (listagemFuncionario != null) {
 					listagemFuncionario.setVisible(true);
+					desktopPane.add(listagemFuncionario);
+					desktopPane.moveToFront(listagemFuncionario);
 				}
 			}
 		});
@@ -177,6 +195,8 @@ public class TelaInicial extends JFrame {
 					cadastroP.show();
 				} else if (cadastroP != null) {
 					cadastroP.setVisible(true);
+					desktopPane.add(cadastroP);
+					desktopPane.moveToFront(cadastroP);
 				}
 			}
 		});
@@ -192,6 +212,8 @@ public class TelaInicial extends JFrame {
 					novoAgendamento.show();
 				} else if (novoAgendamento != null) {
 					novoAgendamento.setVisible(true);
+					desktopPane.add(novoAgendamento);
+					desktopPane.moveToFront(novoAgendamento);
 				}
 			}
 		});
@@ -213,7 +235,8 @@ public class TelaInicial extends JFrame {
 				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 					File file = fileChooser.getSelectedFile();
 					String caminhoArquivo = file.getAbsolutePath();
-					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo);
+					LocalDate dataSelecionada = dataFiltro.getDate();
+					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo, txtNomeCliente.getText(), dataSelecionada);
 					JOptionPane.showMessageDialog(null, mensagem);
 				}
 
@@ -233,6 +256,8 @@ public class TelaInicial extends JFrame {
 					telaSobre.show();
 				} else if (telaSobre != null) {
 					telaSobre.setVisible(true);
+					desktopPane.add(telaSobre);
+					desktopPane.moveToFront(telaSobre);
 				}
 			}
 		});
@@ -247,6 +272,8 @@ public class TelaInicial extends JFrame {
 					ajuda.show();
 				} else if (ajuda != null) {
 					ajuda.setVisible(true);
+					desktopPane.add(ajuda);
+					desktopPane.moveToFront(ajuda);
 				}
 			}
 		});
@@ -256,37 +283,25 @@ public class TelaInicial extends JFrame {
 		this.getContentPane().setBounds(10, 20, larguraDaTela - 15, alturaDaTela - 15);
 		this.getContentPane().setLayout(null);
 
-		final DateTimePicker dataTeste = new DateTimePicker();
-		dataTeste.setBounds(250, 47, 300, 25);
-		this.getContentPane().add(dataTeste);
+		dataFiltro = new DatePicker();
+		dataFiltro.setBounds(250, 47, 300, 25);
+		this.getContentPane().add(dataFiltro);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				// Atributos próprios do componente datePicker (date e time)
-				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
-				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
-
-				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
-				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
-
-				// Preenche uma data utilizando os dois campos do componente
-				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
-						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
-						horaSelecionada.getSecond());
+				LocalDate dataSelecionada = dataFiltro.getDate();
+				List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(txtNomeCliente.getText(), dataSelecionada);
+				tabela.atualizarTabela(agendamentos);
 			}
 		});
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 
-		TabelaAgendamento tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
+		tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
 		desktopPane.add(tabela);
-		AgendamentoBO agendamentoBO = new AgendamentoBO();
-		ArrayList<Agendamento> agendamentos = new ArrayList();
-		
-		agendamentos = (ArrayList<Agendamento>) agendamentoBO.listarTodos();
-		tabela.atualizarTabela(agendamentos);
-
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 20);
 		getContentPane().add(txtNomeCliente);
@@ -305,7 +320,8 @@ public class TelaInicial extends JFrame {
 				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 					File file = fileChooser.getSelectedFile();
 					String caminhoArquivo = file.getAbsolutePath();
-					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo);
+					LocalDate dataSelecionada = dataFiltro.getDate();
+					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo, txtNomeCliente.getText(), dataSelecionada);
 					JOptionPane.showMessageDialog(null, mensagem);
 				}
 
@@ -315,5 +331,7 @@ public class TelaInicial extends JFrame {
 		btnGerarPlanilha.setBounds(702, 50, 135, 25);
 		getContentPane().add(btnGerarPlanilha);
 		tabela.show();
+		List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(null, null);
+		tabela.atualizarTabela(agendamentos);
 	}
 }

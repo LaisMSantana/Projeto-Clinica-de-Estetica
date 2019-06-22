@@ -92,8 +92,17 @@ public class ListagemClientes extends JInternalFrame {
 				
 			}
 		});
-		btnExcluir.setBounds(188, 83, 117, 25);
+		btnExcluir.setBounds(298, 83, 117, 25);
 		getContentPane().add(btnExcluir);
+		
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				////fazer o Editar
+			}
+		});
+		btnEditar.setBounds(169, 83, 117, 25);
+		getContentPane().add(btnEditar);
 		
 		ArrayList<Cliente> clientes = clienteBO.listarTodos(txtNome.getText(),formatteCpf.getText());
 		atualizarTabela(clientes);

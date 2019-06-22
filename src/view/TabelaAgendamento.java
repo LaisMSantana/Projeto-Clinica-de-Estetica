@@ -1,10 +1,9 @@
 package view;
 
 
-import java.awt.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
@@ -13,7 +12,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 
 public class TabelaAgendamento extends JInternalFrame {
@@ -53,8 +51,17 @@ public class TabelaAgendamento extends JInternalFrame {
 		table.setBounds(10, 483, 784, 360);
 		scrollPane.setViewportView(table);
 		
-	}public  void atualizarTabela(ArrayList<Agendamento> agendamentos) {
-		DefaultTableModel model = (DefaultTableModel)table.getModel();
+	}
+	
+	public  void atualizarTabela(List<Agendamento> agendamentos) {
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+						"Cliente", "Nome Procedimento", "Data", "Horario", "Sala"
+				}
+				);
+		table.setModel(model);
 		Object novaLinha [] = new Object[5];
 
 		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");

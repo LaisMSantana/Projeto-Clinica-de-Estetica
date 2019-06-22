@@ -90,21 +90,6 @@ public class ListagemFuncionario extends JInternalFrame {
 
 		table.setBounds(0, 117, 554, 201);
 		getContentPane().add(table);
-		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/// fazer o excluir funcionar 
-				int linhaSelecionada = table.getSelectedRow();
-				Integer id = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
-				funcionarioControl.excluir(id);
-				ArrayList<Funcionario> funcionarios = funcionarioBO.listarTodos(txtNome.getText(),txtCargo.getText());
-				atualizarTabela(funcionarios);
-				
-			}
-		});
-		btnExcluir.setBounds(440, 45, 95, 25);
-		getContentPane().add(btnExcluir);
 
 		ArrayList<Funcionario> funcionarios = funcionarioBO.listarTodos(txtNome.getText(),txtCargo.getText());
 		atualizarTabela(funcionarios);

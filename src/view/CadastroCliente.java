@@ -215,7 +215,7 @@ public class CadastroCliente extends JInternalFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			cancelar();	
+				cancelar();	
 			}
 		});
 		btnCancelar.setBounds(230, 270, 90, 25);
@@ -224,7 +224,9 @@ public class CadastroCliente extends JInternalFrame {
 		dataNascimento = new DatePicker();
 		dataNascimento.setBounds(135, 220, 250, 25);
 		this.getContentPane().add(dataNascimento);
-	} private void cancelar() {
-		this.setVisible(false);
+	} 
+	
+	private void cancelar() {
+		this.dispose();
 	}
 }

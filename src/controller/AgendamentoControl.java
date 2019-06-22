@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import model.bo.AgendamentoBO;
@@ -70,13 +72,13 @@ public class AgendamentoControl {
 		return mensagem;
 	}
 
-	public List<Agendamento> listarTodosAgendamentos() {
+	public List<Agendamento> listarTodosAgendamentos(String nomeCliente, LocalDate dataSelecionada) {
 		AgendamentoBO agendamentoBO = new AgendamentoBO();
-		return agendamentoBO.listarTodos();
+		return agendamentoBO.listarTodos(nomeCliente, dataSelecionada);
 	}
 
 
-	public String gerarRelatorio(String caminhoArquivo) {
-		return AgendamentoBO.gerarRelatorio(caminhoArquivo);
+	public String gerarRelatorio(String caminhoArquivo, String nomeCliente, LocalDate dataSelecionada) {
+		return AgendamentoBO.gerarRelatorio(caminhoArquivo, nomeCliente, dataSelecionada);
 	}
 }
