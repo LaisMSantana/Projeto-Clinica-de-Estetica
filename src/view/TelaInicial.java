@@ -295,8 +295,25 @@ public class TelaInicial extends JFrame {
 		JLabel lblNomeDoCliente = new JLabel("Nome Do Cliente:");
 		lblNomeDoCliente.setBounds(20, 30, 122, 15);
 		getContentPane().add(lblNomeDoCliente);
+		
+		JButton btnGerarPlanilha = new JButton("Gerar Planilha");
+		btnGerarPlanilha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel", "xlsx");
+				fileChooser.setFileFilter(filter);
+				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					String caminhoArquivo = file.getAbsolutePath();
+					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo);
+					JOptionPane.showMessageDialog(null, mensagem);
+				}
+
+			}
+		});
+			
+		btnGerarPlanilha.setBounds(702, 50, 135, 25);
+		getContentPane().add(btnGerarPlanilha);
 		tabela.show();
 	}
-
-		
 }
