@@ -4,12 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -59,8 +62,21 @@ public class ListagemClientes extends JInternalFrame {
 		getContentPane().add(btnPesquisar);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new String[][] { { "#", "Cliente", "CPF", "Telefone", "Email" }, },
-				new String[] { "#", "Cliente", "CPF", "Telefone",  "Email" }));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"#", "Cliente", "CPF", "Telefone", "Email"},
+			},
+			new String[] {
+				"#", "Cliente", "CPF", "Telefone", "Email"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, true, true, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		
 		
 		table.setBounds(3, 140, 529, 244);
@@ -99,6 +115,24 @@ public class ListagemClientes extends JInternalFrame {
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				////fazer o Editar
+				int linhaSelecionada = table.getSelectedRow();
+				Integer id  = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
+				String nome = (String)table.getModel().getValueAt(linhaSelecionada, 1);
+				String cpf = (String)table.getModel().getValueAt(linhaSelecionada, 2);
+				String telefone = (String)table.getModel().getValueAt(linhaSelecionada, 3);
+				String email = (String)table.getModel().getValueAt(linhaSelecionada, 4);
+				
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente(id);
+				cliente.setNome(nome);
+				cliente.setCpf(cpf);
+				cliente.setTelefone(telefone);
+				cliente.setEmail(email);
+				
+				String retorno = ClienteControl.salvar(cliente);
+				JOptionPane.showMessageDialog(null, retorno);
+				ArrayList<Cliente> clientes = clienteBO.listarTodos(txtNome.getText(),formatteCpf.getText());
+				atualizarTabela(clientes);
 			}
 		});
 		btnEditar.setBounds(169, 83, 117, 25);

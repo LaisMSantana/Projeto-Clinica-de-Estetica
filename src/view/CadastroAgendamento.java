@@ -78,7 +78,7 @@ public class CadastroAgendamento extends JInternalFrame {
 		getContentPane().add(lblNomeCliente);
 
 		final JComboBox<Funcionario> cbFuncionario = new JComboBox<Funcionario>();
-		cbFuncionario.setBounds(117, 184, 263, 20);
+		cbFuncionario.setBounds(115, 165, 265, 20);
 		getContentPane().add(cbFuncionario);
 
 		JLabel lblProcedimento = new JLabel("Procedimento:");
@@ -86,11 +86,11 @@ public class CadastroAgendamento extends JInternalFrame {
 		getContentPane().add(lblProcedimento);
 
 		final JComboBox<Procedimento> cbProcedimento = new JComboBox<Procedimento>();
-		cbProcedimento.setBounds(117, 95, 263, 20);
+		cbProcedimento.setBounds(115, 95, 265, 20);
 		getContentPane().add(cbProcedimento);
 
 		JLabel lblFuncionrio = new JLabel("Funcion\u00E1rio:");
-		lblFuncionrio.setBounds(14, 186, 104, 17);
+		lblFuncionrio.setBounds(14, 165, 104, 17);
 		getContentPane().add(lblFuncionrio);
 
 		JLabel lblData = new JLabel("Data:");
@@ -102,7 +102,7 @@ public class CadastroAgendamento extends JInternalFrame {
 		this.getContentPane().add(dataTeste);
 
 		final JComboBox<Cliente> cbCliente = new JComboBox<Cliente>();
-		cbCliente.setBounds(122, 125, 258, 24);
+		cbCliente.setBounds(115, 130, 265, 20);
 		getContentPane().add(cbCliente);
 
 		JFormattedTextField formatteCpf = new JFormattedTextField();
