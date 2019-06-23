@@ -80,7 +80,6 @@ public class ClienteDAO {
 	}
 
 	public boolean existeClienteNovo(ClienteDAO clienteDAO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -92,8 +92,26 @@ public class FuncionarioDAO {
 		return sucessoUpdate;
 	}
 
-	public boolean existeFuncionarioNovo(FuncionarioDAO funcionarioDAO) {
-		// TODO Auto-generated method stub
+	public boolean existeFuncionarioNovo(Integer id) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		String query = "SELECT * FROM FUNCIONARIO WHERE IDFUNCIONARIO = " + id;
+		try {
+			resultado = stmt.executeQuery(query);
+			if (resultado.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query que "
+					+ "verifica existência de Funcionario por ID. Erro:"
+					+ e.getMessage());
+			return false;
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
 		return false;
 	}
 

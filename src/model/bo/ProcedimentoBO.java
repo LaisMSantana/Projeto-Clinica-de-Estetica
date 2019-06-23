@@ -23,7 +23,7 @@ public class ProcedimentoBO {
 		String mensagem = "";
 		ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO();
 
-		if (procedimentoDAO.existeProcedimentoNovo(procedimentoDAO) == false) {
+		if (procedimentoDAO.existeProcedimentoNovo(procedimento) == false) {
 			mensagem = "Procedimento inexistente";
 		} else {
 			int statusPersistencia = procedimentoDAO.excluir(procedimento);

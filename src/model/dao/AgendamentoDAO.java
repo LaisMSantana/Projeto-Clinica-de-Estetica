@@ -21,16 +21,15 @@ public class AgendamentoDAO {
 	public boolean atualizar(Agendamento agendamento) {
 		boolean sucessoUpdate = false;
 
-		// ****REVISAR QUERY
-		String sql = " UPDATE AGENDAMENTO agendamento SET NOME=?, CPF=?" + " WHERE FUNCIONARIO.ID = ? ";
+		String sql = " UPDATE AGENDAMENTO agendamento SET IDCLIENTE=?, IDPROCEDIMENTO=?, DATA=?" + " WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
-			// prepStmt.setString(1, agendamento.getData());
-			// prepStmt.setString(2, agendamento.getCliente());
-			// prepStmt.setDouble(3, funcionario.getIdFuncionario());
+			 prepStmt.setInt(1, agendamento.getCliente().getIdCliente());
+			 prepStmt.setInt(2, agendamento.getProcedimento().getIdProcedimento());
+			 prepStmt.setDate(3, new java.sql.Date(agendamento.getData().getTime()));
 
 			int codigoRetorno = prepStmt.executeUpdate();
 
@@ -156,8 +155,26 @@ public class AgendamentoDAO {
 		return agendamentos;
 	}
 
-		public boolean existeAgendamentoNovo(AgendamentoDAO agendamentoDAO) {
-			// TODO Auto-generated method stub
+		public boolean existeAgendamentoNovo(Agendamento agendamento) {
+			Connection conn = Banco.getConnection();
+			Statement stmt = Banco.getStatement(conn);
+			ResultSet resultado = null;
+			String query = "SELECT * FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+			try {
+				resultado = stmt.executeQuery(query);
+				if (resultado.next()){
+					return true;
+				}
+			} catch (SQLException e) {
+				System.out.println("Erro ao executar a Query que "
+						+ "verifica existência de Agendamento por ID. Erro:"
+						+ e.getMessage());
+				return false;
+			} finally {
+				Banco.closeResultSet(resultado);
+				Banco.closeStatement(stmt);
+				Banco.closeConnection(conn);
+			}
 			return false;
 		}
 

@@ -69,8 +69,26 @@ public class ProcedimentoDAO {
 		return sucessoUpdate;
 	}
 
-	public boolean existeProcedimentoNovo(ProcedimentoDAO procedimentoDAO) {
-		// TODO Auto-generated method stub
+	public boolean existeProcedimentoNovo(Procedimento procedimento) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		String query = "SELECT * FROM PROCEDIMENTO WHERE IDPROCEDIMENTO = " + procedimento.getIdProcedimento();
+		try {
+			resultado = stmt.executeQuery(query);
+			if (resultado.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query que "
+					+ "verifica existência de Procedimento por ID. Erro:"
+					+ e.getMessage());
+			return false;
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
 		return false;
 	}
 

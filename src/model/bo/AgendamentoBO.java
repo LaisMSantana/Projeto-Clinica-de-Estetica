@@ -26,7 +26,7 @@ public class AgendamentoBO {
 		String mensagem = "";
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
-		if (!agendamentoDAO.existeAgendamentoNovo(agendamentoDAO)) {
+		if (!agendamentoDAO.existeAgendamentoNovo(agendamento)) {
 			mensagem = "Agendamento inexistente";
 		} else {
 			int statusPersistencia = agendamentoDAO.excluir(agendamento);
