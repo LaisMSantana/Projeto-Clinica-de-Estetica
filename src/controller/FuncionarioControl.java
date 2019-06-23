@@ -63,4 +63,8 @@ public class FuncionarioControl {
 		return funcionarioBO.listarTodos(nome, cargo);
 	}
 
+	public ArrayList<Funcionario> listarTodosFuncionarios() {
+		return null;
+	}
+
 }
