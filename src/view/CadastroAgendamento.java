@@ -5,22 +5,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 import com.github.lgooddatepicker.components.DateTimePicker;
 
-import com.github.lgooddatepicker.components.DateTimePicker;
-import javax.swing.JFormattedTextField;
+import controller.AgendamentoControl;
+import controller.ClienteControl;
+import controller.FuncionarioControl;
+import controller.ProcedimentoControl;
+import model.vo.Agendamento;
+import model.vo.Cliente;
+import model.vo.Funcionario;
+import model.vo.Procedimento;
 
 public class CadastroAgendamento extends JInternalFrame {
-	private JTextField txtNomeCliente;
+	
+	private Agendamento agendamento;
+	private AgendamentoControl agendamentoControl = new AgendamentoControl();
+	private ProcedimentoControl procedimentoControl = new ProcedimentoControl();
+	private ClienteControl clienteControl = new ClienteControl();
+	private FuncionarioControl funcionarioControl = new FuncionarioControl();
+	private JComboBox cbProcedimento;
+	
 
 	/**
 	 * Launch the application.
@@ -46,29 +63,7 @@ public class CadastroAgendamento extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 500, 440);
 		getContentPane().setLayout(null);
-		
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
-				
-				
-			//	 Atributos próprios do componente datePicker (date e time)
-				DateTimePicker dataTeste = null;
-				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
-				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
 
-				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
-				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
-
-				// Preenche uma data utilizando os dois campos do componente
-				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
-						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
-						horaSelecionada.getSecond());
-			}
-		});
-		btnSalvar.setBounds(90, 290, 120, 25);
-		getContentPane().add(btnSalvar);
-		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,90 +72,126 @@ public class CadastroAgendamento extends JInternalFrame {
 		});
 		btnCancelar.setBounds(260, 290, 120, 25);
 		getContentPane().add(btnCancelar);
-		
+
 		JLabel lblNomeCliente = new JLabel("Cliente:");
-		lblNomeCliente.setBounds(36, 130, 50, 15);
+		lblNomeCliente.setBounds(36, 130, 68, 15);
 		getContentPane().add(lblNomeCliente);
-		
-		JLabel lblSala = new JLabel("Sala:");
-		lblSala.setBounds(47, 219, 32, 15);
-		getContentPane().add(lblSala);
-		
-		JComboBox cbSala = new JComboBox();
-		cbSala.setBounds(79, 216, 75, 20);
-		getContentPane().add(cbSala);
-		
-		//JLabel lblHorrio = new JLabel("Horário:");
-		//lblHorrio.setBounds(191, 33, 46, 14);
-		//getContentPane().add(lblHorrio);
-		
-		//JComboBox cbHorario = new JComboBox();
-		//cbHorario.setBounds(240, 30, 75, 20);
-		//getContentPane().add(cbHorario);
-		
-		txtNomeCliente = new JTextField();
-		txtNomeCliente.setColumns(10);
-		txtNomeCliente.setBounds(79, 127, 230, 20);
-		getContentPane().add(txtNomeCliente);
-		
-		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(47, 159, 45, 14);
-		getContentPane().add(lblCpf);
-		
-		JComboBox cbFuncionario = new JComboBox();
-		cbFuncionario.setBounds(79, 186, 190, 20);
+
+		final JComboBox<Funcionario> cbFuncionario = new JComboBox<Funcionario>();
+		cbFuncionario.setBounds(117, 184, 263, 20);
 		getContentPane().add(cbFuncionario);
-		
+
 		JLabel lblProcedimento = new JLabel("Procedimento:");
 		lblProcedimento.setBounds(4, 98, 114, 14);
 		getContentPane().add(lblProcedimento);
-		
-		JComboBox cbProcedimento = new JComboBox();
-		cbProcedimento.setBounds(79, 95, 190, 20);
+
+		final JComboBox<Procedimento> cbProcedimento = new JComboBox<Procedimento>();
+		cbProcedimento.setBounds(117, 95, 263, 20);
 		getContentPane().add(cbProcedimento);
-		
+
 		JLabel lblFuncionrio = new JLabel("Funcion\u00E1rio:");
-		lblFuncionrio.setBounds(14, 186, 194, 15);
+		lblFuncionrio.setBounds(14, 186, 104, 17);
 		getContentPane().add(lblFuncionrio);
-		
+
 		JLabel lblData = new JLabel("Data:");
 		lblData.setBounds(45, 50, 45, 15);
 		getContentPane().add(lblData);
-		
+
 		final DateTimePicker dataTeste = new DateTimePicker();
 		dataTeste.setBounds(80, 50, 300, 25);
 		this.getContentPane().add(dataTeste);
-		
+
+		final JComboBox<Cliente> cbCliente = new JComboBox<Cliente>();
+		cbCliente.setBounds(122, 125, 258, 24);
+		getContentPane().add(cbCliente);
+
 		JFormattedTextField formatteCpf = new JFormattedTextField();
-		try{
-	           javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
-	           formatteCpf = new javax.swing.JFormattedTextField(format_textField4);
-	        }catch (Exception e){
-	        	
-	        }
-		formatteCpf.setBounds(79, 156, 190, 20);
-		getContentPane().add(formatteCpf);
+		try {
+			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("###.###.###-##");
+		} catch (Exception e) {
 
-		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Atributos próprios do componente datePicker (date e time);
-				LocalDate dataSelecionada = dataTeste.getDatePicker().getDate();
-				LocalTime horaSelecionada = dataTeste.getTimePicker().getTime();
+		}
 
-				JOptionPane.showMessageDialog(null, "Data selecionada: " + dataSelecionada.toString());
-				JOptionPane.showMessageDialog(null, "Horário selecionado: " + horaSelecionada.toString());
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
 
-				// Preenche uma data utilizando os dois campos do componente
-				Date dataCompleta = new Date(dataSelecionada.getYear(), dataSelecionada.getMonthValue(),
-						dataSelecionada.getDayOfMonth(), horaSelecionada.getHour(), horaSelecionada.getMinute(),
-						horaSelecionada.getSecond());
+			public void actionPerformed(ActionEvent e) {
+				agendamento = new Agendamento();
+				LocalDate data = dataTeste.getDatePicker().getDate();
+				LocalTime hora = dataTeste.getTimePicker().getTime();
+				
+				if (data != null && hora != null) {
+					Date dataAgendamento = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					dataAgendamento.setHours(hora.getHour());
+					dataAgendamento.setMinutes(hora.getMinute());
+					agendamento.setData(dataAgendamento);
+				}
+				agendamento.setCliente((Cliente) cbCliente.getSelectedItem());
+				agendamento.setFuncionario((Funcionario) cbFuncionario.getSelectedItem());
+				agendamento.setProcedimento((Procedimento) cbProcedimento.getSelectedItem());
+				String retorno = agendamentoControl.salvar(agendamento);
+				JOptionPane.showMessageDialog(null, retorno);
 			}
 		});
-		btnPesquisar.setBounds(191, 33, 46, 14);
-
+		btnSalvar.setBounds(90, 290, 120, 25);
+		getContentPane().add(btnSalvar);
+		
+		this.addInternalFrameListener(new InternalFrameListener() {
+			
+			public void internalFrameOpened(InternalFrameEvent e) {
+				preencheComboCliente(cbCliente);
+				preencheComboFuncionario(cbFuncionario);
+				preencheComboProcedimento(cbProcedimento);
+			}
+			
+			public void internalFrameIconified(InternalFrameEvent e) {
+			}
+			
+			public void internalFrameDeiconified(InternalFrameEvent e) {
+			}
+			
+			public void internalFrameDeactivated(InternalFrameEvent e) {
+			}
+			
+			public void internalFrameClosing(InternalFrameEvent e) {
+			}
+			
+			public void internalFrameClosed(InternalFrameEvent e) {
+			}
+			
+			public void internalFrameActivated(InternalFrameEvent e) {
+				preencheComboCliente(cbCliente);
+				preencheComboFuncionario(cbFuncionario);
+				preencheComboProcedimento(cbProcedimento);
+			}
+		});
+		
 	}
-	
+
+	private void preencheComboCliente(final JComboBox<Cliente> cbCliente) {
+		cbCliente.removeAllItems();
+		ArrayList<Cliente> clientes = clienteControl.listarTodos();
+		for (Cliente cliente : clientes) {
+			cbCliente.addItem(cliente);
+		}
+	}
+
+	private void preencheComboProcedimento(final JComboBox<Procedimento> cbProcedimento) {
+		cbProcedimento.removeAllItems();
+		ArrayList<Procedimento> procedimentos = procedimentoControl.listarTodosProcedimentos();
+		for (Procedimento procedimento : procedimentos) {
+			cbProcedimento.addItem(procedimento);
+		}
+	}
+
+	private void preencheComboFuncionario(final JComboBox<Funcionario> cbFuncionario) {
+		cbFuncionario.removeAllItems();
+		ArrayList<Funcionario> funcionarios = funcionarioControl.listarTodos();
+		for (Funcionario funcionario : funcionarios) {
+			cbFuncionario.addItem(funcionario);
+		}
+	}
+
 	private void cancelar() {
 		this.setVisible(false);
 	}

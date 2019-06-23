@@ -21,4 +21,8 @@ public class Cliente extends Pessoa {
 		this.idCliente = idCliente;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

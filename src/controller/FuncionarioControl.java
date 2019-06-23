@@ -9,20 +9,20 @@ public class FuncionarioControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
-	private static final FuncionarioBO FuncionarioBO = new FuncionarioBO();
+	private static final FuncionarioBO funcionarioBO = new FuncionarioBO();
 
 	public static String salvar(Funcionario funcionario) {
 		String validacao = validarFuncionario(funcionario);
 
 		if (validacao == "") {
 			if (funcionario.getIdFuncionario() > 0) {
-				if (FuncionarioBO.atualizar(funcionario)) {
+				if (funcionarioBO.atualizar(funcionario)) {
 					validacao = "Funcionário atualizado com sucesso!";
 				} else {
 					validacao = "Erro ao atualizar funcionário";
 				}
 			} else {
-				if (FuncionarioBO.salvar(funcionario)) {
+				if (funcionarioBO.salvar(funcionario)) {
 					validacao = "Funcionário salvo com sucesso!";
 				} else {
 					validacao = "Erro ao salvar Funcionário";
@@ -53,6 +53,14 @@ public class FuncionarioControl {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
 		funcionarioBO.excluir(id);
 
+	}
+	
+	public ArrayList<Funcionario> listarTodos() {
+		return funcionarioBO.listarTodos(null, null);
+	}
+	
+	public ArrayList<Funcionario> listarTodos(String nome, String cargo) {
+		return funcionarioBO.listarTodos(nome, cargo);
 	}
 
 }

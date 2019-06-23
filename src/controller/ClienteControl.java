@@ -1,14 +1,11 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.bo.ClienteBO;
 import model.vo.Cliente;
 
 public class ClienteControl {
-	private String nome;
-	private String cpf;
-	private String telefone;
-
-
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
 	private static final ClienteBO clienteBO = new ClienteBO();
@@ -56,6 +53,14 @@ public class ClienteControl {
 	public void excluir(Integer id) {
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.excluir(id);
+	}
+	
+	public ArrayList<Cliente> listarTodos() {
+		return clienteBO.listarTodos(null, null);
+	}
+	
+	public ArrayList<Cliente> listarTodos(String nome, String cpf) {
+		return clienteBO.listarTodos(nome, cpf);
 	}
 
 }

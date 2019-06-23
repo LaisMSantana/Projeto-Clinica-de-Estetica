@@ -13,7 +13,7 @@ public class FuncionarioBO {
 		boolean sucesso = funcionarioDAO.atualizar(funcionario);
 		return sucesso;
 	}
-	
+
 	public boolean salvar(Funcionario funcionario) {
 		int idGerado = funcionarioDAO.salvar(funcionario);
 		return idGerado > 0;
@@ -26,6 +26,5 @@ public class FuncionarioBO {
 	public ArrayList<Funcionario> listarTodos(String nome, String cargo) {
 		return funcionarioDAO.listarTodos(nome, cargo);
 	}
-	
-	}
 
+}

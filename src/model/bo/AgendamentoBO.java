@@ -1,7 +1,6 @@
 package model.bo;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import model.dao.AgendamentoDAO;
@@ -22,7 +21,7 @@ public class AgendamentoBO {
 		int idGerado = agendamentoDAO.salvar(agendamento);
 		return idGerado > 0;
 	}
-
+		
 	public String excluir(Agendamento agendamento) {
 		String mensagem = "";
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();

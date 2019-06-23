@@ -41,4 +41,11 @@ public class Procedimento {
 		this.sala = sala;
 	}
 
+	@Override
+	public String toString() {
+		return nome + "(Sala:" + sala + ")";
+	}
+	
+	
+
 }

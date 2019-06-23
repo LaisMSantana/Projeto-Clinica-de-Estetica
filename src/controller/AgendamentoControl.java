@@ -1,7 +1,6 @@
 package controller;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import model.bo.AgendamentoBO;
@@ -11,20 +10,20 @@ public class AgendamentoControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
-	private static final AgendamentoBO AgendamentoBO = new AgendamentoBO(); 
+	private AgendamentoBO agendamentoBO = new AgendamentoBO(); 
 
-	public static String salvar(Agendamento agendamento) {
+	public String salvar(Agendamento agendamento) {
 		String validacao = validarAgendamento(agendamento);
 
 		if (validacao == "") {
 			if (agendamento.getIdAgendamento() > 0) {
-				if (AgendamentoBO.atualizar(agendamento)) {
+				if (agendamentoBO.atualizar(agendamento)) {
 					validacao = "Agendamento atualizado com sucesso!";
 				} else {
 					validacao = "Erro ao atualizar agendamento";
 				}
 			} else {
-				if (AgendamentoBO.salvar(agendamento)) {
+				if (agendamentoBO.salvar(agendamento)) {
 					validacao = "Agendamento salvo com sucesso!";
 				} else {
 					validacao = "Erro ao salvar Agendamento";
@@ -34,7 +33,7 @@ public class AgendamentoControl {
 		return validacao;
 	}
 
-	private static String validarAgendamento(Agendamento agendamento) {
+	private String validarAgendamento(Agendamento agendamento) {
 		String validacao = "";
 
 		if (agendamento == null) {
@@ -43,31 +42,25 @@ public class AgendamentoControl {
 			if (agendamento.getData() == null) {
 				validacao += "- Data é obrigatório \n";
 			}
-			if (agendamento.getProcedimento().getNome().trim().equals("") || agendamento.getProcedimento().getNome() == null) {
+			if (agendamento.getProcedimento() == null) {
 				validacao += "- O Nome do Procedimento é obrigatório \n";
 			}
-			if (agendamento.getFuncionario().getNome().trim().equals("") || agendamento.getFuncionario().getNome() == null) {
+			if (agendamento.getFuncionario() == null) {
 				validacao += "- O Nome do Funcionário é obrigatório \n";
 			}
-			if (agendamento.getCliente().getNome().trim().equals("") || agendamento.getCliente().getNome() == null) {
+			if (agendamento.getCliente() == null) {
 				validacao += "- O Nome do Cliente é obrigatório \n";
-			}
-			if (agendamento.getCliente().getCpf().trim().equals("") || agendamento.getCliente().getCpf() == null) {
-				validacao += "- O Cpf é obrigatório \n";
-			}
-			if (agendamento.getProcedimento().getSala().trim().equals("") || agendamento.getProcedimento().getSala() == null) {
-				validacao += "- A Sala é obrigatória \n";
 			}
 		}	
 		return validacao;
 	}
 
-	private static String excluirAgendamento(Agendamento agendamento) {
+	private String excluirAgendamento(Agendamento agendamento) {
 		String mensagem = "";
 		if (agendamento == null) {
 			mensagem = "Selecione um agendamento";
 		} else {
-			mensagem = AgendamentoBO.excluir(agendamento);
+			mensagem = agendamentoBO.excluir(agendamento);
 		} 
 		return mensagem;
 	}
@@ -79,6 +72,6 @@ public class AgendamentoControl {
 
 
 	public String gerarRelatorio(String caminhoArquivo, String nomeCliente, LocalDate dataSelecionada) {
-		return AgendamentoBO.gerarRelatorio(caminhoArquivo, nomeCliente, dataSelecionada);
+		return agendamentoBO.gerarRelatorio(caminhoArquivo, nomeCliente, dataSelecionada);
 	}
 }

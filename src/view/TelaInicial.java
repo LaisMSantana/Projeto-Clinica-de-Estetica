@@ -36,6 +36,9 @@ import controller.AgendamentoControl;
 import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 import model.vo.Cliente;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.Font;
 
 public class TelaInicial extends JFrame {
 
@@ -83,6 +86,9 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
+		setBackground(Color.PINK);
 		// consulta o tamanho do monitor do usuário
 		 Dimension dimension = this.getToolkit().getScreenSize();
 		 // final int larguraDaTela = (int) dimension.getWidth();
@@ -93,22 +99,24 @@ public class TelaInicial extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(new Color(204, 153, 204));
+		desktopPane.setBackground(Color.PINK);
 		desktopPane.setSize(larguraDaTela - 10, alturaDaTela - 10);
 		desktopPane.setLocation(20, 90);
 		this.getContentPane().add(desktopPane);
 
-		this.setTitle("Vendas");
+		this.setTitle("Clinica Est\u00E9tica");
 		this.getContentPane().setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, larguraDaTela, 20);
+		menuBar.setBounds(0, 0, 1000, 35);
 		this.getContentPane().add(menuBar);
 
 		JMenu mnNewMenu = new JMenu("Cliente");
+		mnNewMenu.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar Novo");
+		mntmNewMenuItem.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-adicionar-grupo-de-usu\u00E1rios-mulher-homem-50.png"));
 		mnNewMenu.add(mntmNewMenuItem);
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,6 +134,7 @@ public class TelaInicial extends JFrame {
 		});
 
 		JMenuItem mntmListagem = new JMenuItem("Listar Clientes");
+		mntmListagem.setIcon(new ImageIcon("/home/jhully/git/projetoClinica-Estetica2/src/main/java/icones/icons8-documento-regular.png"));
 		mntmListagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (listagemC == null) {
@@ -141,13 +150,12 @@ public class TelaInicial extends JFrame {
 		});
 		mnNewMenu.add(mntmListagem);
 
-		JMenuItem mntmRelatrio = new JMenuItem("Relatorio");
-		mnNewMenu.add(mntmRelatrio);
-
 		JMenu mnFuncionario = new JMenu("Funcionario");
+		mnFuncionario.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
 		menuBar.add(mnFuncionario);
 
 		JMenuItem mntmCadastrarNovo = new JMenuItem("Cadastrar Novo");
+		mntmCadastrarNovo.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-trabalhador-50.png"));
 		mntmCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cadastroFuncionario == null) {
@@ -164,6 +172,7 @@ public class TelaInicial extends JFrame {
 		mnFuncionario.add(mntmCadastrarNovo);
 
 		JMenuItem mntmListarFuncionarios = new JMenuItem("Listar Funcionários");
+		mntmListarFuncionarios.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-documento-regular.png"));
 		mntmListarFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (listagemFuncionario == null) {
@@ -179,13 +188,12 @@ public class TelaInicial extends JFrame {
 		});
 		mnFuncionario.add(mntmListarFuncionarios);
 
-		JMenuItem mntmRelatorio = new JMenuItem("Relatório");
-		mnFuncionario.add(mntmRelatorio);
-
 		JMenu mnProcedimentos = new JMenu("Procedimentos");
+		mnProcedimentos.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
 		menuBar.add(mnProcedimentos);
 
 		JMenuItem mntmAgendarProcedimento = new JMenuItem("Cadastrar  Procedimento");
+		mntmAgendarProcedimento.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-barris-de-madeira-30.png"));
 		mntmAgendarProcedimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -204,6 +212,7 @@ public class TelaInicial extends JFrame {
 		mnProcedimentos.add(mntmAgendarProcedimento);
 
 		JMenuItem mntmAgendarProcedimento_1 = new JMenuItem("Novo Agendamento");
+		mntmAgendarProcedimento_1.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-adicionar-a-lista-50.png"));
 		mntmAgendarProcedimento_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (novoAgendamento == null) {
@@ -220,34 +229,12 @@ public class TelaInicial extends JFrame {
 
 		mnProcedimentos.add(mntmAgendarProcedimento_1);
 
-		JMenuItem mntmRelatrios = new JMenuItem("Relatório");
-		mnProcedimentos.add(mntmRelatrios);
-
-		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
-		menuBar.add(mnRelatrios);
-
-		JMenuItem mntmAgendamentos = new JMenuItem("Agendamentos");
-		mntmAgendamentos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel", "xlsx");
-				fileChooser.setFileFilter(filter);
-				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-					File file = fileChooser.getSelectedFile();
-					String caminhoArquivo = file.getAbsolutePath();
-					LocalDate dataSelecionada = dataFiltro.getDate();
-					String mensagem = agendamentoControl.gerarRelatorio(caminhoArquivo, txtNomeCliente.getText(), dataSelecionada);
-					JOptionPane.showMessageDialog(null, mensagem);
-				}
-
-			}
-		});
-		mnRelatrios.add(mntmAgendamentos);
-
 		JMenu mnAjuda = new JMenu("Ajuda?");
+		mnAjuda.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
 		menuBar.add(mnAjuda);
 
 		JMenuItem mntmSobreOPrograma = new JMenuItem("Sobre o Programa");
+		mntmSobreOPrograma.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-confian\u00E7a.png"));
 		mntmSobreOPrograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (telaSobre == null) {
@@ -264,6 +251,7 @@ public class TelaInicial extends JFrame {
 		mnAjuda.add(mntmSobreOPrograma);
 
 		JMenuItem mntmAjuda = new JMenuItem("Ajuda");
+		mntmAjuda.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-por-que-n\u00F3s-feminino-50.png"));
 		mntmAjuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (ajuda == null) {
@@ -279,12 +267,12 @@ public class TelaInicial extends JFrame {
 		});
 		mnAjuda.add(mntmAjuda);
 
-		this.getContentPane().setBackground(new Color(221, 160, 221));
+		this.getContentPane().setBackground(Color.PINK);
 		this.getContentPane().setBounds(10, 20, larguraDaTela - 15, alturaDaTela - 15);
 		this.getContentPane().setLayout(null);
 
 		dataFiltro = new DatePicker();
-		dataFiltro.setBounds(250, 47, 300, 25);
+		dataFiltro.setBounds(250, 50, 300, 30);
 		this.getContentPane().add(dataFiltro);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -303,12 +291,12 @@ public class TelaInicial extends JFrame {
 		tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
 		desktopPane.add(tabela);
 		txtNomeCliente = new JTextField();
-		txtNomeCliente.setBounds(20, 50, 220, 20);
+		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);
 		txtNomeCliente.setColumns(10);
 
 		JLabel lblNomeDoCliente = new JLabel("Nome Do Cliente:");
-		lblNomeDoCliente.setBounds(20, 30, 122, 15);
+		lblNomeDoCliente.setBounds(37, 36, 122, 15);
 		getContentPane().add(lblNomeDoCliente);
 		
 		JButton btnGerarPlanilha = new JButton("Gerar Planilha");

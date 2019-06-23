@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +57,7 @@ public class AgendamentoDAO {
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
-			prepStmt.setDate(1, new java.sql.Date(agendamento.getData().getTime()));
+			prepStmt.setTimestamp(1, new java.sql.Timestamp(agendamento.getData().getTime()));
 			prepStmt.setInt(2, agendamento.getProcedimento().getIdProcedimento());
 			prepStmt.setInt(3, agendamento.getCliente().getIdCliente());
 			prepStmt.setInt(4, agendamento.getFuncionario().getIdFuncionario());
@@ -75,11 +74,6 @@ public class AgendamentoDAO {
 			Banco.closeConnection(conexao);
 		}
 		return novoId;
-	}
-
-	public boolean existeAgendamentoNovo(AgendamentoDAO agendamentoDAO) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public int excluir(Agendamento agendamento) {
@@ -161,5 +155,10 @@ public class AgendamentoDAO {
 		}
 		return agendamentos;
 	}
+
+		public boolean existeAgendamentoNovo(AgendamentoDAO agendamentoDAO) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
 }

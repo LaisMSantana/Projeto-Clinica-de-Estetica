@@ -58,7 +58,7 @@ public class TabelaAgendamento extends JInternalFrame {
 				new Object[][] {
 				},
 				new String[] {
-						"Cliente", "Nome Procedimento", "Data", "Horario", "Sala"
+						"Cliente", " Procedimento", "Data", "Horario", "Sala"
 				}
 				);
 		table.setModel(model);

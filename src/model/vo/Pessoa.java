@@ -124,4 +124,10 @@ public class Pessoa {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
+	@Override
+	public String toString() {
+		return nome + " (" + cpf + ")";
+	}
+
+	
 }
