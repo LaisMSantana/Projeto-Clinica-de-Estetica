@@ -55,4 +55,8 @@ public class FuncionarioControl {
 
 	}
 
+	public ArrayList<Funcionario> listarTodosFuncionarios() {
+		return null;
+	}
+
 }
