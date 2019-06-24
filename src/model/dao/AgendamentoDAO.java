@@ -75,12 +75,12 @@ public class AgendamentoDAO {
 		return novoId;
 	}
 
-	public int excluir(Agendamento agendamento) {
+	public int excluir(Integer idAgendamento) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
 
-		String query = "DELETE FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+		String query = "DELETE FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + idAgendamento;
 		try {
 			resultado = stmt.executeUpdate(query);
 		} catch (SQLException e) {
@@ -155,11 +155,11 @@ public class AgendamentoDAO {
 		return agendamentos;
 	}
 
-		public boolean existeAgendamentoNovo(Agendamento agendamento) {
+		public boolean existeAgendamentoNovo(Integer idAgendamento) {
 			Connection conn = Banco.getConnection();
 			Statement stmt = Banco.getStatement(conn);
 			ResultSet resultado = null;
-			String query = "SELECT * FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+			String query = "SELECT * FROM AGENDAMENTO WHERE IDAGENDAMENTO = " + idAgendamento;
 			try {
 				resultado = stmt.executeQuery(query);
 				if (resultado.next()){

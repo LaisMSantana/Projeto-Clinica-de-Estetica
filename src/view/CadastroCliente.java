@@ -52,7 +52,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(40, 10, 45, 15);
+		lblNome.setBounds(30, 10, 55, 15);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
@@ -60,8 +60,8 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
-		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
-		lblEndereco.setBounds(25, 50, 60, 15);
+		JLabel lblEndereco = new JLabel("Rua:");
+		lblEndereco.setBounds(30, 50, 55, 15);
 		getContentPane().add(lblEndereco);
 		
 		txtEndereco = new JTextField();
@@ -70,7 +70,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEndereco.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro :");
-		lblBairro.setBounds(40, 85, 45, 15);
+		lblBairro.setBounds(12, 85, 73, 15);
 		getContentPane().add(lblBairro);
 		
 		txtBairro = new JTextField();
@@ -79,7 +79,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtBairro.setColumns(10);
 		
 		JLabel lblCep = new JLabel("CEP :");
-		lblCep.setBounds(305, 85, 30, 15);
+		lblCep.setBounds(290, 85, 45, 15);
 		getContentPane().add(lblCep);
 		
 		formattedCep = new JFormattedTextField();
@@ -92,7 +92,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(formattedCep);
 		
 		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
-		lblMunicpio.setBounds(25, 125, 55, 15);
+		lblMunicpio.setBounds(0, 125, 80, 15);
 		getContentPane().add(lblMunicpio);
 		
 		txtMunicipio = new JTextField();
@@ -101,7 +101,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtMunicipio.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado :");
-		lblEstado.setBounds(290, 125, 45, 15);
+		lblEstado.setBounds(275, 125, 60, 15);
 		getContentPane().add(lblEstado);
 		
 		txtEstado = new JTextField();
@@ -110,7 +110,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEstado.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone :");
-		lblTelefone.setBounds(25, 160, 55, 15);
+		lblTelefone.setBounds(12, 160, 73, 15);
 		getContentPane().add(lblTelefone);
 		
 
@@ -120,12 +120,12 @@ public class CadastroCliente extends JInternalFrame {
 	           formattedFone = new javax.swing.JFormattedTextField(format_textField4);
 	        }catch (Exception e){
 	        }
-		formattedFone.setBounds(80, 155, 180, 20);
+		formattedFone.setBounds(80, 158, 180, 20);
 		getContentPane().add(formattedFone);
 		
 		
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(45, 190, 45, 15);
+		lblEmail.setBounds(25, 190, 60, 15);
 		getContentPane().add(lblEmail);
 		
 		txtEmail = new JTextField();
@@ -134,7 +134,7 @@ public class CadastroCliente extends JInternalFrame {
 		txtEmail.setColumns(10);
 		
 		JLabel lblCelular = new JLabel("Celular :");
-		lblCelular.setBounds(290, 160, 45, 15);
+		lblCelular.setBounds(275, 160, 60, 15);
 		getContentPane().add(lblCelular);
 		
 		formattedCelular = new JFormattedTextField();
@@ -147,7 +147,7 @@ public class CadastroCliente extends JInternalFrame {
 		getContentPane().add(formattedCelular);
 	
 		JLabel lblCpf = new JLabel("CPF :");
-		lblCpf.setBounds(305, 190, 30, 15);
+		lblCpf.setBounds(275, 190, 60, 15);
 		getContentPane().add(lblCpf);
 		
 		formattedCPf = new JFormattedTextField();
@@ -159,8 +159,8 @@ public class CadastroCliente extends JInternalFrame {
 		formattedCPf.setBounds(335, 190, 90, 20);
 		getContentPane().add(formattedCPf);
 		
-		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(25, 225, 160, 15);
+		JLabel lblDataDeNascimento = new JLabel("Nascimento :");
+		lblDataDeNascimento.setBounds(25, 224, 106, 15);
 		getContentPane().add(lblDataDeNascimento);
 		final MaskFormatter formatter = new MaskFormatter();
 		try {

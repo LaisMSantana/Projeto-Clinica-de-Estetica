@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class CadastroFuncionario extends JInternalFrame {
 	private JTextField txtNome;
@@ -69,7 +71,7 @@ public class CadastroFuncionario extends JInternalFrame {
 	public CadastroFuncionario() {
 		setClosable(true);
 		setTitle("Cadastro de Funcionários");
-		setBounds(100, 100, 465, 482);
+		setBounds(100, 100, 516, 482);
 		getContentPane().setLayout(null);
 
 		JLabel lblNome = new JLabel("Nome :");
@@ -81,7 +83,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 
-		JLabel lblEndereco = new JLabel("Endere\u00E7o :");
+		JLabel lblEndereco = new JLabel("Endereço :");
 		lblEndereco.setBounds(5, 50, 85, 16);
 		getContentPane().add(lblEndereco);
 
@@ -103,7 +105,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		lblCep.setBounds(250, 80, 50, 16);
 		getContentPane().add(lblCep);
 
-		JLabel lblMunicpio = new JLabel("Munic\u00EDpio :");
+		JLabel lblMunicpio = new JLabel("Municipio :");
 		lblMunicpio.setBounds(8, 110, 78, 16);
 		getContentPane().add(lblMunicpio);
 
@@ -117,7 +119,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(lblEstado);
 
 		txtEstado = new JTextField();
-		txtEstado.setBounds(301, 110, 85, 20);
+		txtEstado.setBounds(301, 110, 39, 20);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
 
@@ -143,26 +145,26 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(lblCpf);
 
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento :");
-		lblDataDeNascimento.setBounds(10, 200, 106, 16);
+		lblDataDeNascimento.setBounds(12, 199, 170, 16);
 		getContentPane().add(lblDataDeNascimento);
 
 
 		lblRg = new JLabel("RG :");
-		lblRg.setBounds(255, 200, 39, 14);
+		lblRg.setBounds(10, 291, 39, 16);
 		getContentPane().add(lblRg);
 
 		lblCargo = new JLabel("Cargo :");
-		lblCargo.setBounds(10, 250, 62, 22);
+		lblCargo.setBounds(12, 257, 62, 22);
 		getContentPane().add(lblCargo);
 
 		final JComboBox cbCargo = new JComboBox();
-		cbCargo.setBounds(60, 270, 150, 20);
+		cbCargo.setBounds(88, 260, 132, 20);
 		getContentPane().add(cbCargo);
 		cbCargo.addItem("Esteticista");
 		cbCargo.addItem("Fisioterapeuta");
 		cbCargo.addItem("Consultora");		
 		lblFuncao = new JLabel("Fun\u00E7\u00E3o :");
-		lblFuncao.setBounds(288, 321, 68, 16);
+		lblFuncao.setBounds(240, 260, 68, 16);
 		getContentPane().add(lblFuncao);
 
 		lblDataAdmissao = new JLabel("Data de Admissão :");
@@ -170,12 +172,12 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(lblDataAdmissao);
 
 		lblEscolaridade = new JLabel("Escolaridade :");
-		lblEscolaridade.setBounds(10, 300, 113, 16);
+		lblEscolaridade.setBounds(10, 317, 113, 16);
 		getContentPane().add(lblEscolaridade);
 
 		txtEscolaridade = new JTextField();
 		txtEscolaridade.setColumns(10);
-		txtEscolaridade.setBounds(60, 320, 150, 20);
+		txtEscolaridade.setBounds(116, 316, 150, 20);
 		getContentPane().add(txtEscolaridade);
 
 		JButton btnSalvar = new JButton("Salvar");
@@ -257,14 +259,17 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(formattedCep);
 
 		dataNascimento = new DatePicker();
-		dataNascimento.setBounds(60, 220, 170, 20);
+		dataNascimento.getComponentToggleCalendarButton().setVerticalAlignment(SwingConstants.BOTTOM);
+		dataNascimento.getComponentToggleCalendarButton().setBackground(Color.WHITE);
+		dataNascimento.getComponentDateTextField().setBackground(Color.WHITE);
+		dataNascimento.setBounds(20, 220, 250, 25);
 		this.getContentPane().add(dataNascimento);
 
 		dataAdmissao = new DatePicker();
-		dataAdmissao.setBounds(60, 370, 170, 20);
+		dataAdmissao.setBounds(20, 370, 210, 25);
 		this.getContentPane().add(dataAdmissao);
-
 		formattedCelular = new JFormattedTextField();
+		
 		try{
 			javax.swing.text.MaskFormatter format_textField4 = new javax.swing.text.MaskFormatter("(##)#####-####");
 			formattedCelular = new javax.swing.JFormattedTextField(format_textField4);
@@ -279,7 +284,7 @@ public class CadastroFuncionario extends JInternalFrame {
 			formattedRg = new javax.swing.JFormattedTextField(format_textField4);
 		}catch (Exception e){
 		}
-		formattedRg.setBounds(301, 200, 109, 20);
+		formattedRg.setBounds(48, 290, 109, 20);
 		getContentPane().add(formattedRg);
 
 		formattedFone = new JFormattedTextField();
@@ -292,7 +297,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		getContentPane().add(formattedFone);
 
 		JComboBox cbFuncao1 = new JComboBox();
-		cbFuncao1.setBounds(250, 348, 190, 20);
+		cbFuncao1.setBounds(301, 288, 190, 20);
 		getContentPane().add(cbFuncao1);
 		cbFuncao1.addItem("Selecione uma opcao");
 		cbFuncao1.addItem("Massagem");
@@ -302,7 +307,7 @@ public class CadastroFuncionario extends JInternalFrame {
 		cbFuncao1.addItem("Venda");
 
 		JComboBox cbFuncao2 = new JComboBox();
-		cbFuncao2.setBounds(250, 378, 190, 20);
+		cbFuncao2.setBounds(301, 320, 190, 20);
 		getContentPane().add(cbFuncao2);
 		cbFuncao2.addItem("Selecione uma opcao");
 		cbFuncao2.addItem("Massagem");
@@ -314,7 +319,7 @@ public class CadastroFuncionario extends JInternalFrame {
 
 
 		JComboBox cbFuncao3 = new JComboBox();
-		cbFuncao3.setBounds(250, 413, 190, 20);
+		cbFuncao3.setBounds(301, 260, 190, 20);
 		getContentPane().add(cbFuncao3);
 		cbFuncao3.addItem("Selecione uma opcao");
 		cbFuncao3.addItem("Massagem");

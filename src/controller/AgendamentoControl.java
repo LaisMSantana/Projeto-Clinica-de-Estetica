@@ -55,12 +55,12 @@ public class AgendamentoControl {
 		return validacao;
 	}
 
-	private String excluirAgendamento(Agendamento agendamento) {
+	public String excluirAgendamento(Integer idAgendamento) {
 		String mensagem = "";
-		if (agendamento == null) {
+		if (idAgendamento == null) {
 			mensagem = "Selecione um agendamento";
 		} else {
-			mensagem = agendamentoBO.excluir(agendamento);
+			mensagem = agendamentoBO.excluir( idAgendamento);
 		} 
 		return mensagem;
 	}

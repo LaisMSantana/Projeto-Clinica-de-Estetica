@@ -43,12 +43,12 @@ public class ListagemClientes extends JInternalFrame {
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(60, 10, 360, 20);
+		txtNome.setBounds(73, 10, 347, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblCPFCNPJ = new JLabel("CPF:");
-		lblCPFCNPJ.setBounds(30, 40, 56, 16);
+		lblCPFCNPJ.setBounds(30, 40, 31, 16);
 		getContentPane().add(lblCPFCNPJ);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -93,13 +93,13 @@ public class ListagemClientes extends JInternalFrame {
 	        }catch (Exception e){
 	        	
 	        }
-		formatteCpf.setBounds(60, 40, 80, 20);
+		formatteCpf.setBounds(73, 40, 94, 20);
 		getContentPane().add(formatteCpf);
 		
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// fazer o excluir funcionar 
+				 
 				int linhaSelecionada = table.getSelectedRow();
 				Integer id = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
 				clienteControl.excluir(id);
@@ -111,10 +111,10 @@ public class ListagemClientes extends JInternalFrame {
 		btnExcluir.setBounds(298, 83, 117, 25);
 		getContentPane().add(btnExcluir);
 		
-		JButton btnEditar = new JButton("Editar");
+		JButton btnEditar = new JButton("Atualizar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				////fazer o Editar
+				
 				int linhaSelecionada = table.getSelectedRow();
 				Integer id  = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
 				String nome = (String)table.getModel().getValueAt(linhaSelecionada, 1);

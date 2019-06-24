@@ -94,7 +94,7 @@ public class CadastroAgendamento extends JInternalFrame {
 		getContentPane().add(lblFuncionrio);
 
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(45, 50, 45, 15);
+		lblData.setBounds(36, 54, 45, 15);
 		getContentPane().add(lblData);
 
 		final DateTimePicker dataTeste = new DateTimePicker();

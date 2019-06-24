@@ -22,14 +22,14 @@ public class AgendamentoBO {
 		return idGerado > 0;
 	}
 		
-	public String excluir(Agendamento agendamento) {
+	public String excluir(Integer idAgendamento) {
 		String mensagem = "";
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
-		if (!agendamentoDAO.existeAgendamentoNovo(agendamento)) {
+		if (!agendamentoDAO.existeAgendamentoNovo(idAgendamento)) {
 			mensagem = "Agendamento inexistente";
 		} else {
-			int statusPersistencia = agendamentoDAO.excluir(agendamento);
+			int statusPersistencia = agendamentoDAO.excluir(idAgendamento);
 
 			if (statusPersistencia == 1) {
 				mensagem = "Agendamento excluido com sucesso";

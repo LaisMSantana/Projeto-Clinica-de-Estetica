@@ -3,17 +3,21 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
@@ -27,23 +31,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
 
 import com.github.lgooddatepicker.components.DatePicker;
-import com.github.lgooddatepicker.components.DateTimePicker;
 
 import controller.AgendamentoControl;
 import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 import model.vo.Cliente;
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
-import java.awt.Font;
 
 public class TelaInicial extends JFrame {
 
 	private JDesktopPane desktopPane;
-	private JTable table;
 	private Ajuda ajuda;
 	private CadastroFuncionario cadastroFuncionario;
 	private CadastroCliente cadastroCliente;
@@ -59,7 +57,10 @@ public class TelaInicial extends JFrame {
 	private ListagemClientes listagemC;
 	private AgendamentoControl agendamentoControl = new AgendamentoControl();
 	private model.vo.Agendamento agendamento;
-
+	private BufferedImage img;
+	private AbstractButton ttxtNomeCliente;
+	private Object dataSelecionada;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -86,29 +87,47 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		Dimension dimension = this.getToolkit().getScreenSize();
+		 final int larguraDaTela = (int) dimension.getWidth();
+		  final int alturaDaTela = (int) dimension.getHeight();
+		 try {
+            img = ImageIO.read(new URL("http://celiaprado.com.br/wp-content/uploads/2018/04/estetica-corporal.jpg"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		desktopPane = new JDesktopPane() {
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+                super.paintComponent(grphcs);
+                grphcs.drawImage(img, 0, 0, null);
+            }
+
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(larguraDaTela, alturaDaTela);
+            }
+        };
+		 
 		setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
-		setBackground(Color.PINK);
+//		setBackground(Color.PINK);
 		// consulta o tamanho do monitor do usuário
-		 Dimension dimension = this.getToolkit().getScreenSize();
-		 // final int larguraDaTela = (int) dimension.getWidth();
-		 //final int alturaDaTela = (int) dimension.getHeight();
-		final int larguraDaTela = 1000;
-		final int alturaDaTela = 1000;
+		 
+		 //final int larguraDaTela = 1500;
+		 //final int alturaDaTela = 1500;
 		setAutoRequestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Color.PINK);
+//		desktopPane.setBackground(Color.PINK);
 		desktopPane.setSize(larguraDaTela - 10, alturaDaTela - 10);
 		desktopPane.setLocation(20, 90);
 		this.getContentPane().add(desktopPane);
 
-		this.setTitle("Clinica Est\u00E9tica");
+		this.setTitle("Clinica Estética");
 		this.getContentPane().setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1000, 35);
+		menuBar.setBounds(0, 0, 2000, 35);
 		this.getContentPane().add(menuBar);
 
 		JMenu mnNewMenu = new JMenu("Cliente");
@@ -150,7 +169,7 @@ public class TelaInicial extends JFrame {
 		});
 		mnNewMenu.add(mntmListagem);
 
-		JMenu mnFuncionario = new JMenu("Funcionario");
+		JMenu mnFuncionario = new JMenu("Funcionário");
 		mnFuncionario.setIcon(new ImageIcon("/home/jhully/\u00C1rea de Trabalho/icones/icons8-flor-de-spa-30.png"));
 		menuBar.add(mnFuncionario);
 
@@ -288,8 +307,24 @@ public class TelaInicial extends JFrame {
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 
-		tabela = new TabelaAgendamento(larguraDaTela / 2, alturaDaTela - 15);
+		tabela = new TabelaAgendamento(larguraDaTela / 4, alturaDaTela - 50);
 		desktopPane.add(tabela);
+		
+		JButton btnExcluirAgendamento = new JButton("Excluir");
+		btnExcluirAgendamento.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+				Integer idAgendamento = tabela.getIdSelecionado();
+				agendamentoControl.excluirAgendamento(idAgendamento);
+				LocalDate dataSelecionada = dataFiltro.getDate();
+				List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(txtNomeCliente.getText(), dataSelecionada);
+				tabela.atualizarTabela(agendamentos);
+				
+			}
+		});
+		btnExcluirAgendamento.setBounds(559, 22, 80, 28);
+		tabela.getContentPane().add(btnExcluirAgendamento);
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);

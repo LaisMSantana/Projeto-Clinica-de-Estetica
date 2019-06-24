@@ -53,21 +53,21 @@ public class ListagemFuncionario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setBounds(15, 15, 40, 15);
+		lblNome.setBounds(15, 15, 51, 15);
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(60, 10, 360, 20);
+		txtNome.setBounds(70, 10, 350, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		
 		JLabel lblCargo = new JLabel("Cargo :");
-		lblCargo.setBounds(15, 50, 40, 15);
+		lblCargo.setBounds(15, 50, 51, 15);
 		getContentPane().add(lblCargo);
 		
 		txtCargo = new JTextField();
-		txtCargo.setBounds(60, 45, 360, 20);
+		txtCargo.setBounds(70, 45, 350, 20);
 		getContentPane().add(txtCargo);
 		txtCargo.setColumns(10);
 		
@@ -79,7 +79,7 @@ public class ListagemFuncionario extends JInternalFrame {
 			}
 			
 		});
-		btnPesquisar.setBounds(440, 10, 95, 25);
+		btnPesquisar.setBounds(440, 10, 114, 25);
 		getContentPane().add(btnPesquisar);
 		
 		//Lista de funcionários na Tabela

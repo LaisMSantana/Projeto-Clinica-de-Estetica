@@ -14,7 +14,7 @@ public class ClienteDAO {
 		boolean sucessoUpdate = false;
 
 		// ****REVISAR QUERY
-		String sql = " UPDATE CLIENTE cliente SET NOME=?, CPF=?, TELEFONE=?, EMAIL=?" + " WHERE CLIENTE.ID = ? ";
+		String sql = " UPDATE CLIENTE SET NOME=?, CPF=?, TELEFONE=?, EMAIL=?" + " WHERE IDCLIENTE = ? ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
