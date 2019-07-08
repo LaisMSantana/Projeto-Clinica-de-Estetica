@@ -10,23 +10,27 @@ public class AgendamentoControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
-	private AgendamentoBO agendamentoBO = new AgendamentoBO(); 
+	private AgendamentoBO agendamentoBO = new AgendamentoBO();
 
 	public String salvar(Agendamento agendamento) {
 		String validacao = validarAgendamento(agendamento);
 
 		if (validacao == "") {
-			if (agendamento.getIdAgendamento() > 0) {
-				if (agendamentoBO.atualizar(agendamento)) {
-					validacao = "Agendamento atualizado com sucesso!";
+			// verificar a parte da data
+			validacao += agendamentoBO.filtrosAgendamento(agendamento);
+			if (validacao == "") {
+				if (agendamento.getIdAgendamento() > 0) {
+					if (agendamentoBO.atualizar(agendamento)) {
+						validacao = "Agendamento atualizado com sucesso!";
+					} else {
+						validacao = "Erro ao atualizar agendamento";
+					}
 				} else {
-					validacao = "Erro ao atualizar agendamento";
-				}
-			} else {
-				if (agendamentoBO.salvar(agendamento)) {
-					validacao = "Agendamento salvo com sucesso!";
-				} else {
-					validacao = "Erro ao salvar Agendamento";
+					if (agendamentoBO.salvar(agendamento)) {
+						validacao = "Agendamento salvo com sucesso!";
+					} else {
+						validacao = "Erro ao salvar Agendamento";
+					}
 				}
 			}
 		}
@@ -51,7 +55,7 @@ public class AgendamentoControl {
 			if (agendamento.getCliente() == null) {
 				validacao += "- O Nome do Cliente é obrigatório \n";
 			}
-		}	
+		}
 		return validacao;
 	}
 
@@ -60,8 +64,8 @@ public class AgendamentoControl {
 		if (idAgendamento == null) {
 			mensagem = "Selecione um agendamento";
 		} else {
-			mensagem = agendamentoBO.excluir( idAgendamento);
-		} 
+			mensagem = agendamentoBO.excluir(idAgendamento);
+		}
 		return mensagem;
 	}
 
@@ -69,7 +73,6 @@ public class AgendamentoControl {
 		AgendamentoBO agendamentoBO = new AgendamentoBO();
 		return agendamentoBO.listarTodos(nomeCliente, dataSelecionada);
 	}
-
 
 	public String gerarRelatorio(String caminhoArquivo, String nomeCliente, LocalDate dataSelecionada) {
 		return agendamentoBO.gerarRelatorio(caminhoArquivo, nomeCliente, dataSelecionada);

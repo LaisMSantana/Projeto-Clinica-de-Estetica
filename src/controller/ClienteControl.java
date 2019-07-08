@@ -14,17 +14,20 @@ public class ClienteControl {
 		String validacao = validarCliente(cliente);
 
 		if (validacao == "") {
-			if (cliente.getIdCliente() > 0) {
-				if (clienteBO.atualizar(cliente)) {
-					validacao = "Cliente atualizado com sucesso!";
+			validacao += clienteBO.filtroCliente(cliente);
+			if (validacao == "") {
+				if (cliente.getIdCliente() > 0) {
+					if (clienteBO.atualizar(cliente)) {
+						validacao = "Cliente atualizado com sucesso!";
+					} else {
+						validacao = "Erro ao atualizar Cliente";
+					}
 				} else {
-					validacao = "Erro ao atualizar Cliente";
-				}
-			} else {
-				if (clienteBO.salvar(cliente)) {
-					validacao = "Cliente salvo com sucesso!";
-				} else {
-					validacao = "Erro ao salvar Cliente";
+					if (clienteBO.salvar(cliente)) {
+						validacao = "Cliente salvo com sucesso!";
+					} else {
+						validacao = "Erro ao salvar Cliente";
+					}
 				}
 			}
 		}
@@ -37,7 +40,6 @@ public class ClienteControl {
 		if (cliente == null) {
 			validacao = "Cliente está NULO!";
 		} else {
-			// Validar o preenchimento
 			if (cliente.getNome().trim().equals("")) {
 				validacao += "- Nome é obrigatório \n";
 			}
@@ -48,17 +50,15 @@ public class ClienteControl {
 		return validacao;
 	}
 
-
-
 	public void excluir(Integer id) {
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.excluir(id);
 	}
-	
+
 	public ArrayList<Cliente> listarTodos() {
 		return clienteBO.listarTodos(null, null);
 	}
-	
+
 	public ArrayList<Cliente> listarTodos(String nome, String cpf) {
 		return clienteBO.listarTodos(nome, cpf);
 	}

@@ -1,5 +1,6 @@
 package model.bo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -51,5 +52,10 @@ public class AgendamentoBO {
 		}
 		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos(nomeCliente, dataSelecionada));
 		return mensagem;	
+	}
+
+	public String filtrosAgendamento(Agendamento agendamento) {
+		//Verificar se a data está sendo cadastrada em um horario que já passou ou dia que já passou
+		return "";
 	}
 }

@@ -307,7 +307,7 @@ public class TelaInicial extends JFrame {
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 
-		tabela = new TabelaAgendamento(larguraDaTela / 4, alturaDaTela - 50);
+		tabela = new TabelaAgendamento(655, alturaDaTela - 50);
 		desktopPane.add(tabela);
 		
 		JButton btnExcluirAgendamento = new JButton("Excluir");

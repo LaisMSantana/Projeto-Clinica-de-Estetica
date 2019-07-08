@@ -111,8 +111,12 @@ public class AgendamentoDAO {
 					+ "JOIN FUNCIONARIO ON AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
 					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO "
 					+ "WHERE UPPER(CLIENTE.NOME) LIKE ? ";
+			
 			if (dataSelecionada != null) {
-				sql += " AND DATE(AGENDAMENTO.DATA) = ? ";
+				sql += " AND DATE(AGENDAMENTO.DATA) = ? "
+						+ "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC";
+			} else {
+				sql += "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC ";
 			}
 			stmt = Banco.getPreparedStatement(conexao, sql);
 			if (nomeCliente == null) {

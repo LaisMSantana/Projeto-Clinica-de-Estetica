@@ -13,7 +13,7 @@ public class Banco {
 	private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCO
 			+ "?useTimezone=true&serverTimezone=UTC";
 	private static final String USUARIO = "root";
-	private static final String SENHA = "admin";
+	private static final String SENHA = "";
 
 	public static Connection getConnection() {
 		try {
