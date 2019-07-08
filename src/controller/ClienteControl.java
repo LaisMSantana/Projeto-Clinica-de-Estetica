@@ -14,7 +14,7 @@ public class ClienteControl {
 		String validacao = validarCliente(cliente);
 
 		if (validacao == "") {
-			validacao += clienteBO.filtroCliente(cliente);
+			validacao = clienteBO.filtroCliente(cliente);
 			if (validacao == "") {
 				if (cliente.getIdCliente() > 0) {
 					if (clienteBO.atualizar(cliente)) {

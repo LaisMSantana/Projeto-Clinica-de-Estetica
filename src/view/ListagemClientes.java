@@ -108,7 +108,7 @@ public class ListagemClientes extends JInternalFrame {
 				
 			}
 		});
-		btnExcluir.setBounds(298, 83, 117, 25);
+		btnExcluir.setBounds(362, 83, 117, 25);
 		getContentPane().add(btnExcluir);
 		
 		JButton btnEditar = new JButton("Atualizar");
@@ -135,8 +135,28 @@ public class ListagemClientes extends JInternalFrame {
 				atualizarTabela(clientes);
 			}
 		});
-		btnEditar.setBounds(169, 83, 117, 25);
+		btnEditar.setBounds(190, 83, 117, 25);
 		getContentPane().add(btnEditar);
+		
+		JButton btnAtualizarInformacao = new JButton("...");
+		btnAtualizarInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String atualizar = "Clique duas vezes em cima do campo desejado, atualize a informação e clique em atualizar";
+				JOptionPane.showMessageDialog(null, atualizar);
+			}
+		});
+		btnAtualizarInformacao.setBounds(312, 84, 23, 23);
+		getContentPane().add(btnAtualizarInformacao);
+		
+		JButton btnExcluirInformacao = new JButton("...");
+		btnExcluirInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String excluir = "Clique em cima do cliente desejado na tabela e clique em excluir";
+				JOptionPane.showMessageDialog(null, excluir);
+			}
+		});
+		btnExcluirInformacao.setBounds(484, 84, 23, 23);
+		getContentPane().add(btnExcluirInformacao);
 		
 		ArrayList<Cliente> clientes = clienteBO.listarTodos(txtNome.getText(),formatteCpf.getText());
 		atualizarTabela(clientes);

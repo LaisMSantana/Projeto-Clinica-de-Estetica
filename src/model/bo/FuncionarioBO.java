@@ -27,4 +27,31 @@ public class FuncionarioBO {
 		return funcionarioDAO.listarTodos(nome, cargo);
 	}
 
+	public String filtroFuncionario(Funcionario funcionario) {
+		String mensagem = "";
+		
+		if(funcionario.getNome().length() < 3) {
+			mensagem = "Nome incorreto! Mínimo 3 caracteres";
+		} else if(funcionario.getEndereco().length() < 3) {
+			mensagem = "Rua incorreta! Mínimo 3 caracteres";
+		}else if(funcionario.getBairro().length() < 3) {
+			mensagem = "Bairro incorreto! Mínimo 3 caracteres";
+		}else if(funcionario.getMunicipio().length() < 3) {
+			mensagem = "Município incorreto! Mínimo 3 caracteres";
+		}else if(funcionario.getEstado().length() < 2) {
+			mensagem = "Estado incorreto! Mínimo 2 caracteres";
+		}else if((!emailCorreto(funcionario.getEmail())) || funcionario.getEmail().length() < 5) {
+			mensagem = "Email incorreto!";
+		}
+		return mensagem;
+}
+
+	private boolean emailCorreto(String emailInformado) {
+		boolean emailCorreto = false;
+		String[] partes = emailInformado.split("@");
+		if(partes.length == 2) {
+			emailCorreto = true;
+		}
+		return emailCorreto;
+	}
 }

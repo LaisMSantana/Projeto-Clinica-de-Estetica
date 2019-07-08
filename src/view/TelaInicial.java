@@ -38,6 +38,8 @@ import controller.AgendamentoControl;
 import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
 import model.vo.Cliente;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaInicial extends JFrame {
 
@@ -307,7 +309,7 @@ public class TelaInicial extends JFrame {
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 
-		tabela = new TabelaAgendamento(655, alturaDaTela - 50);
+		tabela = new TabelaAgendamento(680, alturaDaTela - 50);
 		desktopPane.add(tabela);
 		
 		JButton btnExcluirAgendamento = new JButton("Excluir");
@@ -325,6 +327,17 @@ public class TelaInicial extends JFrame {
 		});
 		btnExcluirAgendamento.setBounds(559, 22, 80, 28);
 		tabela.getContentPane().add(btnExcluirAgendamento);
+		
+		JButton btnExcluirInformacao = new JButton("...");
+		btnExcluirInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String excluir = "Clique em cima do cliente desejado na tabela e clique em excluir";
+				JOptionPane.showMessageDialog(null, excluir);
+			}
+		});
+		
+		btnExcluirInformacao.setBounds(640, 25, 20, 20);
+		tabela.getContentPane().add(btnExcluirInformacao);
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);

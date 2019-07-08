@@ -6,10 +6,10 @@ import model.dao.ProcedimentoDAO;
 import model.vo.Procedimento;
 
 public class ProcedimentoBO {
-	
+
 	private ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO();
 
-	public  boolean salvar(Procedimento procedimento) {
+	public boolean salvar(Procedimento procedimento) {
 		int idGerado = procedimentoDAO.salvar(procedimento);
 		return idGerado > 0;
 	}
@@ -40,5 +40,16 @@ public class ProcedimentoBO {
 	public ArrayList<Procedimento> listarTodos() {
 		ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO();
 		return procedimentoDAO.listarTodos();
+	}
+
+	public String filtroProcedimento(Procedimento procedimento) {
+		String mensagem = "";
+
+		if (procedimento.getNome().length() < 3) {
+			mensagem = "Nome incorreto! Mínimo 3 caracteres";
+		} else if (procedimento.getSala().length() < 2) {
+			mensagem = "Sala incorreta! Mínimo 2 caracteres";
+		}
+		return mensagem;
 	}
 }

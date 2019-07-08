@@ -17,7 +17,7 @@ public class AgendamentoControl {
 
 		if (validacao == "") {
 			// verificar a parte da data
-			validacao += agendamentoBO.filtrosAgendamento(agendamento);
+			validacao = agendamentoBO.filtrosAgendamento(agendamento);
 			if (validacao == "") {
 				if (agendamento.getIdAgendamento() > 0) {
 					if (agendamentoBO.atualizar(agendamento)) {

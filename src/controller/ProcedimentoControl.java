@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.util.ArrayList;
 
 import model.bo.ProcedimentoBO;
@@ -10,23 +9,26 @@ public class ProcedimentoControl {
 
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
-	private static final ProcedimentoBO ProcedimentoBO = new ProcedimentoBO();
+	private static final ProcedimentoBO procedimentoBO = new ProcedimentoBO();
 
 	public static String salvar(Procedimento procedimento) {
 		String validacao = validarProcedimento(procedimento);
-		
+
 		if (validacao == "") {
-			if (procedimento.getIdProcedimento() > 0) {
-				if (ProcedimentoBO.atualizar(procedimento)) {
-					validacao = "Procedimento atualizado com sucesso!";
+			validacao = procedimentoBO.filtroProcedimento(procedimento);
+			if (validacao == "") {
+				if (procedimento.getIdProcedimento() > 0) {
+					if (procedimentoBO.atualizar(procedimento)) {
+						validacao = "Procedimento atualizado com sucesso!";
+					} else {
+						validacao = "Erro ao atualizar Procedimento";
+					}
 				} else {
-					validacao = "Erro ao atualizar Procedimento";
-				}
-			} else {
-				if (ProcedimentoBO.salvar(procedimento)) {
-					validacao = "Procedimento salvo com sucesso!";
-				} else {
-					validacao = "Erro ao salvar Procedimento";
+					if (procedimentoBO.salvar(procedimento)) {
+						validacao = "Procedimento salvo com sucesso!";
+					} else {
+						validacao = "Erro ao salvar Procedimento";
+					}
 				}
 			}
 		}
@@ -49,7 +51,7 @@ public class ProcedimentoControl {
 		}
 		return validacao;
 	}
-	
+
 	public String excluir(Procedimento procedimento, String nome, String sala) {
 		String mensagem = "";
 
@@ -60,17 +62,17 @@ public class ProcedimentoControl {
 			mensagem = "Preenche a sala";
 		}
 		if (mensagem.isEmpty()) {
-				
+
 			Procedimento procedimentoExcluir = new Procedimento();
 			procedimentoExcluir.setNome(nome);
 			procedimentoExcluir.setSala(sala);
-			
+
 			ProcedimentoBO procedimentoBO = new ProcedimentoBO();
 			procedimentoBO.excluir(procedimentoExcluir);
 		}
 		return mensagem;
 	}
-	
+
 	public ArrayList<Procedimento> listarTodosProcedimentos() {
 		ProcedimentoBO procedimentoBO = new ProcedimentoBO();
 		return procedimentoBO.listarTodos();

@@ -6,7 +6,6 @@ import model.bo.FuncionarioBO;
 import model.vo.Funcionario;
 
 public class FuncionarioControl {
-
 	// Verificar se os campos são nulos ou vazios senao chamar BO
 
 	private static final FuncionarioBO funcionarioBO = new FuncionarioBO();
@@ -15,17 +14,20 @@ public class FuncionarioControl {
 		String validacao = validarFuncionario(funcionario);
 
 		if (validacao == "") {
-			if (funcionario.getIdFuncionario() > 0) {
-				if (funcionarioBO.atualizar(funcionario)) {
-					validacao = "Funcionário atualizado com sucesso!";
+			validacao = funcionarioBO.filtroFuncionario(funcionario);
+			if (validacao == "") {
+				if (funcionario.getIdFuncionario() > 0) {
+					if (funcionarioBO.atualizar(funcionario)) {
+						validacao = "Funcionário atualizado com sucesso!";
+					} else {
+						validacao = "Erro ao atualizar funcionário";
+					}
 				} else {
-					validacao = "Erro ao atualizar funcionário";
-				}
-			} else {
-				if (funcionarioBO.salvar(funcionario)) {
-					validacao = "Funcionário salvo com sucesso!";
-				} else {
-					validacao = "Erro ao salvar Funcionário";
+					if (funcionarioBO.salvar(funcionario)) {
+						validacao = "Funcionário salvo com sucesso!";
+					} else {
+						validacao = "Erro ao salvar Funcionário";
+					}
 				}
 			}
 		}
@@ -54,14 +56,13 @@ public class FuncionarioControl {
 		funcionarioBO.excluir(id);
 
 	}
-	
+
 	public ArrayList<Funcionario> listarTodos() {
 		return funcionarioBO.listarTodos(null, null);
 	}
-	
+
 	public ArrayList<Funcionario> listarTodos(String nome, String cargo) {
 		return funcionarioBO.listarTodos(nome, cargo);
 	}
-
 
 }
