@@ -21,7 +21,7 @@ public class AgendamentoDAO {
 	public boolean atualizar(Agendamento agendamento) {
 		boolean sucessoUpdate = false;
 
-		String sql = " UPDATE AGENDAMENTO agendamento SET IDCLIENTE=?, IDPROCEDIMENTO=?, DATA=?" + " WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+		String sql = " UPDATE AGENDAMENTO agendamento SET IDCLIENTE=?, IDPROCEDIMENTO=?, DATA=? , STATUS=?" + " WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
@@ -30,6 +30,7 @@ public class AgendamentoDAO {
 			 prepStmt.setInt(1, agendamento.getCliente().getIdCliente());
 			 prepStmt.setInt(2, agendamento.getProcedimento().getIdProcedimento());
 			 prepStmt.setDate(3, new java.sql.Date(agendamento.getData().getTime()));
+			 prepStmt.setString(4, agendamento.getStatus());
 
 			int codigoRetorno = prepStmt.executeUpdate();
 
@@ -116,7 +117,8 @@ public class AgendamentoDAO {
 				sql += " AND DATE(AGENDAMENTO.DATA) = ? "
 						+ "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC";
 			} else {
-				sql += "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC ";
+				sql += " AND AGENDAMENTO.DATA >= NOW()  "
+						+ "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC ";
 			}
 			stmt = Banco.getPreparedStatement(conexao, sql);
 			if (nomeCliente == null) {
@@ -128,6 +130,7 @@ public class AgendamentoDAO {
 			if (dataSelecionada != null) {
 				stmt.setDate(2, new java.sql.Date(Date.from(dataSelecionada.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()));
 			}
+			
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Agendamento agendamento = new Agendamento();

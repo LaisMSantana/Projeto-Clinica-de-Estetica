@@ -15,9 +15,6 @@ public class AgendamentoControl {
 	public String salvar(Agendamento agendamento) {
 		String validacao = validarAgendamento(agendamento);
 
-		if (validacao == "") {
-			// verificar a parte da data
-			validacao = agendamentoBO.filtrosAgendamento(agendamento);
 			if (validacao == "") {
 				if (agendamento.getIdAgendamento() > 0) {
 					if (agendamentoBO.atualizar(agendamento)) {
@@ -33,7 +30,6 @@ public class AgendamentoControl {
 					}
 				}
 			}
-		}
 		return validacao;
 	}
 

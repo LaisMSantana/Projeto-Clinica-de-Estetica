@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -10,7 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -309,7 +314,7 @@ public class TelaInicial extends JFrame {
 		btnPesquisar.setBounds(560, 50, 130, 25);
 		this.getContentPane().add(btnPesquisar);
 
-		tabela = new TabelaAgendamento(680, alturaDaTela - 50);
+		tabela = new TabelaAgendamento(685, alturaDaTela - 50);
 		desktopPane.add(tabela);
 		
 		JButton btnExcluirAgendamento = new JButton("Excluir");
@@ -325,19 +330,73 @@ public class TelaInicial extends JFrame {
 				
 			}
 		});
-		btnExcluirAgendamento.setBounds(559, 22, 80, 28);
+		btnExcluirAgendamento.setBounds(559, 22, 85, 28);
 		tabela.getContentPane().add(btnExcluirAgendamento);
 		
-		JButton btnExcluirInformacao = new JButton("...");
+		JButton btnExcluirInformacao = new JButton("?");
 		btnExcluirInformacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String excluir = "Clique em cima do cliente desejado na tabela e clique em excluir";
+				String excluir = "Clique em cima do cliente desejado na tabela e clique em excluir.";
 				JOptionPane.showMessageDialog(null, excluir);
 			}
 		});
 		
-		btnExcluirInformacao.setBounds(640, 25, 20, 20);
+		btnExcluirInformacao.setBounds(649, 26, 20, 20);
 		tabela.getContentPane().add(btnExcluirInformacao);
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			agendamentoControl.salvar(tabela.getLinhaSelecionada());
+			LocalDate dataSelecionada = dataFiltro.getDate();
+			List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(txtNomeCliente.getText(), dataSelecionada);
+			tabela.atualizarTabela(agendamentos);	
+			}
+		});
+		btnAtualizar.setBounds(559, 56, 85, 28);
+		tabela.getContentPane().add(btnAtualizar);
+		
+		JButton btnAtualizarInformacao = new JButton("?");
+		btnAtualizarInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String atualizar = "Clique em cima do cliente desejado na tabela, insira a informação autalizada e clique em atualizar.";
+				JOptionPane.showMessageDialog(null, atualizar);
+			}
+		});
+		btnAtualizarInformacao.setBounds(649, 60, 20, 20);
+		tabela.getContentPane().add(btnAtualizarInformacao);
+		
+		JButton btnWhats = new JButton("");
+		btnWhats.setBackground(Color.PINK);
+		btnWhats.setForeground(Color.PINK);
+		btnWhats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				try {
+					URI uri = new URI("https://api.whatsapp.com/send?phone="
+				+ tabela.getLinhaSelecionada().getCliente().getCelular() +"&text=Ol%C3%A1!%20Você%20tem%20horario%20agendado%20na%20nossa%20clinica%20na%20data%20de%20hoje%20as%20"
+					+ tabela.getLinhaSelecionada().getData().getTime()	+ ".%20Podemos%20confirmar%20o%20seu%20atendimento?");
+					Desktop.getDesktop().browse(uri);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				} catch (URISyntaxException ex) {
+					ex.printStackTrace();
+				}
+			}
+
+		});
+		btnWhats.setIcon(new ImageIcon(TelaInicial.class.getResource("/main/java/icones/icons8-whatsapp-48.png")));
+		btnWhats.setBounds(575, 90, 50, 45);
+		tabela.getContentPane().add(btnWhats);
+		
+		JButton btnWhatsInformacao = new JButton("?");
+		btnWhatsInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String atualizar = "Clique em cima do cliente desejado na tabela e clique no icone do whats para enviar mensagem de confirmação do agendamento.";
+				JOptionPane.showMessageDialog(null, atualizar);
+			}
+		});
+		btnWhatsInformacao.setBounds(635, 102, 20, 20);
+		tabela.getContentPane().add(btnWhatsInformacao);
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);

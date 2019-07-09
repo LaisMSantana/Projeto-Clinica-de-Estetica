@@ -54,8 +54,4 @@ public class AgendamentoBO {
 		return mensagem;	
 	}
 
-	public String filtrosAgendamento(Agendamento agendamento) {
-		//Verificar se a data está sendo cadastrada em um horario que já passou ou dia que já passou
-		return "";
-	}
 }
