@@ -13,7 +13,6 @@ public class ClienteDAO {
 	public boolean atualizar(Cliente cliente) {
 		boolean sucessoUpdate = false;
 
-		// ****REVISAR QUERY
 		String sql = " UPDATE CLIENTE SET NOME=?, CPF=?, TELEFONE=?, EMAIL=?" + " WHERE IDCLIENTE = ? ";
 
 		Connection conexao = Banco.getConnection();

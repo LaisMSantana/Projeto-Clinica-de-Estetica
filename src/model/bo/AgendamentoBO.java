@@ -9,7 +9,7 @@ import model.util.GeradordePlanilha;
 import model.vo.Agendamento;
 
 public class AgendamentoBO {
-	
+
 	private GeradordePlanilha geradorPlanilha = new GeradordePlanilha();
 	private AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
@@ -22,7 +22,7 @@ public class AgendamentoBO {
 		int idGerado = agendamentoDAO.salvar(agendamento);
 		return idGerado > 0;
 	}
-		
+
 	public String excluir(Integer idAgendamento) {
 		String mensagem = "";
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
@@ -40,7 +40,7 @@ public class AgendamentoBO {
 		}
 		return mensagem;
 	}
-	
+
 	public List<Agendamento> listarTodos(String nomeCliente, LocalDate dataSelecionada) {
 		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 		return agendamentoDAO.listarTodos(nomeCliente, dataSelecionada);
@@ -50,8 +50,26 @@ public class AgendamentoBO {
 		if (!caminhoArquivo.toLowerCase().endsWith(".xlsx")) {
 			caminhoArquivo += ".xlsx";
 		}
-		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo, agendamentoDAO.listarTodos(nomeCliente, dataSelecionada));
-		return mensagem;	
+		String mensagem = geradorPlanilha.gerarPlanilha(caminhoArquivo,
+				agendamentoDAO.listarTodos(nomeCliente, dataSelecionada));
+		return mensagem;
+	}
+
+	public String filtroStatus(String status) {
+		String mensagem = "";
+
+		if (!status.equals("compareceu")) {
+			mensagem = "Erro ao inserir Status, digite novamente.";
+		} else if (!status.equals("faltou")) {
+			mensagem = "Erro ao inserir Status, digite novamente.";
+		} else if (!status.equals("cancelado")) {
+			mensagem = "Erro ao inserir Status, digite novamente.";
+		} else if (!status.equals("atrasado")) {
+			mensagem = "Erro ao inserir Status, digite novamente.";
+		} else if (!status.equals("remarcado")) {
+			mensagem = "Erro ao inserir Status, digite novamente.";
+		}
+		return mensagem;
 	}
 
 }

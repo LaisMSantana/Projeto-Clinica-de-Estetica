@@ -15,21 +15,22 @@ public class AgendamentoControl {
 	public String salvar(Agendamento agendamento) {
 		String validacao = validarAgendamento(agendamento);
 
-			if (validacao == "") {
-				if (agendamento.getIdAgendamento() > 0) {
-					if (agendamentoBO.atualizar(agendamento)) {
-						validacao = "Agendamento atualizado com sucesso!";
-					} else {
-						validacao = "Erro ao atualizar agendamento";
-					}
+		if (validacao == "") {
+			if (agendamento.getIdAgendamento() > 0) {
+				validacao = agendamentoBO.filtroStatus(agendamento.getStatus());
+				if (agendamentoBO.atualizar(agendamento)) {
+					validacao = "Agendamento atualizado com sucesso!";
 				} else {
-					if (agendamentoBO.salvar(agendamento)) {
-						validacao = "Agendamento salvo com sucesso!";
-					} else {
-						validacao = "Erro ao salvar Agendamento";
-					}
+					validacao = "Erro ao atualizar agendamento";
+				}
+			} else {
+				if (agendamentoBO.salvar(agendamento)) {
+					validacao = "Agendamento salvo com sucesso!";
+				} else {
+					validacao = "Erro ao salvar Agendamento";
 				}
 			}
+		}
 		return validacao;
 	}
 

@@ -385,7 +385,7 @@ public class TelaInicial extends JFrame {
 
 		});
 		btnWhats.setIcon(new ImageIcon(TelaInicial.class.getResource("/main/java/icones/icons8-whatsapp-48.png")));
-		btnWhats.setBounds(575, 90, 50, 45);
+		btnWhats.setBounds(581, 118, 50, 45);
 		tabela.getContentPane().add(btnWhats);
 		
 		JButton btnWhatsInformacao = new JButton("?");
@@ -395,8 +395,22 @@ public class TelaInicial extends JFrame {
 				JOptionPane.showMessageDialog(null, atualizar);
 			}
 		});
-		btnWhatsInformacao.setBounds(635, 102, 20, 20);
+		btnWhatsInformacao.setBounds(649, 126, 20, 20);
 		tabela.getContentPane().add(btnWhatsInformacao);
+		
+		JButton btnStatus = new JButton("Status");
+		btnStatus.setBounds(559, 88, 85, 28);
+		tabela.getContentPane().add(btnStatus);
+		
+		JButton btnStatusInformacao = new JButton("?");
+		btnStatusInformacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String atualizar = "Clique em cima do botão Status para ter a relação do histórico dos Agendamentos.";
+				JOptionPane.showMessageDialog(null, atualizar);
+			}
+		});
+		btnStatusInformacao.setBounds(649, 93, 20, 20);
+		tabela.getContentPane().add(btnStatusInformacao);
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);
