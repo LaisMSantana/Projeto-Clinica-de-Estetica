@@ -38,7 +38,7 @@ public class AgendamentoDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Erro ao atualizar Funcionário. Causa: " + e.getMessage());
+			System.out.println("Erro ao atualizar FuncionÃ¡rio. Causa: " + e.getMessage());
 		} finally {
 			Banco.closePreparedStatement(prepStmt);
 			Banco.closeConnection(conexao);
@@ -84,7 +84,7 @@ public class AgendamentoDAO {
 		try {
 			resultado = stmt.executeUpdate(query);
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar a Query de Exclusão de Agendamento. Erro: " + e.getMessage());
+			System.out.println("Erro ao executar a Query de ExclusÃ£o de Agendamento. Erro: " + e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);
@@ -171,7 +171,7 @@ public class AgendamentoDAO {
 				}
 			} catch (SQLException e) {
 				System.out.println("Erro ao executar a Query que "
-						+ "verifica existência de Agendamento por ID. Erro:"
+						+ "verifica existÃªncia de Agendamento por ID. Erro:"
 						+ e.getMessage());
 				return false;
 			} finally {
