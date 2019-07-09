@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 import model.vo.Agendamento;
 import java.awt.Color;
+import java.sql.Date;
+
 import javax.swing.border.LineBorder;
 
 public class TabelaAgendamento extends JInternalFrame {
@@ -38,7 +40,7 @@ public class TabelaAgendamento extends JInternalFrame {
 		table = new JTable();
 		table.setBackground(new Color(255, 248, 220));
 		int larguraDaTela = 150;
-		//TODO testar o tamanho
+		
 		table.setBounds(20, 20, larguraDaTela / 2, 240);
 		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		table.setCellSelectionEnabled(true);
@@ -51,7 +53,7 @@ public class TabelaAgendamento extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-					"ID", "Cliente", "Procedimento", "Data", "Horario", "Sala"
+					"ID", "Cliente", "Procedimento", "Data", "Horario", "Sala" , "Status"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -66,22 +68,23 @@ public class TabelaAgendamento extends JInternalFrame {
 				new Object[][] {
 				},
 				new String[] {
-						"ID", "Cliente", " Procedimento", "Data", "Horario", "Sala"
+						"ID", "Cliente", " Procedimento", "Data", "Horario", "Sala" , "Status"
 				}
 				);
 		table.setModel(model);
-		Object novaLinha [] = new Object[6];
+		Object novaLinha [] = new Object[7];
 
 		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
 		DateFormat hora = new SimpleDateFormat("HH:mm");
 		
 		for (Agendamento agendamento : agendamentos) {
-			novaLinha[0]= agendamento.getIdAgendamento();
-			novaLinha[1]= agendamento.getCliente().getNome();
-			novaLinha[2]= agendamento.getProcedimento().getNome();
-			novaLinha[3]= data.format(agendamento.getData());
-			novaLinha[4]= hora.format(agendamento.getData());
-			novaLinha[5]= agendamento.getProcedimento().getSala();
+			novaLinha[0] = agendamento.getIdAgendamento();
+			novaLinha[1] = agendamento.getCliente().getNome();
+			novaLinha[2] = agendamento.getProcedimento().getNome();
+			novaLinha[3] = data.format(agendamento.getData());
+			novaLinha[4] = hora.format(agendamento.getData());
+			novaLinha[5] = agendamento.getProcedimento().getSala();
+			novaLinha[6] = agendamento.getStatus();
 			
 			model.addRow(novaLinha);
 		}
@@ -92,4 +95,20 @@ public class TabelaAgendamento extends JInternalFrame {
 		Integer id = (Integer) table.getModel().getValueAt(linhaSelecionada, 0);
 		return id;
 	}
+	public Agendamento getLinhaSelecionada() {
+		int linhaSelecionada = table.getSelectedRow();
+		Agendamento agendamento = new Agendamento();
+		
+		agendamento.setIdAgendamento((Integer) table.getModel().getValueAt(linhaSelecionada, 0));
+		agendamento.getCliente().setNome((String)table.getModel().getValueAt(linhaSelecionada, 1));
+		agendamento.getProcedimento().setNome((String)table.getModel().getValueAt(linhaSelecionada, 2));
+		agendamento.setData((Date)table.getModel().getValueAt(linhaSelecionada, 3));
+		agendamento.setData((Date)table.getModel().getValueAt(linhaSelecionada, 4));
+		agendamento.getProcedimento().setSala((String)table.getModel().getValueAt(linhaSelecionada, 5));
+		
+		agendamento.setStatus((String)table.getModel().getValueAt(linhaSelecionada, 6));
+		return agendamento;
+		
+	}
+
 }

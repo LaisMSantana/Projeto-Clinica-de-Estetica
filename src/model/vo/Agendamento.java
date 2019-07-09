@@ -9,20 +9,23 @@ public class Agendamento {
 	private Procedimento procedimento;
 	private Cliente cliente;
 	private Funcionario funcionario;
+	private String Status;
 
 	public Agendamento() {
 		super();
 	}
 
-	public Agendamento(int idAgendamento, Date data, Procedimento procedimento, Funcionario funcionario,
-			Cliente cliente) {
+	public Agendamento(int idAgendamento, Date data, Procedimento procedimento, Cliente cliente,
+			Funcionario funcionario, String status) {
 		super();
 		this.idAgendamento = idAgendamento;
 		this.data = data;
 		this.procedimento = procedimento;
-		this.funcionario = funcionario;
 		this.cliente = cliente;
+		this.funcionario = funcionario;
+		Status = status;
 	}
+
 
 	public int getIdAgendamento() {
 		return idAgendamento;
@@ -48,6 +51,14 @@ public class Agendamento {
 		this.procedimento = procedimento;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -56,12 +67,14 @@ public class Agendamento {
 		this.funcionario = funcionario;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public String getStatus() {
+		return Status;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setStatus(String status) {
+		Status = status;
 	}
+
+	
 
 }
