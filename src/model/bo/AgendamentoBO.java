@@ -7,6 +7,7 @@ import java.util.List;
 import model.dao.AgendamentoDAO;
 import model.util.GeradordePlanilha;
 import model.vo.Agendamento;
+import model.vo.Cliente;
 
 public class AgendamentoBO {
 
@@ -58,18 +59,13 @@ public class AgendamentoBO {
 	public String filtroStatus(String status) {
 		String mensagem = "";
 
-		if (!status.equals("compareceu")) {
-			mensagem = "Erro ao inserir Status, digite novamente.";
-		} else if (!status.equals("faltou")) {
-			mensagem = "Erro ao inserir Status, digite novamente.";
-		} else if (!status.equals("cancelado")) {
-			mensagem = "Erro ao inserir Status, digite novamente.";
-		} else if (!status.equals("atrasado")) {
-			mensagem = "Erro ao inserir Status, digite novamente.";
-		} else if (!status.equals("remarcado")) {
-			mensagem = "Erro ao inserir Status, digite novamente.";
-		}
+		
 		return mensagem;
+	}
+
+	public Cliente listarCelularCliente(int idAgendamento) {
+		AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+		return agendamentoDAO.listarCelularCliente(idAgendamento);
 	}
 
 }

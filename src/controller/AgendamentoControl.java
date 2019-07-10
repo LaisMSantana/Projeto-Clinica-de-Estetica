@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.bo.AgendamentoBO;
 import model.vo.Agendamento;
+import model.vo.Cliente;
 
 public class AgendamentoControl {
 
@@ -17,11 +18,12 @@ public class AgendamentoControl {
 
 		if (validacao == "") {
 			if (agendamento.getIdAgendamento() > 0) {
-				validacao = agendamentoBO.filtroStatus(agendamento.getStatus());
-				if (agendamentoBO.atualizar(agendamento)) {
-					validacao = "Agendamento atualizado com sucesso!";
-				} else {
-					validacao = "Erro ao atualizar agendamento";
+				
+					if (agendamentoBO.atualizar(agendamento)) {
+						validacao = "Agendamento atualizado com sucesso!";
+					} else {
+						validacao = "Erro ao atualizar agendamento";
+					}
 				}
 			} else {
 				if (agendamentoBO.salvar(agendamento)) {
@@ -30,7 +32,6 @@ public class AgendamentoControl {
 					validacao = "Erro ao salvar Agendamento";
 				}
 			}
-		}
 		return validacao;
 	}
 
@@ -40,9 +41,6 @@ public class AgendamentoControl {
 		if (agendamento == null) {
 			validacao = "Agendamento está NULO!";
 		} else {
-			if (agendamento.getData() == null) {
-				validacao += "- Data é obrigatório \n";
-			}
 			if (agendamento.getProcedimento() == null) {
 				validacao += "- O Nome do Procedimento é obrigatório \n";
 			}
@@ -73,5 +71,10 @@ public class AgendamentoControl {
 
 	public String gerarRelatorio(String caminhoArquivo, String nomeCliente, LocalDate dataSelecionada) {
 		return agendamentoBO.gerarRelatorio(caminhoArquivo, nomeCliente, dataSelecionada);
+	}
+
+	public Cliente listarCelularCliente(int idAgendamento) {
+		return agendamentoBO.listarCelularCliente(idAgendamento);
+
 	}
 }

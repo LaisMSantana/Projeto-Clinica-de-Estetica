@@ -347,12 +347,13 @@ public class TelaInicial extends JFrame {
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			agendamentoControl.salvar(tabela.getLinhaSelecionada());
+			tabela.getLinhaSelecionada();
 			LocalDate dataSelecionada = dataFiltro.getDate();
 			List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(txtNomeCliente.getText(), dataSelecionada);
 			tabela.atualizarTabela(agendamentos);	
 			}
 		});
+		
 		btnAtualizar.setBounds(559, 56, 85, 28);
 		tabela.getContentPane().add(btnAtualizar);
 		
@@ -371,10 +372,13 @@ public class TelaInicial extends JFrame {
 		btnWhats.setForeground(Color.PINK);
 		btnWhats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				int idAgendamento = tabela.getIdSelecionado();
+				Cliente cliente = new Cliente();
+				cliente = agendamentoControl.listarCelularCliente(idAgendamento);
+				
 				try {
-					URI uri = new URI("https://api.whatsapp.com/send?phone="
-				+ tabela.getLinhaSelecionada().getCliente().getCelular() +"&text=Ol%C3%A1!%20Você%20tem%20horario%20agendado%20na%20nossa%20clinica%20na%20data%20de%20hoje%20as%20"
-					+ tabela.getLinhaSelecionada().getData().getTime()	+ ".%20Podemos%20confirmar%20o%20seu%20atendimento?");
+					URI uri = new URI("https://api.whatsapp.com/send?phone="+ cliente.getCelular() 
+				+"&text=Ol%C3%A1!%20Você%20tem%20horario%20agendado%20na%20nossa%20clinica%20na%20data%20de%20hoje.%20Podemos%20confirmar%20o%20seu%20atendimento?");
 					Desktop.getDesktop().browse(uri);
 				} catch (IOException ex) {
 					ex.printStackTrace();

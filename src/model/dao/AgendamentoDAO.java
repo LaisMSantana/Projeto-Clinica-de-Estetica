@@ -21,17 +21,13 @@ public class AgendamentoDAO {
 	public boolean atualizar(Agendamento agendamento) {
 		boolean sucessoUpdate = false;
 
-		String sql = " UPDATE AGENDAMENTO agendamento SET IDCLIENTE=?, IDPROCEDIMENTO=?, DATA=? , STATUS=?" + " WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
-
+		String sql = " UPDATE AGENDAMENTO  SET STATUSAGENDAMENTO = '"+  agendamento.getStatus() + "' WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+		System.out.println(sql);
+		
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
-			 prepStmt.setInt(1, agendamento.getCliente().getIdCliente());
-			 prepStmt.setInt(2, agendamento.getProcedimento().getIdProcedimento());
-			 prepStmt.setDate(3, new java.sql.Date(agendamento.getData().getTime()));
-			 prepStmt.setString(4, agendamento.getStatus());
-
 			int codigoRetorno = prepStmt.executeUpdate();
 
 			if (codigoRetorno == 1) {
@@ -107,7 +103,8 @@ public class AgendamentoDAO {
 					+ "FUNCIONARIO.NOME, "
 					+ "PROCEDIMENTO.IDPROCEDIMENTO, "
 					+ "PROCEDIMENTO.NOME, "
-					+ "PROCEDIMENTO.SALA "
+					+ "PROCEDIMENTO.SALA,"
+					+ "AGENDAMENTO.STATUSAGENDAMENTO "
 					+ "FROM AGENDAMENTO " + "JOIN CLIENTE ON AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
 					+ "JOIN FUNCIONARIO ON AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
 					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO "
@@ -136,6 +133,7 @@ public class AgendamentoDAO {
 				Agendamento agendamento = new Agendamento();
 				agendamento.setIdAgendamento(rs.getInt(1));
 				agendamento.setData(rs.getTimestamp(2));
+				agendamento.setStatus(rs.getString(10));
 				Cliente cliente = new Cliente();
 				cliente.setIdCliente(rs.getInt(3));
 				cliente.setNome(rs.getString(4));
@@ -183,6 +181,37 @@ public class AgendamentoDAO {
 				Banco.closeConnection(conn);
 			}
 			return false;
+		}
+
+		public Cliente listarCelularCliente(int idAgendamento) {
+			Connection conexao = Banco.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			Cliente cliente = new Cliente();
+
+			String sql = "SELECT " 
+					+ "AGENDAMENTO.IDAGENDAMENTO, "
+					+ "CLIENTE.CELULAR"
+					+ "FROM AGENDAMENTO "
+					+ "INNER JOIN CLIENTE ON "
+					+ "AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
+					+ "WHERE AGENDAMENTO.IDAGENDAMENTO = " + idAgendamento ;
+			
+			try {
+				stmt = Banco.getPreparedStatement(conexao, sql);
+			    rs = stmt.executeQuery();
+				if(rs.next()) {
+				cliente.setCelular(rs.getString(2));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Erro ao listar Agendamento. Causa: \n: " + e.getMessage());
+			} finally {
+				Banco.closeStatement(stmt);
+				Banco.closeConnection(conexao);
+				Banco.closeResultSet(rs);
+			}
+			return cliente;
 		}
 
 }
