@@ -344,7 +344,7 @@ public class TelaInicial extends JFrame {
 		btnExcluirInformacao.setBounds(649, 26, 20, 20);
 		tabela.getContentPane().add(btnExcluirInformacao);
 		
-		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnAtualizar = new JButton("Atualizar Status");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			tabela.getLinhaSelecionada();
@@ -360,7 +360,7 @@ public class TelaInicial extends JFrame {
 		JButton btnAtualizarInformacao = new JButton("?");
 		btnAtualizarInformacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String atualizar = "Clique em cima do cliente desejado na tabela, insira a informação autalizada e clique em atualizar.";
+				String atualizar = "Clique em cima do cliente desejado na tabela, insira a informação autalizada  sobre o status e clique em atualizar.";
 				JOptionPane.showMessageDialog(null, atualizar);
 			}
 		});
@@ -402,19 +402,7 @@ public class TelaInicial extends JFrame {
 		btnWhatsInformacao.setBounds(649, 126, 20, 20);
 		tabela.getContentPane().add(btnWhatsInformacao);
 		
-		JButton btnStatus = new JButton("Status");
-		btnStatus.setBounds(559, 88, 85, 28);
-		tabela.getContentPane().add(btnStatus);
 		
-		JButton btnStatusInformacao = new JButton("?");
-		btnStatusInformacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String atualizar = "Clique em cima do botão Status para ter a relação do histórico dos Agendamentos.";
-				JOptionPane.showMessageDialog(null, atualizar);
-			}
-		});
-		btnStatusInformacao.setBounds(649, 93, 20, 20);
-		tabela.getContentPane().add(btnStatusInformacao);
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);
