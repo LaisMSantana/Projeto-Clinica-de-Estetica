@@ -18,12 +18,10 @@ public class AgendamentoControl {
 
 		if (validacao == "") {
 			if (agendamento.getIdAgendamento() > 0) {
-				
-					if (agendamentoBO.atualizar(agendamento)) {
-						validacao = "Agendamento atualizado com sucesso!";
-					} else {
-						validacao = "Erro ao atualizar agendamento";
-					}
+				if (agendamentoBO.atualizar(agendamento)) {
+					validacao = "Agendamento atualizado com sucesso!";
+				} else {
+					validacao = "Erro ao atualizar agendamento";
 				}
 			} else {
 				if (agendamentoBO.salvar(agendamento)) {
@@ -32,6 +30,7 @@ public class AgendamentoControl {
 					validacao = "Erro ao salvar Agendamento";
 				}
 			}
+		}
 		return validacao;
 	}
 

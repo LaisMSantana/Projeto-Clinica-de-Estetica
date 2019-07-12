@@ -49,12 +49,13 @@ public class ClienteDAO {
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
+		String celular = "55" + cliente.getCelular().replace("(", "").replace(")", "").replace("-", "");
 
 		try {
 			prepStmt.setString(1, cliente.getNome());
 			prepStmt.setString(2, cliente.getCpf().replace(".", "").replace("-", ""));
 			prepStmt.setString(3, cliente.getBairro());
-			prepStmt.setString(4, cliente.getCelular().replace("(", "").replace(")", "").replace("-", ""));
+			prepStmt.setString(4, celular);
 			prepStmt.setString(5, cliente.getCep().replace("-", ""));
 			prepStmt.setDate(6, new java.sql.Date(cliente.getDataDeNascimento().getTime()));
 			prepStmt.setString(7, cliente.getEmail());

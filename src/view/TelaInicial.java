@@ -344,28 +344,16 @@ public class TelaInicial extends JFrame {
 		btnExcluirInformacao.setBounds(649, 26, 20, 20);
 		tabela.getContentPane().add(btnExcluirInformacao);
 		
-		JButton btnAtualizar = new JButton("Atualizar Status");
-		btnAtualizar.addActionListener(new ActionListener() {
+		JButton btnStatusInformacao = new JButton("Status?");
+		btnStatusInformacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			tabela.getLinhaSelecionada();
-			LocalDate dataSelecionada = dataFiltro.getDate();
-			List<Agendamento> agendamentos = agendamentoControl.listarTodosAgendamentos(txtNomeCliente.getText(), dataSelecionada);
-			tabela.atualizarTabela(agendamentos);	
+				String status = "Clique em cima do cliente desejado na tabela e atualize o status.";
+				JOptionPane.showMessageDialog(null, status);
 			}
 		});
 		
-		btnAtualizar.setBounds(559, 56, 85, 28);
-		tabela.getContentPane().add(btnAtualizar);
-		
-		JButton btnAtualizarInformacao = new JButton("?");
-		btnAtualizarInformacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String atualizar = "Clique em cima do cliente desejado na tabela, insira a informação autalizada  sobre o status e clique em atualizar.";
-				JOptionPane.showMessageDialog(null, atualizar);
-			}
-		});
-		btnAtualizarInformacao.setBounds(649, 60, 20, 20);
-		tabela.getContentPane().add(btnAtualizarInformacao);
+		btnStatusInformacao.setBounds(559, 56, 85, 28);
+		tabela.getContentPane().add(btnStatusInformacao);
 		
 		JButton btnWhats = new JButton("");
 		btnWhats.setBackground(Color.PINK);
@@ -373,9 +361,9 @@ public class TelaInicial extends JFrame {
 		btnWhats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				int idAgendamento = tabela.getIdSelecionado();
+				
 				Cliente cliente = new Cliente();
 				cliente = agendamentoControl.listarCelularCliente(idAgendamento);
-				
 				try {
 					URI uri = new URI("https://api.whatsapp.com/send?phone="+ cliente.getCelular() 
 				+"&text=Ol%C3%A1!%20Você%20tem%20horario%20agendado%20na%20nossa%20clinica%20na%20data%20de%20hoje.%20Podemos%20confirmar%20o%20seu%20atendimento?");
@@ -401,8 +389,7 @@ public class TelaInicial extends JFrame {
 		});
 		btnWhatsInformacao.setBounds(649, 126, 20, 20);
 		tabela.getContentPane().add(btnWhatsInformacao);
-		
-		
+
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setBounds(20, 50, 220, 30);
 		getContentPane().add(txtNomeCliente);

@@ -21,13 +21,14 @@ public class AgendamentoDAO {
 	public boolean atualizar(Agendamento agendamento) {
 		boolean sucessoUpdate = false;
 
-		String sql = " UPDATE AGENDAMENTO  SET STATUSAGENDAMENTO = '"+  agendamento.getStatus() + "' WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
+		String sql = " UPDATE AGENDAMENTO  SET STATUSAGENDAMENTO =?   WHERE IDAGENDAMENTO = " + agendamento.getIdAgendamento();
 		System.out.println(sql);
 		
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
+			prepStmt.setString(1, agendamento.getStatus());
 			int codigoRetorno = prepStmt.executeUpdate();
 
 			if (codigoRetorno == 1) {
@@ -47,7 +48,7 @@ public class AgendamentoDAO {
 	public int salvar(Agendamento agendamento) {
 		int novoId = -1;
 
-		String sql = " INSERT INTO AGENDAMENTO (DATA, IDPROCEDIMENTO,IDCLIENTE, IDFUNCIONARIO) " + " VALUES (?,?,?,?) ";
+		String sql = " INSERT INTO AGENDAMENTO (DATAAGENDAMENTO, IDPROCEDIMENTO,IDCLIENTE, IDFUNCIONARIO) " + " VALUES (?,?,?,?) ";
 
 		Connection conexao = Banco.getConnection();
 		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
@@ -96,7 +97,7 @@ public class AgendamentoDAO {
 		try {
 			String sql = "SELECT " 
 					+ "AGENDAMENTO.IDAGENDAMENTO, "
-					+ "AGENDAMENTO.DATA, "
+					+ "AGENDAMENTO.DATAAGENDAMENTO, "
 					+ "CLIENTE.IDCLIENTE, "
 					+ "CLIENTE.NOME, "
 					+ "FUNCIONARIO.IDFUNCIONARIO, " 
@@ -105,17 +106,21 @@ public class AgendamentoDAO {
 					+ "PROCEDIMENTO.NOME, "
 					+ "PROCEDIMENTO.SALA,"
 					+ "AGENDAMENTO.STATUSAGENDAMENTO "
-					+ "FROM AGENDAMENTO " + "JOIN CLIENTE ON AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
-					+ "JOIN FUNCIONARIO ON AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
-					+ "JOIN PROCEDIMENTO ON AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO "
+					+ "FROM AGENDAMENTO "
+					+ "JOIN CLIENTE ON "
+					+ "AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
+					+ "JOIN FUNCIONARIO ON "
+					+ "AGENDAMENTO.IDFUNCIONARIO = FUNCIONARIO.IDFUNCIONARIO "
+					+ "JOIN PROCEDIMENTO ON "
+					+ "AGENDAMENTO.IDPROCEDIMENTO = PROCEDIMENTO.IDPROCEDIMENTO "
 					+ "WHERE UPPER(CLIENTE.NOME) LIKE ? ";
 			
 			if (dataSelecionada != null) {
-				sql += " AND DATE(AGENDAMENTO.DATA) = ? "
-						+ "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC";
+				sql += " AND DATE(AGENDAMENTO.DATAAGENDAMENTO) = ? "
+						+ "ORDER BY AGENDAMENTO.DATAAGENDAMENTO ASC, CLIENTE.NOME ASC";
 			} else {
-				sql += " AND AGENDAMENTO.DATA >= NOW()  "
-						+ "ORDER BY AGENDAMENTO.DATA ASC, CLIENTE.NOME ASC ";
+				sql += " AND AGENDAMENTO.DATAAGENDAMENTO >= NOW()  "
+						+ "ORDER BY AGENDAMENTO.DATAAGENDAMENTO ASC, CLIENTE.NOME ASC ";
 			}
 			stmt = Banco.getPreparedStatement(conexao, sql);
 			if (nomeCliente == null) {
@@ -190,12 +195,13 @@ public class AgendamentoDAO {
 			Cliente cliente = new Cliente();
 
 			String sql = "SELECT " 
-					+ "AGENDAMENTO.IDAGENDAMENTO, "
-					+ "CLIENTE.CELULAR"
-					+ "FROM AGENDAMENTO "
-					+ "INNER JOIN CLIENTE ON "
-					+ "AGENDAMENTO.IDCLIENTE = CLIENTE.IDCLIENTE "
-					+ "WHERE AGENDAMENTO.IDAGENDAMENTO = " + idAgendamento ;
+					+ "A.IDAGENDAMENTO, "
+					+ "C.CELULAR "
+					+ "FROM AGENDAMENTO A "
+					+ "INNER JOIN CLIENTE C ON "
+					+ "A.IDCLIENTE = C.IDCLIENTE "
+					+ "WHERE A.IDAGENDAMENTO = " + idAgendamento ;
+			
 			
 			try {
 				stmt = Banco.getPreparedStatement(conexao, sql);

@@ -74,9 +74,6 @@ public class TabelaAgendamento extends JInternalFrame {
 					"ID", "Cliente", "Procedimento", "Data", "Horario", "Sala" , "Status"
 			}
 		){
-					boolean[] columnEditables = new boolean[] {
-							false, false, false, false, false, false, false, true
-					};
 				
 				});
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -103,7 +100,7 @@ public class TabelaAgendamento extends JInternalFrame {
 			cliente.setNome((String)table.getModel().getValueAt(linhaSelecionada, 1));
 			procedimento.setNome((String)table.getModel().getValueAt(linhaSelecionada, 2));
 			procedimento.setSala((String)table.getModel().getValueAt(linhaSelecionada, 5));
-			String status = (String)table.getModel().getValueAt(linhaSelecionada, 7);
+			String status = (String)table.getModel().getValueAt(linhaSelecionada, 6);
 			System.out.println(status);
 			
 			agendamento.setIdAgendamento(id);
@@ -127,7 +124,7 @@ public class TabelaAgendamento extends JInternalFrame {
 				new Object[][] {
 				},
 				new String[] {
-						"ID", "Cliente", " Procedimento", "Data", "Horario", "Sala" , "Funcionário" , "Status"
+						"ID", "Cliente", " Procedimento", "Data", "Horario", "Sala" , "Status"
 				}
 				);
 		table.setModel(model);
@@ -143,8 +140,7 @@ public class TabelaAgendamento extends JInternalFrame {
 			novaLinha[3] = data.format(agendamento.getData());
 			novaLinha[4] = hora.format(agendamento.getData());
 			novaLinha[5] = agendamento.getProcedimento().getSala();
-			novaLinha[6] = agendamento.getFuncionario().getNome();
-			novaLinha[7] = agendamento.getStatus();
+			novaLinha[6] = agendamento.getStatus();
 			
 			model.addRow(novaLinha);
 		}
@@ -156,35 +152,6 @@ public class TabelaAgendamento extends JInternalFrame {
 		return id;
 	}
 	
-	public Agendamento getLinhaSelecionada()  {
-		int linhaSelecionada = table.getSelectedRow();
-		/*
-		Agendamento agendamento = new Agendamento();
-		AgendamentoControl control = new AgendamentoControl();
-		Cliente cliente = new Cliente();
-		Procedimento procedimento = new Procedimento();
-		Funcionario funcionario = new Funcionario();
-		
-		
-		int id =(Integer) table.getModel().getValueAt(linhaSelecionada, 0);
-		cliente.setNome((String)table.getModel().getValueAt(linhaSelecionada, 1));
-		procedimento.setNome((String)table.getModel().getValueAt(linhaSelecionada, 2));
-		procedimento.setSala((String)table.getModel().getValueAt(linhaSelecionada, 5));
-		String status = (String)table.getModel().getValueAt(linhaSelecionada, 7);
-		System.out.println(status);
-		
-		agendamento.setIdAgendamento(id);
-		agendamento.setCliente(cliente);
-		agendamento.setProcedimento(procedimento);
-		agendamento.setFuncionario(funcionario);
-		agendamento.setData(null);
-		agendamento.setStatus(status);
-		
-		String retorno = control.salvar(agendamento);
-		JOptionPane.showMessageDialog(null, retorno);
-		*/
-		return null;
-		
-	}
+	
 
 }

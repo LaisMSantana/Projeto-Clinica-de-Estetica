@@ -9,11 +9,11 @@ import java.sql.Statement;
 
 public class Banco {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private static final String BANCO = "DBPROJETODESKTOP";
-	private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCO
+	private static final String BANCO = "DBCLINICA";
+	private static final String CONEXAO = "jdbc:mysql://10.10.102.216:3306/" + BANCO
 			+ "?useTimezone=true&serverTimezone=UTC";
-	private static final String USUARIO = "root";
-	private static final String SENHA = "";
+	private static final String USUARIO = "clinica";
+	private static final String SENHA = "clinica";
 
 	public static Connection getConnection() {
 		try {
